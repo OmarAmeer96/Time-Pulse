@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "689890085964",
+    "project_id": "time-pulse-dff6d",
+    "storage_bucket": "time-pulse-dff6d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689890085964:android:0b22e522d2d1e9a1ddf8e9",
+        "android_client_info": {
+          "package_name": "com.example.time_pulse"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5ArJDDfouT7CuWj2P3ZG2iRE-B-2VXho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
