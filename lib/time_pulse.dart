@@ -26,7 +26,7 @@ class TimePulse extends StatelessWidget {
         ],
         supportedLocales: S.delegate.supportedLocales,
         locale: const Locale('en'),
-        initialRoute: Routes.splashView,
+        initialRoute: Routes.adminHomeView,
       ),
     );
   }

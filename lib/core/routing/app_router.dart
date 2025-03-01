@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_pulse/core/routing/routes.dart';
+import 'package:time_pulse/features/admin/views/admin_home_view.dart';
 import 'package:time_pulse/features/splash/splash_view.dart';
 
 class AppRouter {
@@ -12,6 +13,11 @@ class AppRouter {
       case Routes.splashView:
         return MaterialPageRoute(
           builder: (_) => const SplashView(),
+        );
+      
+      case Routes.adminHomeView:
+        return MaterialPageRoute(
+          builder: (_) => const AdminHomeView(),
         );
 
       default:
