@@ -3,6 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:time_pulse/core/routing/app_router.dart';
 import 'package:time_pulse/core/routing/routes.dart';
+import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 class TimePulse extends StatelessWidget {
@@ -27,6 +28,9 @@ class TimePulse extends StatelessWidget {
         supportedLocales: S.delegate.supportedLocales,
         locale: const Locale('en'),
         initialRoute: Routes.splashView,
+        theme: MyTheme.lightMode,
+        darkTheme: MyTheme.darkMode,
+        themeMode: ThemeMode.light,
       ),
     );
   }
