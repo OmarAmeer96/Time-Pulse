@@ -1,1 +1,14 @@
-{}
+{
+"user":"User",
+"admin":"Admin",
+"email":"Email Address",
+"password"":"Password",
+"login":"Login",
+"forget password":"Forget Password !",
+"enter your email":"Please, enter your email",
+"enter your password":"Please, enter your password",
+"valid email":"Email is not valid ,please enter a valid email",
+"password length":"Password must be at least 6 chars",
+"incorrect email or password":"The supplied auth credential is incorrect, malformed or has expired.",
+"reset password":"Password reset email sent!"
+}
