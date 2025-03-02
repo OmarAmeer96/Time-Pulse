@@ -2,7 +2,7 @@ class EmployeeModel {
   final String name;
   final String email;
   final String password;
-  final int id;
+  final String id;
 
   EmployeeModel({
     required this.name,

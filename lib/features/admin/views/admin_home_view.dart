@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:time_pulse/features/admin/widgets/create_employee.dart';
+import 'package:time_pulse/features/admin/widgets/create_employee_view.dart';
 import 'package:time_pulse/features/admin/widgets/custom_list_tile.dart';
 
 class AdminHomeView extends StatefulWidget {
