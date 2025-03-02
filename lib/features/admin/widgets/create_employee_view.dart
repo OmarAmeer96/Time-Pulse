@@ -82,6 +82,11 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                   id: idController.text,
                 );
                 db.collection("employees").add(employee.toFireStore());
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text('Account Created Successfully'),
+                  // backgroundColor: Theme.of(context).colorScheme.error,
+                ));
               },
             )
           ],

@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class EmployeeModel {
   final String name;
   final String email;
@@ -10,6 +12,17 @@ class EmployeeModel {
     required this.password,
     required this.id,
   });
+
+  factory EmployeeModel.fromFireStore(
+      DocumentSnapshot<Map<String, dynamic>> snapshot) {
+    final data = snapshot.data();
+    return EmployeeModel(
+      name: data?['name'] ?? '',
+      email: data?['email'] ?? "",
+      password: data?['password'] ?? '',
+      id: data?['ID'] ?? "",
+    );
+  }
 
   Map<String, dynamic> toFireStore() {
     return {
