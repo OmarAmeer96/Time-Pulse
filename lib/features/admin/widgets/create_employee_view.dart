@@ -74,7 +74,7 @@ class _CreateEmployeeState extends State<CreateEmployee> {
             ),
             SizedBox(height: 20),
             CustomButton(
-              onPressed: () {
+              onPressed: () async {
                 EmployeeModel employee = EmployeeModel(
                   name: nameController.text,
                   email: emailController.text,

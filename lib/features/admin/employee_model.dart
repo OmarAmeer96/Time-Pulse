@@ -20,7 +20,7 @@ class EmployeeModel {
       name: data?['name'] ?? '',
       email: data?['email'] ?? "",
       password: data?['password'] ?? '',
-      id: data?['ID'] ?? "",
+      id: data?['ID'].toString() ?? "",
     );
   }
 
