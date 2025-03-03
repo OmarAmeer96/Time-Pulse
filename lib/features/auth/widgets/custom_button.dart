@@ -2,10 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:time_pulse/core/theme.dart';
 
 class CustomButton extends StatelessWidget {
-  String text;
-  Widget icon;
-  VoidCallback onPressed ;
-  CustomButton({super.key, required this.icon, required this.text,required this.onPressed});
+  final String text;
+  final Widget icon;
+  final VoidCallback onPressed;
+  final bool isLoading;
+
+  const CustomButton({
+    super.key,
+    required this.icon,
+    required this.text,
+    required this.onPressed,
+    this.isLoading = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +23,30 @@ class CustomButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: MyTheme.primaryColor,
         ),
-          onPressed: onPressed,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [Text(text,style: TextStyle(
-              fontSize: 18,
-              color: Colors.white
-            ),), 
-            SizedBox(width: 20,),
-            icon],
-          )),
+        onPressed: isLoading ? null : onPressed,
+        child: isLoading
+            ? SizedBox(
+                height: 20,
+                width: 20,
+                child: const CircularProgressIndicator(
+                  color: Colors.white,
+                ),
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    text,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  icon,
+                ],
+              ),
+      ),
     );
   }
 }

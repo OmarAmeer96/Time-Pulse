@@ -6,4 +6,5 @@ class Routes {
   static const String mainView = '/mainView';
   static const String homeView = '/homeView';
   static const String adminHomeView = '/adminHomeView';
+  static const String profileView = '/profileView';
 }

@@ -3,6 +3,7 @@ import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/features/admin/admin_view.dart';
 import 'package:time_pulse/features/auth/login/login_view.dart';
 import 'package:time_pulse/features/admin/views/admin_home_view.dart';
+import 'package:time_pulse/features/profile/profile_screen.dart';
 import 'package:time_pulse/features/splash/splash_view.dart';
 import 'package:time_pulse/features/user/user_view.dart';
 
@@ -17,18 +18,19 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const SplashView(),
         );
-        case Routes.loginView:
-        return MaterialPageRoute(
-          builder: (_)=>const LoginView());
-        case Routes.userView:
-        return MaterialPageRoute(builder: (_)=>const UserView());
-        case Routes.adminView:
-        return MaterialPageRoute(builder: (_)=>const AdminView());
-        
-      
+      case Routes.loginView:
+        return MaterialPageRoute(builder: (_) => const LoginView());
+      case Routes.userView:
+        return MaterialPageRoute(builder: (_) => const UserView());
+      case Routes.adminView:
+        return MaterialPageRoute(builder: (_) => const AdminView());
       case Routes.adminHomeView:
         return MaterialPageRoute(
           builder: (_) => const AdminHomeView(),
+        );
+      case Routes.profileView:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileView(),
         );
 
       default:
