@@ -1,0 +1,2 @@
+I:/Sprints/Graduation Project/Time-Pulse/android/app/.cxx/Debug/364r2o52/x86_64/CMakeFiles/edit_cache.dir
+I:/Sprints/Graduation Project/Time-Pulse/android/app/.cxx/Debug/364r2o52/x86_64/CMakeFiles/rebuild_cache.dir
