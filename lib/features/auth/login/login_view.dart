@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
-import 'package:time_pulse/features/auth/widgets/custom_button.dart';
+import 'package:time_pulse/core/widgets/custom_button.dart';
 import 'package:time_pulse/features/auth/widgets/custom_container.dart';
-import 'package:time_pulse/features/auth/widgets/custom_text_form_field.dart';
+import 'package:time_pulse/core/widgets/custom_text_form_field.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -30,7 +31,6 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Form(
         key: formKey,
@@ -153,10 +153,16 @@ class _LoginViewState extends State<LoginView> {
   login() async {
     if (formKey.currentState!.validate()) {
       try {
-        await _auth.signInWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
+        await _auth
+            .signInWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text)
+            .then((value) {
+          SharedPrefHelper.setData("employeeId", value.user!.uid);
+          SharedPrefHelper.setData("employeeEmail", value.user!.email);
+        });
+
         Navigator.pushReplacementNamed(
-            context, isAdmin ? Routes.adminView : Routes.userView);
+            context, isAdmin ? Routes.adminView : Routes.mainView);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-credential') {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -166,10 +172,10 @@ class _LoginViewState extends State<LoginView> {
                     color: MyTheme.redColor,
                   ))));
 
-          print(
+          debugPrint(
               'The supplied auth credential is incorrect, malformed or has expired.');
         } else {
-          print(e);
+          debugPrint(e.toString());
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(e.toString())));
         }

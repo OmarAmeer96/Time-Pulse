@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/features/admin/admin_view.dart';
 import 'package:time_pulse/features/auth/login/login_view.dart';
-import 'package:time_pulse/features/splash/splash_view.dart';
+import 'package:time_pulse/features/main/main_view.dart';
 import 'package:time_pulse/features/user/user_view.dart';
+import 'package:time_pulse/features/splash/splash_view.dart';
+import 'package:time_pulse/features/vacation_request/vacation_request_view.dart';
+import 'package:time_pulse/features/vacations_history/vacations_history_view.dart';
 
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
@@ -16,14 +19,18 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => const SplashView(),
         );
-        case Routes.loginView:
-        return MaterialPageRoute(
-          builder: (_)=>const LoginView());
-        case Routes.userView:
-        return MaterialPageRoute(builder: (_)=>const UserView());
-        case Routes.adminView:
-        return MaterialPageRoute(builder: (_)=>const AdminView());
-        
+      case Routes.loginView:
+        return MaterialPageRoute(builder: (_) => const LoginView());
+      case Routes.userView:
+        return MaterialPageRoute(builder: (_) => const UserView());
+      case Routes.adminView:
+        return MaterialPageRoute(builder: (_) => const AdminView());
+      case Routes.mainView:
+        return MaterialPageRoute(builder: (_) => const MainView());
+      case Routes.vacationsView:
+        return MaterialPageRoute(builder: (_) => const VacationsHistoryView());
+      case Routes.vacationRequestView:
+        return MaterialPageRoute(builder: (_) => const VacationRequestView());
 
       default:
         return null;

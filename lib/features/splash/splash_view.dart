@@ -13,17 +13,18 @@ class SplashView extends StatefulWidget {
 class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 2),(){
-    Navigator.pushReplacementNamed(context, Routes.loginView);
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.pushReplacementNamed(context, Routes.loginView);
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Center(
-          child: Image(image: AssetImage('assets/images/logo_icon.png')),
-        ),
+        child: Image(image: AssetImage('assets/images/logo_icon.png')),
+      ),
     );
   }
 }
