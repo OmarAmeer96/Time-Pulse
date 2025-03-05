@@ -120,7 +120,7 @@ class _LoginViewState extends State<LoginView> {
               icon: const Icon(Icons.login, color: Colors.white),
               text: 'Login',
               onPressed: login,
-              // isLoading: isLoading,
+              isLoading: isLoading,
             ),
           ],
         ),
