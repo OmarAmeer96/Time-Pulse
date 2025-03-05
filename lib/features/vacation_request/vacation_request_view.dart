@@ -102,7 +102,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                             msg: "Request submitted successfully");
                       } else if (state is VacationRequestUnavailable) {
                         Fluttertoast.showToast(
-                            msg: "Sorry, Your remaining balance is zero");
+                            msg: "Sorry, Your remaining balance is not enough");
                       }
                     },
                     child: CustomButton(

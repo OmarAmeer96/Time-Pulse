@@ -98,7 +98,9 @@ class VacationRequestCubit extends Cubit<VacationRequestState> {
   }
 
   submitVacationRequest() async {
-    if (remainingLeaves > 0) {
+    int totalVacationDays =
+        selectedEndDate!.difference(selectedStartDate!).inDays;
+    if (remainingLeaves > 0 && totalVacationDays <= remainingLeaves) {
       await addVacationRequestToFirebase();
     } else {
       emit(VacationRequestUnavailable());
