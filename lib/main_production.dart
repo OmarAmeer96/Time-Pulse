@@ -13,6 +13,7 @@ void main() async {
   ));
 
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   Bloc.observer = SimpleBlocObserver();
   await ScreenUtil.ensureScreenSize();
   await Firebase.initializeApp();

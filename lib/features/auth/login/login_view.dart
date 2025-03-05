@@ -22,6 +22,8 @@ class _LoginViewState extends State<LoginView> {
   Color userColor = MyTheme.primaryColor;
   Color adminColor = Colors.transparent;
   bool isAdmin = false;
+  bool isLoading = false;
+
   @override
   void dispose() {
     emailController.dispose();
@@ -115,12 +117,10 @@ class _LoginViewState extends State<LoginView> {
               ]),
             ),
             CustomButton(
-              icon: Icon(
-                Icons.login,
-                color: Colors.white,
-              ),
+              icon: const Icon(Icons.login, color: Colors.white),
               text: 'Login',
               onPressed: login,
+              // isLoading: isLoading,
             ),
           ],
         ),
@@ -152,6 +152,7 @@ class _LoginViewState extends State<LoginView> {
 
   login() async {
     if (formKey.currentState!.validate()) {
+      setState(() => isLoading = true);
       try {
         await _auth
             .signInWithEmailAndPassword(
@@ -161,23 +162,34 @@ class _LoginViewState extends State<LoginView> {
           SharedPrefHelper.setData("employeeEmail", value.user!.email);
         });
 
-        Navigator.pushReplacementNamed(
-            context, isAdmin ? Routes.adminView : Routes.mainView);
+        if (mounted) {
+          Navigator.pushReplacementNamed(
+            context,
+            isAdmin ? Routes.adminView : Routes.mainView,
+          );
+          setState(() => isLoading = false);
+        }
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-credential') {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
               content: Text(
-                  'The supplied auth credential is incorrect, malformed or has expired.',
-                  style: TextStyle(
-                    color: MyTheme.redColor,
-                  ))));
+                'The supplied auth credential is incorrect, malformed or has expired.',
+                style: TextStyle(
+                  color: MyTheme.redColor,
+                ),
+              ),
+            ),
+          );
 
           debugPrint(
               'The supplied auth credential is incorrect, malformed or has expired.');
+          setState(() => isLoading = false);
         } else {
           debugPrint(e.toString());
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(e.toString())));
+          setState(() => isLoading = false);
         }
       }
     }

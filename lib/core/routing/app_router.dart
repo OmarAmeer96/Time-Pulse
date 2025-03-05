@@ -3,8 +3,10 @@ import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/features/admin/admin_view.dart';
 import 'package:time_pulse/features/auth/login/login_view.dart';
 import 'package:time_pulse/features/main/main_view.dart';
-import 'package:time_pulse/features/user/user_view.dart';
+import 'package:time_pulse/features/admin/views/admin_home_view.dart';
+import 'package:time_pulse/features/profile/profile_screen.dart';
 import 'package:time_pulse/features/splash/splash_view.dart';
+import 'package:time_pulse/features/user/user_view.dart';
 import 'package:time_pulse/features/vacation_request/vacation_request_view.dart';
 import 'package:time_pulse/features/vacations_history/vacations_history_view.dart';
 
@@ -31,6 +33,14 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const VacationsHistoryView());
       case Routes.vacationRequestView:
         return MaterialPageRoute(builder: (_) => const VacationRequestView());
+      case Routes.adminHomeView:
+        return MaterialPageRoute(
+          builder: (_) => const AdminHomeView(),
+        );
+      case Routes.profileView:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileView(),
+        );
 
       default:
         return null;
