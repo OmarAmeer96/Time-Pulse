@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
-import 'package:time_pulse/features/auth/widgets/custom_button.dart';
+import 'package:time_pulse/core/widgets/custom_button.dart';
 import 'package:time_pulse/features/auth/widgets/custom_container.dart';
-import 'package:time_pulse/features/auth/widgets/custom_text_form_field.dart';
+import 'package:time_pulse/core/widgets/custom_text_form_field.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -32,7 +33,6 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Form(
         key: formKey,
@@ -154,12 +154,18 @@ class _LoginViewState extends State<LoginView> {
     if (formKey.currentState!.validate()) {
       setState(() => isLoading = true);
       try {
-        await _auth.signInWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text);
+        await _auth
+            .signInWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text)
+            .then((value) {
+          SharedPrefHelper.setData("employeeId", value.user!.uid);
+          SharedPrefHelper.setData("employeeEmail", value.user!.email);
+        });
+
         if (mounted) {
           Navigator.pushReplacementNamed(
             context,
-            isAdmin ? Routes.adminView : Routes.userView,
+            isAdmin ? Routes.adminView : Routes.mainView,
           );
           setState(() => isLoading = false);
         }
@@ -176,11 +182,11 @@ class _LoginViewState extends State<LoginView> {
             ),
           );
 
-          print(
+          debugPrint(
               'The supplied auth credential is incorrect, malformed or has expired.');
           setState(() => isLoading = false);
         } else {
-          print(e);
+          debugPrint(e.toString());
           ScaffoldMessenger.of(context)
               .showSnackBar(SnackBar(content: Text(e.toString())));
           setState(() => isLoading = false);
