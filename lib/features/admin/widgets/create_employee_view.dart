@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/custom_button.dart';
@@ -60,13 +61,15 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                             passwordController,
                           );
                       Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Account Created Successfully'),
-                      ));
+                      Fluttertoast.showToast(msg: 'Account Created Successfully');
+                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      //   content: Text('Account Created Successfully'),
+                      // ));
                     } catch (e) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Error: ${e.toString()}'),
-                      ));
+                      Fluttertoast.showToast(msg: 'Error: ${e.toString()}');
+                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      //   content: Text('Error: ${e.toString()}'),
+                      // ));
                     }
                   },
                 )
