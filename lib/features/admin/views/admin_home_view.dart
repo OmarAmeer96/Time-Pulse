@@ -32,6 +32,12 @@ class _AdminHomeViewState extends State<AdminHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.view_timeline),
+            onPressed: () {}
+          )
+        ],
         title: const Text(
           'Employees Data',
           style: TextStyle(color: Color(0xff80c6c5)),

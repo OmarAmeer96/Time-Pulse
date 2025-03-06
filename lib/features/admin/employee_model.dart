@@ -4,6 +4,7 @@ class EmployeeModel {
   final String name;
   final String email;
   final String id;
+  final int remaining_leaves = 21;
 
   EmployeeModel({
     required this.name,
@@ -17,7 +18,7 @@ class EmployeeModel {
     return EmployeeModel(
       name: data?['name'] ?? '',
       email: data?['email'] ?? "",
-      id: data?['ID'].toString() ?? "",
+      id: data?['ID'] ?? "",
     );
   }
 
@@ -26,6 +27,7 @@ class EmployeeModel {
       "name": name,
       "ID": id,
       "email": email,
+      "remaining_leaves": remaining_leaves,
     };
   }
 }
