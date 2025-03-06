@@ -6,6 +6,7 @@ import 'package:time_pulse/data/constants/constants.dart';
 import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_state.dart';
+import 'package:time_pulse/features/admin/widgets/custom_vacation_button.dart';
 
 class AdminVacationsRequestsView extends StatefulWidget {
   const AdminVacationsRequestsView({super.key});
@@ -17,6 +18,14 @@ class AdminVacationsRequestsView extends StatefulWidget {
 
 class _AdminVacationsRequestsViewState
     extends State<AdminVacationsRequestsView> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<VacationsCubit>().vacations.clear();
+    context.read<VacationsCubit>().getVacations();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -130,6 +139,15 @@ class _AdminVacationsRequestsViewState
                                 .read<VacationsCubit>()
                                 .vacations[index]
                                 .reason),
+                                SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          spacing: 25,
+                          children: [
+                            CustomVacationButton(),
+                            CustomVacationButton(isAccept: false),
+                          ],
+                        )
                       ],
                     ).decorate(padding: 12),
                   );

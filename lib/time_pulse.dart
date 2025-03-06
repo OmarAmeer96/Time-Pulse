@@ -6,6 +6,7 @@ import 'package:time_pulse/core/routing/app_router.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
+import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/history/cubit/history_cubit.dart';
 import 'package:time_pulse/features/main/cubit/main_cubit.dart';
 import 'package:time_pulse/features/user/cubit/user_cubit.dart';
@@ -29,7 +30,8 @@ class TimePulse extends StatelessWidget {
           BlocProvider(create: (context) => VacationRequestCubit()),
           BlocProvider(create: (context) => VacationsHistoryCubit()),
           BlocProvider(create: (context) => MainCubit()),
-          BlocProvider(create: (context) => AdminCubit())
+          BlocProvider(create: (context) => AdminCubit()),
+          BlocProvider(create: (context) => VacationsCubit()),          
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

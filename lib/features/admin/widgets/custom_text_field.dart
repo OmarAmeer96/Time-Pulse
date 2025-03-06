@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:time_pulse/core/theme.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key, required this.hintText, required this.controller, this.icon, this.onSubmitted});
+  const CustomTextField(
+      {super.key,
+      required this.hintText,
+      required this.controller,
+      this.icon,
+      this.onSubmitted});
 
   final String hintText;
   final TextEditingController controller;
@@ -12,14 +18,13 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      cursorColor: Color(0xff80c6c5),
+      cursorColor: MyTheme.primaryColor,
       decoration: InputDecoration(
         suffixIcon: IconButton(
-          icon: Icon(icon, color: Color(0xff80c6c5)),
-          onPressed: onSubmitted
-        ),
+            icon: Icon(icon, color: MyTheme.primaryColor),
+            onPressed: onSubmitted),
         hintText: hintText,
-        hintStyle: TextStyle(color: Color(0xff80c6c5)),
+        hintStyle: TextStyle(color: MyTheme.primaryColor),
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(),
@@ -29,7 +34,8 @@ class CustomTextField extends StatelessWidget {
 
   OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
-        borderRadius: BorderRadius.circular(10),
-        borderSide: BorderSide(color: Color(0xff80c6c5)));
+      borderRadius: BorderRadius.circular(10),
+      borderSide: BorderSide(color: MyTheme.primaryColor),
+    );
   }
 }

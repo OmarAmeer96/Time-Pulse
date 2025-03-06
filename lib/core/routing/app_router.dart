@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/features/admin/admin_view.dart';
+import 'package:time_pulse/features/admin/views/admin_vacations_requests_view.dart';
 import 'package:time_pulse/features/auth/login/login_view.dart';
 import 'package:time_pulse/features/main/main_view.dart';
 import 'package:time_pulse/features/admin/views/admin_home_view.dart';
@@ -36,9 +37,9 @@ class AppRouter {
       case Routes.adminHomeView:
         return MaterialPageRoute(builder: (_) => const AdminHomeView());
       case Routes.profileView:
-        return MaterialPageRoute(
-          builder: (_) => const ProfileView(),
-        );
+        return MaterialPageRoute(builder: (_) => const ProfileView());
+      case Routes.adminVacationsView:
+        return MaterialPageRoute(builder: (_) => const AdminVacationsRequestsView());
 
       default:
         return null;

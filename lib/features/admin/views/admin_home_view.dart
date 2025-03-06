@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_state.dart';
@@ -31,7 +32,9 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         actions: [
           IconButton(
             icon: Icon(Icons.view_timeline, color: Colors.white),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.adminVacationsView);
+            },
           ),
         ],
         title: Text(
