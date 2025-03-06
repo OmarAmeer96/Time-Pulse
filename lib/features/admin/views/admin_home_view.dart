@@ -16,21 +16,13 @@ class AdminHomeView extends StatefulWidget {
 }
 
 class _AdminHomeViewState extends State<AdminHomeView> {
-  // List<EmployeeModel> employees = [];
-
   final TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     context.read<AdminCubit>().getEmployeeData();
-    // getEmployees();
   }
-
-  // Future<void> getEmployees() async {
-  //   employees = await EmployeeService().getEmployeeData();
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +48,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is AdminPageLoaded) {
+          } else if (state is AdminPageLoaded || state is EmployeeAdded) {
             return Column(
               children: [
                 Padding(
@@ -81,8 +73,10 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       itemCount: context.read<AdminCubit>().employees.length,
                       itemBuilder: (context, index) {
                         return CustomListTile(
-                          employeeName: context.read<AdminCubit>().employees[index].name,
-                          employeeId: context.read<AdminCubit>().employees[index].id,
+                          employeeName:
+                              context.read<AdminCubit>().employees[index].name,
+                          employeeId:
+                              context.read<AdminCubit>().employees[index].id,
                         );
                       },
                     ),
