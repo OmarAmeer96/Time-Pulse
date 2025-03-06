@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/create_employee_view.dart';
@@ -26,12 +27,16 @@ class _AdminHomeViewState extends State<AdminHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: MyTheme.primaryColor,
         actions: [
-          IconButton(icon: const Icon(Icons.view_timeline), onPressed: () {})
+          IconButton(
+            icon: Icon(Icons.view_timeline, color: Colors.white),
+            onPressed: () {},
+          ),
         ],
-        title: const Text(
+        title: Text(
           'Employees Data',
-          style: TextStyle(color: Color(0xff80c6c5)),
+          style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),
@@ -63,7 +68,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      color: Color(0xff80c6c5),
+                      color: MyTheme.primaryColor,
                     ),
                     height: MediaQuery.sizeOf(context).height * 0.75,
                     width: MediaQuery.sizeOf(context).width,
@@ -101,7 +106,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         },
         child: Icon(
           Icons.person_add_rounded,
-          color: Color(0xff80c6c5),
+          color: MyTheme.primaryColor,
         ),
       ),
     );

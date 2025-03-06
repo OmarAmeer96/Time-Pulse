@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/custom_button.dart';
@@ -33,7 +34,7 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xff80c6c5),
+                    color: MyTheme.primaryColor,
                   ),
                 ),
                 SizedBox(height: 10),
@@ -61,7 +62,8 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                             passwordController,
                           );
                       Navigator.pop(context);
-                      Fluttertoast.showToast(msg: 'Account Created Successfully');
+                      Fluttertoast.showToast(
+                          msg: 'Account Created Successfully');
                       // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       //   content: Text('Account Created Successfully'),
                       // ));
