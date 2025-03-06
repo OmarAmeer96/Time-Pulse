@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:time_pulse/core/routing/app_router.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
+import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
 import 'package:time_pulse/features/history/cubit/history_cubit.dart';
 import 'package:time_pulse/features/main/cubit/main_cubit.dart';
 import 'package:time_pulse/features/user/cubit/user_cubit.dart';
@@ -23,13 +24,12 @@ class TimePulse extends StatelessWidget {
       minTextAdapt: true,
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(
-            create: (context) => UserCubit(),
-          ),
+          BlocProvider(create: (context) => UserCubit()),
           BlocProvider(create: (context) => HistoryCubit()),
           BlocProvider(create: (context) => VacationRequestCubit()),
           BlocProvider(create: (context) => VacationsHistoryCubit()),
-          BlocProvider(create: (context) => MainCubit())
+          BlocProvider(create: (context) => MainCubit()),
+          BlocProvider(create: (context) => AdminCubit())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -43,7 +43,7 @@ class TimePulse extends StatelessWidget {
           ],
           supportedLocales: S.delegate.supportedLocales,
           locale: const Locale('en'),
-          initialRoute: Routes.splashView,
+          initialRoute: Routes.adminHomeView,
           theme: MyTheme.lightMode,
           darkTheme: MyTheme.darkMode,
           themeMode: ThemeMode.light,

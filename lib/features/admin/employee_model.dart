@@ -18,7 +18,7 @@ class EmployeeModel {
     return EmployeeModel(
       name: data?['name'] ?? '',
       email: data?['email'] ?? "",
-      id: data?['ID'] ?? "",
+      id: data?['ID'].toString() ?? "",
     );
   }
 

@@ -34,9 +34,7 @@ class AppRouter {
       case Routes.vacationRequestView:
         return MaterialPageRoute(builder: (_) => const VacationRequestView());
       case Routes.adminHomeView:
-        return MaterialPageRoute(
-          builder: (_) => const AdminHomeView(),
-        );
+        return MaterialPageRoute(builder: (_) => const AdminHomeView());
       case Routes.profileView:
         return MaterialPageRoute(
           builder: (_) => const ProfileView(),

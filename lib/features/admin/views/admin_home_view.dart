@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
+import 'package:time_pulse/features/admin/cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/employee_model.dart';
 import 'package:time_pulse/features/admin/services/get_employee_data.dart';
 import 'package:time_pulse/features/admin/widgets/create_employee_view.dart';
@@ -13,30 +16,28 @@ class AdminHomeView extends StatefulWidget {
 }
 
 class _AdminHomeViewState extends State<AdminHomeView> {
-  List<EmployeeModel> employees = [];
+  // List<EmployeeModel> employees = [];
 
   final TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    getEmployees();
+    context.read<AdminCubit>().getEmployeeData();
+    // getEmployees();
   }
 
-  Future<void> getEmployees() async {
-    employees = await EmployeeService().getEmployeeData();
-    setState(() {});
-  }
+  // Future<void> getEmployees() async {
+  //   employees = await EmployeeService().getEmployeeData();
+  //   setState(() {});
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: const Icon(Icons.view_timeline),
-            onPressed: () {}
-          )
+          IconButton(icon: const Icon(Icons.view_timeline), onPressed: () {})
         ],
         title: const Text(
           'Employees Data',
@@ -44,38 +45,57 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: CustomTextField(
-              hintText: 'Search',
-              controller: searchController,
-              icon: Icons.search,
-              onSubmitted: () {},
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: Color(0xff80c6c5),
-              ),
-              height: MediaQuery.sizeOf(context).height * 0.75,
-              width: MediaQuery.sizeOf(context).width,
-              child: ListView.builder(
-                itemCount: employees.length,
-                itemBuilder: (context, index) {
-                  return CustomListTile(
-                    employeeName: employees[index].name,
-                    employeeId: employees[index].id,
-                  );
-                },
-              ),
-            ),
-          ),
-        ],
+      body: BlocBuilder<AdminCubit, AdminState>(
+        builder: (context, state) {
+          if (state is AdminPageInitial) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is AdminPageLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is AdminPageLoaded) {
+            return Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: CustomTextField(
+                    hintText: 'Search',
+                    controller: searchController,
+                    icon: Icons.search,
+                    onSubmitted: () {},
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Color(0xff80c6c5),
+                    ),
+                    height: MediaQuery.sizeOf(context).height * 0.75,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: ListView.builder(
+                      itemCount: context.read<AdminCubit>().employees.length,
+                      itemBuilder: (context, index) {
+                        return CustomListTile(
+                          employeeName: context.read<AdminCubit>().employees[index].name,
+                          employeeId: context.read<AdminCubit>().employees[index].id,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
+          } else {
+            return Center(
+              child: Text('Error'),
+            );
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
