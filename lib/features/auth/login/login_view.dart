@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:time_pulse/core/helpers/constants.dart';
 import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
@@ -169,6 +170,12 @@ class _LoginViewState extends State<LoginView> {
           );
           setState(() => isLoading = false);
         }
+
+        isAdmin
+            ? SharedPrefHelper.setData("isAdmin", true)
+            : SharedPrefHelper.setData("isAdmin", false);
+        isUserLoggedIn = true;
+        SharedPrefHelper.setData("isUserLoggedIn", true);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invalid-credential') {
           ScaffoldMessenger.of(context).showSnackBar(

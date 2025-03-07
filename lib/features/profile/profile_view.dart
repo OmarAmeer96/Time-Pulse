@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/features/profile/cubit/profile_cubit.dart';
@@ -39,8 +40,11 @@ class ProfileView extends StatelessWidget {
                       context,
                       () async {
                         await context.read<ProfileCubit>().signOut();
+                        SharedPrefHelper.setData("isUserLoggedIn", false);
                         Navigator.pushReplacementNamed(
-                            context, Routes.loginView);
+                          context,
+                          Routes.loginView,
+                        );
                       },
                     ),
                   ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 
 class SplashView extends StatefulWidget {
@@ -11,10 +12,26 @@ class SplashView extends StatefulWidget {
 }
 
 class _SplashViewState extends State<SplashView> {
+  bool isLoggedIn = false;
+  bool isAdmin = false;
+
+  Future<void> checkLoginStatus() async {
+    isLoggedIn = await SharedPrefHelper.getBool("isUserLoggedIn");
+    isAdmin = await SharedPrefHelper.getBool("isAdmin");
+  }
+
   @override
   void initState() {
+    checkLoginStatus();
     Future.delayed(Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, Routes.loginView);
+      Navigator.pushReplacementNamed(
+        context,
+        !isLoggedIn
+            ? Routes.loginView
+            : !isAdmin
+                ? Routes.mainView
+                : Routes.adminView,
+      );
     });
     super.initState();
   }
