@@ -149,6 +149,7 @@ class UserCubit extends Cubit<UserState> {
       (querySnapshot) async {
         debugPrint("Successfully completed");
         employeeName = querySnapshot.docs[0].data()['name'];
+        await SharedPrefHelper.setData("employeeName", employeeName);
         isCheckedIn = querySnapshot.docs[0].data()['is_checked_in'];
         employeeRemainingLeaves =
             querySnapshot.docs[0].data()['remaining_leaves'];
