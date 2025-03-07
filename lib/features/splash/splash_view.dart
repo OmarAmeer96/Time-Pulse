@@ -30,7 +30,7 @@ class _SplashViewState extends State<SplashView> {
             ? Routes.loginView
             : !isAdmin
                 ? Routes.mainView
-                : Routes.adminView,
+                : Routes.adminHomeView,
       );
     });
     super.initState();
