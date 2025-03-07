@@ -4,7 +4,8 @@ class EmployeeModel {
   final String name;
   final String email;
   final String id;
-  final int remaining_leaves = 21;
+  int remaining_leaves = 21;
+  bool isCheckedIn = false;
 
   EmployeeModel({
     required this.name,
@@ -28,6 +29,7 @@ class EmployeeModel {
       "ID": id,
       "email": email,
       "remaining_leaves": remaining_leaves,
+      "is_checked_in": isCheckedIn,
     };
   }
 }
