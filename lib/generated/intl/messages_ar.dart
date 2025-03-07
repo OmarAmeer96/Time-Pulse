@@ -23,19 +23,91 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "admin": MessageLookupByLibrary.simpleMessage("المشرف"),
+    "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
+    "check_in": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
+    "check_out": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
+    "checked_in": MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح"),
+    "checked_out": MessageLookupByLibrary.simpleMessage(
+      "تم تسجيل الخروج بنجاح",
+    ),
+    "click_to_check_in": MessageLookupByLibrary.simpleMessage(
+      "من فضلك اضغط هنا لتسجيل الدخول",
+    ),
+    "click_to_check_out": MessageLookupByLibrary.simpleMessage(
+      "من فضلك اضغط هنا لتسجيل الخروج",
+    ),
+    "dark": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "department": MessageLookupByLibrary.simpleMessage("القسم"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "employee_id": MessageLookupByLibrary.simpleMessage("معرّف الموظف"),
+    "empty_history": MessageLookupByLibrary.simpleMessage("السجل فارغ"),
+    "end_date": MessageLookupByLibrary.simpleMessage("تاريخ الإنتهاء"),
+    "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+    "enter_your_email": MessageLookupByLibrary.simpleMessage(
+      "من فضلك أدخل البريد الإلكتروني",
+    ),
+    "enter_your_password": MessageLookupByLibrary.simpleMessage(
+      " من فصلك ,أدخل كلمة المرور",
+    ),
+    "forget_password": MessageLookupByLibrary.simpleMessage(
+      "هل نسيت كلمة المرور",
+    ),
     "general": MessageLookupByLibrary.simpleMessage("عام"),
+    "history": MessageLookupByLibrary.simpleMessage("السجل"),
+    "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+    "home_page": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
+    "incorrect_email_or_password": MessageLookupByLibrary.simpleMessage(
+      "الرقم السري أو البريد الإلكتروني غير صحيح",
+    ),
+    "language": MessageLookupByLibrary.simpleMessage("اللغة"),
+    "leaves": MessageLookupByLibrary.simpleMessage("الاجازات"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "no_name_provided": MessageLookupByLibrary.simpleMessage(
       "لم يتم توفير اسم",
     ),
+    "no_vacation": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد اجازات حتى الان",
+    ),
     "not_specified": MessageLookupByLibrary.simpleMessage("غير محدد"),
+    "out_of_company": MessageLookupByLibrary.simpleMessage(
+      "أنت خارج نطاق الشركة",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("الرقم السري"),
+    "password_length": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تكون على الأقل 6 كلمات",
+    ),
+    "pending": MessageLookupByLibrary.simpleMessage("قيد الإنتظار"),
     "position": MessageLookupByLibrary.simpleMessage("الوظيفة"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
+    "reason": MessageLookupByLibrary.simpleMessage("السبب"),
+    "rejected": MessageLookupByLibrary.simpleMessage("مرفوض"),
+    "remaining_balance": MessageLookupByLibrary.simpleMessage(
+      "اسف ,رصيد الاجازات غير كافي",
+    ),
+    "request_submitted": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال الطلب بنجاح",
+    ),
+    "request_vacation": MessageLookupByLibrary.simpleMessage("طلب اجازة"),
+    "reset_password": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال اعادة تعيين الرقم السري إلى البريد الإلكتروني",
+    ),
+    "select_a_end_date": MessageLookupByLibrary.simpleMessage(
+      "من فضلك أدخل تاريخ الانتهاء",
+    ),
+    "select_a_reason": MessageLookupByLibrary.simpleMessage(
+      "من فضلك أدخل سبب طلبك لاجازة",
+    ),
+    "select_a_start_date": MessageLookupByLibrary.simpleMessage(
+      "من فضلك أدخل تاريخ البدء",
+    ),
+    "select_language": MessageLookupByLibrary.simpleMessage("إختر اللغة"),
+    "settings": MessageLookupByLibrary.simpleMessage("الاعدادات"),
+    "start_date": MessageLookupByLibrary.simpleMessage("تاريخ البدء"),
+    "submit": MessageLookupByLibrary.simpleMessage("ارسال"),
     "user": MessageLookupByLibrary.simpleMessage("المستخدم"),
+    "vacations": MessageLookupByLibrary.simpleMessage("الاجازات"),
+    "valid_email": MessageLookupByLibrary.simpleMessage("الإيميل غير صحيح "),
+    "welcome": MessageLookupByLibrary.simpleMessage("مرحبا بعودتك"),
   };
 }

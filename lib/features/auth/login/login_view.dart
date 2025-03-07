@@ -1,15 +1,21 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/helpers/constants.dart';
 import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/custom_button.dart';
-import 'package:time_pulse/features/auth/widgets/custom_container.dart';
 import 'package:time_pulse/core/widgets/custom_text_form_field.dart';
+import 'package:time_pulse/core/widgets/global_loading_dialog.dart';
+import 'package:time_pulse/features/auth/cubit/auth_cubit.dart';
+import 'package:time_pulse/features/auth/widgets/custom_container.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
+
+import '../../../generated/l10n.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
+
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -18,13 +24,12 @@ class _LoginViewState extends State<LoginView> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
-  final _auth = FirebaseAuth.instance;
-  bool obsure = true;
+  bool obscure = true;
   Color userColor = MyTheme.primaryColor;
   Color adminColor = Colors.transparent;
   bool isAdmin = false;
-  bool isLoading = false;
 
+  @override
   @override
   void dispose() {
     emailController.dispose();
@@ -34,96 +39,107 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Form(
-        key: formKey,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: EdgeInsets.all(7),
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  color: Colors.grey.shade300),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CustomContainer(
-                    text: 'User',
-                    containerColor: userColor,
-                    onTap: () {
-                      isAdmin = false;
-                      userColor = MyTheme.primaryColor;
-                      adminColor = Colors.transparent;
-                      setState(() {});
-                    },
-                  ),
-                  SizedBox(
-                    width: 4,
-                  ),
-                  CustomContainer(
-                    text: 'Admin',
-                    containerColor: adminColor,
-                    onTap: () {
-                      isAdmin = true;
-                      adminColor = MyTheme.primaryColor;
-                      userColor = Colors.transparent;
+    var theme= context.read<ThemeCubit>();
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthLoading) {
+          GlobalDialog.showLoadingDialog(context);
+        } else if (state is AuthAuthenticated) {
+          Navigator.pop(context);
+          Navigator.pushReplacementNamed(
+              context, isAdmin ? Routes.adminHomeView : Routes.mainView);
+        }
+      },
+      child: Scaffold(
+        body: Form(
+          key: formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: EdgeInsets.all(7),
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: theme.darkMode?MyTheme.greyColor:Colors.grey.shade300),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CustomContainer(
+                      text: S.of(context).user,
+                      containerColor: userColor,
+                      onTap: () {
+                        isAdmin = false;
+                        userColor = MyTheme.primaryColor;
+                        adminColor = Colors.transparent;
+                        setState(() {});
+                      },
+                    ),
+                    SizedBox(
+                      width: 4,
+                    ),
+                    CustomContainer(
+                      text: S.of(context).admin,
+                      containerColor: adminColor,
+                      onTap: () {
+                        isAdmin = true;
+                        adminColor = MyTheme.primaryColor;
+                        userColor = Colors.transparent;
 
-                      setState(() {});
-                    },
-                  )
-                ],
+                        setState(() {});
+                      },
+                    )
+                  ],
+                ),
               ),
-            ),
-            CustomTextFormField(
-              controller: emailController,
-              validate: validateEmail,
-              label: "Email",
-              prefixIcon: Icon(Icons.email),
-              keyboardType: TextInputType.emailAddress,
-            ),
-            CustomTextFormField(
-                controller: passwordController,
-                validate: validatePassword,
-                label: "Password",
-                prefixIcon: Icon(Icons.lock),
-                keyboardType: TextInputType.number,
-                obsure: obsure,
-                suffixIcon: obsure
-                    ? IconButton(
-                        onPressed: () {
-                          obsure = false;
-                          setState(() {});
-                        },
-                        icon: Icon(Icons.visibility_off),
-                      )
-                    : IconButton(
-                        onPressed: () {
-                          obsure = true;
-                          setState(() {});
-                        },
-                        icon: Icon(Icons.visibility_outlined),
-                      )),
-            TextButton(
-              onPressed: resetPassword,
-              child: Row(children: [
-                Text(
-                  'Forget Password !',
-                  style: TextStyle(
-                    color: Colors.grey,
-                  ),
-                  textAlign: TextAlign.start,
-                )
-              ]),
-            ),
-            CustomButton(
-              icon: const Icon(Icons.login, color: Colors.white),
-              text: 'Login',
-              onPressed: login,
-              isLoading: isLoading,
-            ),
-          ],
+              CustomTextFormField(
+                controller: emailController,
+                validate: validateEmail,
+                label: S.of(context).email,
+                prefixIcon: Icon(Icons.email),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              CustomTextFormField(
+                  controller: passwordController,
+                  validate: validatePassword,
+                  label: S.of(context).password,
+                  prefixIcon: Icon(Icons.lock),
+                  keyboardType: TextInputType.number,
+                  obsure: obscure,
+                  suffixIcon: obscure
+                      ? IconButton(
+                          onPressed: () {
+                            obscure = false;
+                            setState(() {});
+                          },
+                          icon: Icon(Icons.visibility_off),
+                        )
+                      : IconButton(
+                          onPressed: () {
+                            obscure = true;
+                            setState(() {});
+                          },
+                          icon: Icon(Icons.visibility_outlined),
+                        )),
+              TextButton(
+                onPressed: restPassword,
+                child: Row(children: [
+                  Text(
+                    S.of(context).forget_password,
+                    style: TextStyle(
+                      color: Colors.grey,
+                    ),
+                    textAlign: TextAlign.start,
+                  )
+                ]),
+              ),
+              CustomButton(
+                icon: const Icon(Icons.login, color: Colors.white),
+                text: S.of(context).login,
+                onPressed: login,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -131,13 +147,13 @@ class _LoginViewState extends State<LoginView> {
 
   String? validateEmail(String? value) {
     if (value!.isEmpty) {
-      return 'Please, enter your email';
+      return S.of(context).enter_your_email;
     }
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value);
     if (!emailValid) {
-      return 'Email is not valid ,please enter a valid email';
+      return S.of(context).valid_email;
     }
     return null;
   }
@@ -153,71 +169,20 @@ class _LoginViewState extends State<LoginView> {
 
   login() async {
     if (formKey.currentState!.validate()) {
-      setState(() => isLoading = true);
-      try {
-        await _auth
-            .signInWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text)
-            .then((value) {
-          SharedPrefHelper.setData("employeeId", value.user!.uid);
-          SharedPrefHelper.setData("employeeEmail", value.user!.email);
-        });
-
-        if (mounted) {
-          Navigator.pushReplacementNamed(
-            context,
-            isAdmin ? Routes.adminView : Routes.mainView,
-          );
-          setState(() => isLoading = false);
-        }
+      context
+          .read<AuthCubit>()
+          .login(emailController.text, passwordController.text, context);
 
         isAdmin
             ? SharedPrefHelper.setData("isAdmin", true)
             : SharedPrefHelper.setData("isAdmin", false);
         isUserLoggedIn = true;
         SharedPrefHelper.setData("isUserLoggedIn", true);
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'invalid-credential') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'The supplied auth credential is incorrect, malformed or has expired.',
-                style: TextStyle(
-                  color: MyTheme.redColor,
-                ),
-              ),
-            ),
-          );
-
-          debugPrint(
-              'The supplied auth credential is incorrect, malformed or has expired.');
-          setState(() => isLoading = false);
-        } else {
-          debugPrint(e.toString());
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text(e.toString())));
-          setState(() => isLoading = false);
-        }
-      }
-    }
+  
+  }
   }
 
-  void resetPassword() async {
-    try {
-      await _auth.sendPasswordResetEmail(email: emailController.text);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Password reset email sent!')),
-      );
-    } on FirebaseAuthException catch (e) {
-      String errorMessage;
-      if (e.code == 'user-not-found') {
-        errorMessage = 'No user found for that email.';
-      } else {
-        errorMessage = e.message ?? 'An error occurred.';
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(errorMessage)),
-      );
-    }
+  restPassword() {
+    context.read<AuthCubit>().resetPassword(emailController.text, context);
   }
 }

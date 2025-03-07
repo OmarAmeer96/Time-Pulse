@@ -7,6 +7,7 @@ import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/core/widgets/global_loading_dialog.dart';
 import 'package:time_pulse/features/vacation_request/cubit/vacation_request_cubit.dart';
 import 'package:time_pulse/features/vacations_history/cubit/vacations_history_cubit.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class VacationRequestView extends StatefulWidget {
   const VacationRequestView({super.key});
@@ -25,7 +26,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GlobalAppbar(title: "Request Vacation"),
+      appBar: GlobalAppbar(title: S.of(context).request_vacation),
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height - (kToolbarHeight + 30),
@@ -40,7 +41,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                         .startDateController,
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return "Please select a start date";
+                        return S.of(context).select_a_start_date;
                       } else {
                         return null;
                       }
@@ -50,7 +51,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                           .read<VacationRequestCubit>()
                           .selectStartDate(context);
                     },
-                    label: "Start Date",
+                    label: S.of(context).start_date,
                     prefixIcon: Icon(Icons.calendar_month)),
                 CustomTextFormField(
                     readOnly: true,
@@ -58,7 +59,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                         context.read<VacationRequestCubit>().endDateController,
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return "Please select an end date";
+                        return S.of(context).select_a_end_date;
                       } else {
                         return null;
                       }
@@ -68,7 +69,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                           .read<VacationRequestCubit>()
                           .selectEndDate(context);
                     },
-                    label: "End Date",
+                    label: S.of(context).end_date,
                     prefixIcon: Icon(Icons.calendar_month)),
                 CustomTextFormField(
                     maxLines: 5,
@@ -76,12 +77,12 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                         context.read<VacationRequestCubit>().reasonController,
                     validate: (value) {
                       if (value!.isEmpty) {
-                        return "Please enter a reason for your request";
+                        return S.of(context).select_a_reason;
                       } else {
                         return null;
                       }
                     },
-                    label: "Reason",
+                    label: S.of(context).reason,
                     prefixIcon: Align(
                       alignment: AlignmentDirectional.topCenter,
                       child: Padding(
@@ -99,15 +100,15 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                       } else if (state is VacationRequestLoaded) {
                         Navigator.pop(context);
                         Fluttertoast.showToast(
-                            msg: "Request submitted successfully");
+                            msg: S.of(context).request_submitted);
                       } else if (state is VacationRequestUnavailable) {
                         Fluttertoast.showToast(
-                            msg: "Sorry, Your remaining balance is not enough");
+                            msg: S.of(context).remaining_balance);
                       }
                     },
                     child: CustomButton(
                         icon: SizedBox(),
-                        text: "Submit",
+                        text: S.of(context).submit,
                         onPressed: () async {
                           if (context
                               .read<VacationRequestCubit>()

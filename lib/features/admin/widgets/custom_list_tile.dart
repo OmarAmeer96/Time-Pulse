@@ -37,7 +37,7 @@ class CustomListTile extends StatelessWidget {
             ),
           ),
         ),
-      ).decorate(padding: 4) ,
+      ).decorate(padding: 4,context: context) ,
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/features/profile/widgets/info_row_item.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 Widget buildUserInfoCard(
@@ -7,6 +9,7 @@ Widget buildUserInfoCard(
   BuildContext context,
 ) {
   return Card(
+    color:context.read<ThemeCubit>().darkMode?Colors.grey.shade400:Colors.white ,
     elevation: 4,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),

@@ -100,7 +100,7 @@ class CustomVacationRequestCard extends StatelessWidget {
                 )
               : Container()
         ],
-      ).decorate(padding: 12),
+      ).decorate(padding: 12,context: context),
     );
   }
 }

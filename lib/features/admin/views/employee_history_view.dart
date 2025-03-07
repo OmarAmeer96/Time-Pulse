@@ -66,7 +66,7 @@ class _EmployeeHistoryViewState extends State<EmployeeHistoryView> {
                             .checkOutTime,
                       ),
                     ],
-                  ).decorate(padding: 8),
+                  ).decorate(padding: 8,context: context),
                 );
               },
             );

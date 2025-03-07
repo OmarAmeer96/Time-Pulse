@@ -4,6 +4,8 @@ import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/core/widgets/global_data_show.dart';
 import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/history/cubit/history_cubit.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class HistoryView extends StatefulWidget {
   const HistoryView({super.key});
@@ -23,7 +25,7 @@ class _HistoryViewState extends State<HistoryView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GlobalAppbar(title: "History"),
+      appBar: GlobalAppbar(title: S.of(context).history),
       body: BlocBuilder<HistoryCubit, HistoryState>(
         builder: (context, state) {
           if (state is HistoryInitial) {
@@ -37,7 +39,7 @@ class _HistoryViewState extends State<HistoryView> {
             );
           } else if (state is EmptyHistory) {
             return Center(
-              child: Text("Empty History"),
+              child: Text(S.of(context).empty_history ,style: TextStyle(color: context.read<ThemeCubit>().darkMode?Colors.white:Colors.black),),
             );
           } else {
             return ListView.builder(
@@ -49,20 +51,20 @@ class _HistoryViewState extends State<HistoryView> {
                     child: Column(
                       children: [
                         GlobalDataShow(
-                            title: "Check-in time",
+                            title: S.of(context).check_in,
                             data: context
                                 .read<HistoryCubit>()
                                 .userHistory[index]
                                 .checkInTime),
                         SizedBox(height: 8),
                         GlobalDataShow(
-                            title: "Check-out time",
+                            title: S.of(context).check_out,
                             data: context
                                 .read<HistoryCubit>()
                                 .userHistory[index]
                                 .checkOutTime),
                       ],
-                    ).decorate(padding: 8));
+                    ).decorate(padding: 8,context: context));
               },
             );
           }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/theme.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 
 typedef Validator = String? Function(String?)?;
 
@@ -29,6 +31,7 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme= context.read<ThemeCubit>();
     return Padding(
       padding: EdgeInsets.all(15),
       child: TextFormField(
@@ -45,9 +48,11 @@ class CustomTextFormField extends StatelessWidget {
                   ? BoxConstraints(maxWidth: 60, minHeight: 140)
                   : null,
               labelText: label,
+              labelStyle: TextStyle(color:theme.darkMode?Colors.white:Colors.black , fontSize: 20 ),
               prefixIcon: prefixIcon,
               prefixIconColor: MyTheme.primaryColor,
               suffixIcon: suffixIcon,
+              suffixIconColor: theme.darkMode?Colors.white:Colors.black,
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                   borderSide:
