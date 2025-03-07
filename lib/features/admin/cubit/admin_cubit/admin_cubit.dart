@@ -44,6 +44,7 @@ class AdminCubit extends Cubit<AdminState> {
           id: user.uid,
         );
         db.collection("employees").add(employee.toFireStore());
+        employees.add(employee);
         emit(EmployeeAdded());
       }
     } catch (e) {

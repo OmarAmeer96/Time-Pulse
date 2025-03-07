@@ -20,7 +20,6 @@ class CustomListTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: MyTheme.primaryColor),
-          // color: MyTheme.primaryColor,
           borderRadius: BorderRadius.circular(10),
         ),
         height: 70,
