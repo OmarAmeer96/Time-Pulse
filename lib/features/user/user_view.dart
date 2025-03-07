@@ -64,9 +64,6 @@ class _UserViewState extends State<UserView> {
                       onPressed: () {
                         context.read<UserCubit>().getTime();
                         context.read<UserCubit>().checkInAndOut();
-                        context
-                            .read<UserCubit>()
-                            .addCheckInAndOutTimeToFirebase();
                       },
                       icon: CircleAvatar(
                           radius: MediaQuery.of(context).size.width * 0.4,
