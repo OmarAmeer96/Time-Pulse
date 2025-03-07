@@ -49,24 +49,28 @@ class UserCubit extends Cubit<UserState> {
   checkInAndOut() async {
     emit(UserLocationLoading(employeeName: employeeName));
     await determinePosition();
-    double companyLatitude = 30.042124;
-    double companyLongitude = 31.235338;
+    double companyLatitude = 30.0444;
+    double companyLongitude = 31.2357;
     double distance = Geolocator.distanceBetween(
         employeeLatitude, employeeLongitude, companyLatitude, companyLongitude);
     emit(UserLocationLoaded(employeeName: employeeName));
 
     if (distance <= 100 && isCheckedIn == false) {
+      await addCheckInAndOutTimeToFirebase();
       isCheckedIn = true;
       // await SharedPrefHelper.setData("isCheckedIn", true);
       await updateUserCase(true);
       inCompanyArea = true;
+
       debugPrint("Check innnnnnnnnnnnnnnnn");
       emit(UserCheckedIn(employeeName: employeeName));
     } else if (distance <= 100 && isCheckedIn) {
+      await addCheckInAndOutTimeToFirebase();
       isCheckedIn = false;
       // await SharedPrefHelper.setData("isCheckedIn", false);
       await updateUserCase(false);
       inCompanyArea = true;
+
       debugPrint("check outtttttttttttttttttttt");
       emit(UserCheckedOut(employeeName: employeeName));
     } else {
@@ -107,7 +111,7 @@ class UserCubit extends Cubit<UserState> {
             (value) => debugPrint("DocumentSnapshot successfully updated!"),
             onError: (e) => debugPrint("Error updating document $e"));
       });
-    } else {
+    } else if (!isCheckedIn) {
       String id = await SharedPrefHelper.getString("employeeId");
       String email = await SharedPrefHelper.getString("employeeEmail");
 
