@@ -8,6 +8,7 @@ import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/features/profile/widgets/logout_button.dart';
 import 'package:time_pulse/features/profile/widgets/profile_header.dart';
 import 'package:time_pulse/features/profile/widgets/user_info_card.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -40,7 +41,7 @@ class _ProfileViewState extends State<ProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GlobalAppbar(
-        title: 'Profile',
+        title: S.of(context).profile,
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),

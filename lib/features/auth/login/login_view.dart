@@ -77,7 +77,7 @@ class _LoginViewState extends State<LoginView> {
                       width: 4,
                     ),
                     CustomContainer(
-                      text: 'Admin',
+                      text: S.of(context).admin,
                       containerColor: adminColor,
                       onTap: () {
                         isAdmin = true;
@@ -93,14 +93,14 @@ class _LoginViewState extends State<LoginView> {
               CustomTextFormField(
                 controller: emailController,
                 validate: validateEmail,
-                label: "Email",
+                label: S.of(context).email,
                 prefixIcon: Icon(Icons.email),
                 keyboardType: TextInputType.emailAddress,
               ),
               CustomTextFormField(
                   controller: passwordController,
                   validate: validatePassword,
-                  label: "Password",
+                  label: S.of(context).password,
                   prefixIcon: Icon(Icons.lock),
                   keyboardType: TextInputType.number,
                   obsure: obscure,
@@ -123,7 +123,7 @@ class _LoginViewState extends State<LoginView> {
                 onPressed: restPassword,
                 child: Row(children: [
                   Text(
-                    'Forget Password !',
+                    S.of(context).forget_password,
                     style: TextStyle(
                       color: Colors.grey,
                     ),
@@ -133,7 +133,7 @@ class _LoginViewState extends State<LoginView> {
               ),
               CustomButton(
                 icon: const Icon(Icons.login, color: Colors.white),
-                text: 'Login',
+                text: S.of(context).login,
                 onPressed: login,
               ),
             ],
@@ -145,13 +145,13 @@ class _LoginViewState extends State<LoginView> {
 
   String? validateEmail(String? value) {
     if (value!.isEmpty) {
-      return 'Please, enter your email';
+      return S.of(context).enter_your_email;
     }
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value);
     if (!emailValid) {
-      return 'Email is not valid ,please enter a valid email';
+      return S.of(context).valid_email;
     }
     return null;
   }

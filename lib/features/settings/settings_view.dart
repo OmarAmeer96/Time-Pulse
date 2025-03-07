@@ -5,6 +5,7 @@ import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/features/settings/cubit/language_cubit.dart';
 import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class SettingsView extends StatelessWidget {
    SettingsView({super.key});
@@ -13,14 +14,14 @@ class SettingsView extends StatelessWidget {
   Widget build(BuildContext context) {
      var theme=context.read<ThemeCubit>();
     return Scaffold(
-      appBar: GlobalAppbar(title: 'Settings'),
+      appBar: GlobalAppbar(title: S.of(context).settings),
       body: Container(
         child: ListView(
           padding: EdgeInsets.all(16),
           children: [
             _buildListTile(
               context,
-              title: "Dark Mode",
+              title:S.of(context).dark,
               icon: theme.darkMode?Icons.dark_mode:Icons.light_mode,
               trailing: Switch(
                 activeColor: MyTheme.primaryColor,
@@ -34,7 +35,7 @@ class SettingsView extends StatelessWidget {
             verticalSpace(20),
             _buildListTile(
               context,
-              title: "language",
+              title: S.of(context).language,
               icon: Icons.language,
               onTap: () {
                 _showLanguageDialog(context);
@@ -98,7 +99,7 @@ class SettingsView extends StatelessWidget {
         return AlertDialog(
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           title: Text(
-            "select language",
+            S.of(context).select_language,
             style: TextStyle(
               color: Colors.black,
             ),
@@ -109,7 +110,7 @@ class SettingsView extends StatelessWidget {
               RadioListTile(
                 activeColor: MyTheme.primaryColor,
                 title: Text(
-                  "English",
+                  S.of(context).english,
                   style: TextStyle(color: context.read<ThemeCubit>().darkMode?Colors.white:Colors.black),
                 ),
                 value: "en",
@@ -122,7 +123,7 @@ class SettingsView extends StatelessWidget {
               RadioListTile(
                 activeColor: MyTheme.primaryColor,
                 title: Text(
-                  "Arabic",
+                  S.of(context).arabic,
                   style: TextStyle(color: context.read<ThemeCubit>().darkMode?Colors.white:Colors.black),
                 ),
                 value: "ar",

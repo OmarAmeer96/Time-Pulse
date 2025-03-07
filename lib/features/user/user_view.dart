@@ -7,6 +7,7 @@ import 'package:time_pulse/core/widgets/global_loading_dialog.dart';
 import 'package:time_pulse/data/constants/constants.dart';
 import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/features/user/cubit/user_cubit.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class UserView extends StatefulWidget {
   const UserView({super.key});
@@ -26,7 +27,7 @@ class _UserViewState extends State<UserView> {
   Widget build(BuildContext context) {
     var theme= context.read<ThemeCubit>();
     return Scaffold(
-        appBar: GlobalAppbar(title: "HomePage"),
+        appBar: GlobalAppbar(title: S.of(context).home_page),
         body: Center(
           child: Column(children: [
             Padding(
@@ -34,15 +35,15 @@ class _UserViewState extends State<UserView> {
               child: BlocBuilder<UserCubit, UserState>(
                 builder: (context, state) {
                   return Text(
-                    "Welcome Back, ${state.employeeName} 👋",
+                    "${S.of(context).welcome}, ${state.employeeName} 👋",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500 ,color: theme.darkMode?Colors.white:Colors.black),
                   );
                 },
               ),
             ),
             Text(context.watch<UserCubit>().isCheckedIn
-                ? "Please click here to check out"
-                : "Please click here to check in",
+                ? S.of(context).click_to_check_out
+                : S.of(context).click_to_check_in,
             style: TextStyle(
                 color: theme.darkMode?Colors.white:Colors.black),
             ),
@@ -50,12 +51,12 @@ class _UserViewState extends State<UserView> {
               child: BlocListener<UserCubit, UserState>(
                   listener: (context, state) {
                     if (state is UserCheckedIn) {
-                      Fluttertoast.showToast(msg: "Checked in successfully");
+                      Fluttertoast.showToast(msg:  S.of(context).checked_in);
                     } else if (state is UserCheckedOut) {
-                      Fluttertoast.showToast(msg: "Checked out successfully");
+                      Fluttertoast.showToast(msg: S.of(context).checked_out);
                     } else if (state is UserNotInCompanyArea) {
                       Fluttertoast.showToast(
-                          msg: "You are out of company area");
+                          msg: S.of(context).out_of_company);
                     } else if (state is UserLocationLoading) {
                       GlobalDialog.showLoadingDialog(context);
                     } else if (state is UserLocationLoaded) {

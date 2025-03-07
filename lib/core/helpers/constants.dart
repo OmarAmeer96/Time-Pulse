@@ -5,4 +5,5 @@ class SharedPrefKeys {
   static const String userId = 'userId';
   static const String userName = 'userName';
   static const String userCode = 'userCode';
+  static const String currentLocale = 'currentLocale';
 }
