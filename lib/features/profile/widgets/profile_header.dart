@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:time_pulse/core/theme.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
-Widget buildProfileHeader(Map<String, dynamic> userData) {
+Widget buildProfileHeader(
+  Map<String, dynamic> userData,
+  BuildContext context,
+) {
   return Column(
     children: [
       Container(
@@ -15,9 +19,9 @@ Widget buildProfileHeader(Map<String, dynamic> userData) {
           ),
         ),
         child: ClipOval(
-          child: userData['profilePictureUrl']?.isNotEmpty == true
+          child: userData['image_url']?.isNotEmpty == true
               ? Image.network(
-                  userData['profilePictureUrl'],
+                  userData['image_url'],
                   fit: BoxFit.cover,
                   errorBuilder: (_, __, ___) =>
                       const Icon(Icons.person, size: 50),
@@ -31,7 +35,7 @@ Widget buildProfileHeader(Map<String, dynamic> userData) {
       ),
       const SizedBox(height: 20),
       Text(
-        userData['name'] ?? 'No Name Provided',
+        userData['name'] ?? S.of(context).profile,
         style: const TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,

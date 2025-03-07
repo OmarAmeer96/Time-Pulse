@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,6 +12,7 @@ import 'package:time_pulse/features/admin/cubit/employee_history_cubit/employee_
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/history/cubit/history_cubit.dart';
 import 'package:time_pulse/features/main/cubit/main_cubit.dart';
+import 'package:time_pulse/features/profile/cubit/profile_cubit.dart';
 import 'package:time_pulse/features/user/cubit/user_cubit.dart';
 import 'package:time_pulse/features/vacation_request/cubit/vacation_request_cubit.dart';
 import 'package:time_pulse/features/vacations_history/cubit/vacations_history_cubit.dart';
@@ -34,6 +37,12 @@ class TimePulse extends StatelessWidget {
           BlocProvider(create: (context) => AdminCubit()),
           BlocProvider(create: (context) => VacationsCubit()),
           BlocProvider(create: (context) => EmployeeHistoryCubit()),
+          BlocProvider(
+            create: (context) => ProfileCubit(
+              FirebaseAuth.instance,
+              FirebaseFirestore.instance,
+            )..fetchUserData(),
+          )
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,

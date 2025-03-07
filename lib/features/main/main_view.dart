@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/features/history/history_view.dart';
 import 'package:time_pulse/features/main/cubit/main_cubit.dart';
+import 'package:time_pulse/features/profile/profile_view.dart';
 import 'package:time_pulse/features/user/user_view.dart';
 import 'package:time_pulse/features/vacations_history/vacations_history_view.dart';
 
@@ -18,7 +19,7 @@ class _MainViewState extends State<MainView> {
     HistoryView(),
     VacationsHistoryView(),
     Center(child: Text("Settings")),
-    Center(child: Text("Profile")),
+    ProfileView(),
   ];
 
   @override
