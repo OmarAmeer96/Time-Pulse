@@ -20,6 +20,7 @@ class VacationRequestCubit extends Cubit<VacationRequestState> {
     emit(VacationRequestLoading());
     final db = FirebaseFirestore.instance;
     String id = await SharedPrefHelper.getString("employeeId");
+    String employeeName = await SharedPrefHelper.getString("employeeName");
 
     final data = {
       "requestId": "",
@@ -28,6 +29,7 @@ class VacationRequestCubit extends Cubit<VacationRequestState> {
       "endDate": endDateController.text,
       "reason": reasonController.text,
       "status": "Pending",
+      "employeeName": employeeName,
       'createdAt': FieldValue.serverTimestamp()
     };
 
