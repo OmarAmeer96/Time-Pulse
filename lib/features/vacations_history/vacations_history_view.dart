@@ -4,6 +4,7 @@ import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/core/widgets/global_data_show.dart';
 import 'package:time_pulse/data/constants/constants.dart';
 import 'package:time_pulse/data/extensions/extensions.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/features/vacation_request/vacation_request_view.dart';
 import 'package:time_pulse/features/vacations_history/cubit/vacations_history_cubit.dart';
 
@@ -24,6 +25,7 @@ class _VacationsHistoryViewState extends State<VacationsHistoryView> {
 
   @override
   Widget build(BuildContext context) {
+    var theme= context.read<ThemeCubit>();
     return Scaffold(
       appBar: GlobalAppbar(title: "Vacations"),
       floatingActionButton: FloatingActionButton(
@@ -54,7 +56,7 @@ class _VacationsHistoryViewState extends State<VacationsHistoryView> {
               );
             } else if (state is EmptyVacationsHistory) {
               return Center(
-                child: Text("No vacations till now"),
+                child: Text("No vacations till now",style: TextStyle(color: theme.darkMode?Colors.white70:Colors.black54 ),),
               );
             } else {
               return ListView.builder(
@@ -148,7 +150,7 @@ class _VacationsHistoryViewState extends State<VacationsHistoryView> {
                                   .vacationsHistory[index]
                                   .reason),
                         ],
-                      ).decorate(padding: 12));
+                      ).decorate(padding: 12,context: context));
                 },
               );
             }

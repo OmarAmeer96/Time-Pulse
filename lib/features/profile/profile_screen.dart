@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:time_pulse/core/routing/routes.dart';
+import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/features/profile/widgets/logout_button.dart';
 import 'package:time_pulse/features/profile/widgets/profile_header.dart';
 import 'package:time_pulse/features/profile/widgets/user_info_card.dart';
@@ -38,8 +39,8 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Profile'),
+      appBar: GlobalAppbar(
+        title: 'Profile',
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -71,7 +72,7 @@ class _ProfileViewState extends State<ProfileView> {
               children: [
                 buildProfileHeader(userData),
                 const SizedBox(height: 30),
-                buildUserInfoCard(userData),
+                buildUserInfoCard(userData, context),
                 const SizedBox(height: 30),
                 buildLogoutButton(
                   context,

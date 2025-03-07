@@ -62,7 +62,7 @@ class _HistoryViewState extends State<HistoryView> {
                                 .userHistory[index]
                                 .checkOutTime),
                       ],
-                    ).decorate(padding: 8));
+                    ).decorate(padding: 8,context: context));
               },
             );
           }

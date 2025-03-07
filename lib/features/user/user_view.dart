@@ -5,6 +5,7 @@ import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/core/widgets/global_loading_dialog.dart';
 import 'package:time_pulse/data/constants/constants.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/features/user/cubit/user_cubit.dart';
 
 class UserView extends StatefulWidget {
@@ -23,6 +24,7 @@ class _UserViewState extends State<UserView> {
 
   @override
   Widget build(BuildContext context) {
+    var theme= context.read<ThemeCubit>();
     return Scaffold(
         appBar: GlobalAppbar(title: "HomePage"),
         body: Center(
@@ -33,14 +35,17 @@ class _UserViewState extends State<UserView> {
                 builder: (context, state) {
                   return Text(
                     "Welcome Back, ${state.employeeName} 👋",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500 ,color: theme.darkMode?Colors.white:Colors.black),
                   );
                 },
               ),
             ),
             Text(context.watch<UserCubit>().isCheckedIn
                 ? "Please click here to check out"
-                : "Please click here to check in"),
+                : "Please click here to check in",
+            style: TextStyle(
+                color: theme.darkMode?Colors.white:Colors.black),
+            ),
             Expanded(
               child: BlocListener<UserCubit, UserState>(
                   listener: (context, state) {
@@ -71,7 +76,7 @@ class _UserViewState extends State<UserView> {
                           backgroundColor:
                               context.watch<UserCubit>().isCheckedIn
                                   ? Constants.redColor.withValues(alpha: 0.1)
-                                  : MyTheme.primaryColor.withValues(alpha: 0.1),
+                                  :MyTheme.primaryColor.withValues(alpha:theme.darkMode?0.4: 0.1),
                           child: Image.asset(
                             'assets/images/check_in_and_out.png',
                             color: context.watch<UserCubit>().isCheckedIn
