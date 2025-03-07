@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile(
-      {super.key, required this.employeeName, required this.employeeId});
+      {super.key, required this.employeeName, required this.employeeId, required this.onTap});
 
   final String employeeName;
   final String employeeId;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class CustomListTile extends StatelessWidget {
           title: Text(employeeName, style: TextStyle(color: Colors.white, fontSize: 16)),
           subtitle: Text(employeeId, style: TextStyle(color: Colors.white, fontSize: 10)),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: onTap,
             icon: Icon(
               Icons.arrow_forward_ios_rounded,
               color: Colors.white,

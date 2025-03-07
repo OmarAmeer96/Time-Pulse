@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
@@ -79,6 +80,16 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       itemCount: context.read<AdminCubit>().employees.length,
                       itemBuilder: (context, index) {
                         return CustomListTile(
+                          onTap: () {
+                            SharedPrefHelper.setData(
+                              "employeeHistoryId",
+                              context.read<AdminCubit>().employees[index].id,
+                            );
+                            Navigator.pushNamed(
+                              context,
+                              Routes.employeeHistoryView,
+                            );
+                          },
                           employeeName:
                               context.read<AdminCubit>().employees[index].name,
                           employeeId:

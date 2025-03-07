@@ -10,4 +10,5 @@ class Routes {
   static const String adminHomeView = '/adminHomeView';
   static const String profileView = '/profileView';
   static const String adminVacationsView = '/adminVacationsView';
+  static const String employeeHistoryView = '/employeeHistoryView';
 }
