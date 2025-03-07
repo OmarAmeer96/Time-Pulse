@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
+import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/create_employee_view.dart';
@@ -58,6 +59,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
           } else if (state is AdminPageLoaded || state is EmployeeAdded) {
             return Column(
               children: [
+                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: CustomTextField(
@@ -70,11 +72,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      color: MyTheme.primaryColor,
-                    ),
-                    height: MediaQuery.sizeOf(context).height * 0.75,
+                    height: MediaQuery.sizeOf(context).height * 0.73,
                     width: MediaQuery.sizeOf(context).width,
                     child: ListView.builder(
                       itemCount: context.read<AdminCubit>().employees.length,
@@ -120,6 +118,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         },
         child: Icon(
           Icons.person_add_rounded,
+          size: 30,
           color: MyTheme.primaryColor,
         ),
       ),

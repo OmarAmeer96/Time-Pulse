@@ -21,8 +21,9 @@ class CustomTextField extends StatelessWidget {
       cursorColor: MyTheme.primaryColor,
       decoration: InputDecoration(
         suffixIcon: IconButton(
-            icon: Icon(icon, color: MyTheme.primaryColor),
-            onPressed: onSubmitted),
+          icon: Icon(icon, color: MyTheme.primaryColor),
+          onPressed: onSubmitted,
+        ),
         hintText: hintText,
         hintStyle: TextStyle(color: MyTheme.primaryColor),
         border: buildBorder(),

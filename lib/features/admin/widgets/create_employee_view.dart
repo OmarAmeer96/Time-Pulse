@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:time_pulse/core/theme.dart';
+import 'package:time_pulse/core/widgets/custom_text_form_field.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/custom_button.dart';
-import 'package:time_pulse/features/admin/widgets/custom_text_field.dart';
 
 class CreateEmployee extends StatefulWidget {
   const CreateEmployee({super.key});
@@ -37,22 +37,24 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                     color: MyTheme.primaryColor,
                   ),
                 ),
-                SizedBox(height: 10),
-                CustomTextField(
+                CustomTextFormField(
                   controller: nameController,
-                  hintText: 'Name',
+                  label: 'Name',
+                  validate: validateName,
+                  prefixIcon: Icon(Icons.person),
                 ),
-                SizedBox(height: 10),
-                CustomTextField(
+                CustomTextFormField(
                   controller: emailController,
-                  hintText: 'Email',
+                  label: 'Email',
+                  validate: validateEmail,
+                  prefixIcon: Icon(Icons.email),
                 ),
-                SizedBox(height: 10),
-                CustomTextField(
+                CustomTextFormField(
                   controller: passwordController,
-                  hintText: 'Password',
+                  label: 'Password',
+                  validate: validatePassword,
+                  prefixIcon: Icon(Icons.lock),
                 ),
-                SizedBox(height: 20),
                 CustomButton(
                   onPressed: () async {
                     try {
@@ -63,15 +65,10 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                           );
                       Navigator.pop(context);
                       Fluttertoast.showToast(
-                          msg: 'Account Created Successfully');
-                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      //   content: Text('Account Created Successfully'),
-                      // ));
+                        msg: 'Account Created Successfully',
+                      );
                     } catch (e) {
                       Fluttertoast.showToast(msg: 'Error: ${e.toString()}');
-                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      //   content: Text('Error: ${e.toString()}'),
-                      // ));
                     }
                   },
                 )
@@ -81,5 +78,38 @@ class _CreateEmployeeState extends State<CreateEmployee> {
         );
       },
     );
+  }
+
+  String? validateName(String? value) {
+    if (value!.isEmpty) {
+      return 'Please enter employee name';
+    }
+    bool nameValid = RegExp(r"^[a-zA-Z]+").hasMatch(value);
+    if (!nameValid) {
+      return 'Please enter valid employee name';
+    }
+    return null;
+  }
+
+  String? validateEmail(String? value) {
+    if (value!.isEmpty) {
+      return 'Please, enter your email';
+    }
+    bool emailValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(value);
+    if (!emailValid) {
+      return 'Email is not valid ,please enter a valid email';
+    }
+    return null;
+  }
+
+  String? validatePassword(String? value) {
+    if (value?.isEmpty ?? true) {
+      return 'Please,enter your password';
+    } else if (value!.length < 6) {
+      return 'Password must be at least 6 chars';
+    }
+    return null;
   }
 }
