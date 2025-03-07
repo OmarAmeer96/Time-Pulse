@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:time_pulse/features/admin/cubit/admin_state.dart';
-import 'package:time_pulse/features/admin/employee_model.dart';
+import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
+import 'package:time_pulse/features/admin/models/employee_model.dart';
 
 class AdminCubit extends Cubit<AdminState> {
   AdminCubit() : super(AdminPageInitial());

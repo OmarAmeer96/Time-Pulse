@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:time_pulse/core/theme.dart';
-import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
-import 'package:time_pulse/features/admin/cubit/admin_state.dart';
+import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
+import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/custom_button.dart';
 import 'package:time_pulse/features/admin/widgets/custom_text_field.dart';
 

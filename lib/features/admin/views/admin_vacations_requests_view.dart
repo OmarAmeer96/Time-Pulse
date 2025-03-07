@@ -67,7 +67,9 @@ class _AdminVacationsRequestsViewState
                             Text(
                               "#${context.read<VacationsCubit>().vacations[index].requestId}",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 15),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                              ),
                             ),
                             Container(
                               padding: EdgeInsets.symmetric(
@@ -139,15 +141,30 @@ class _AdminVacationsRequestsViewState
                                 .read<VacationsCubit>()
                                 .vacations[index]
                                 .reason),
-                                SizedBox(height: 8),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          spacing: 25,
-                          children: [
-                            CustomVacationButton(),
-                            CustomVacationButton(isAccept: false),
-                          ],
-                        )
+                        SizedBox(height: 8),
+                        context
+                                    .read<VacationsCubit>()
+                                    .vacations[index]
+                                    .status ==
+                                "Pending"
+                            ? Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                spacing: 25,
+                                children: [
+                                  CustomVacationButton(
+                                    onPressed: () {
+                                      Accept(index);
+                                    },
+                                  ),
+                                  CustomVacationButton(
+                                    onPressed: () {
+                                      Reject(index);
+                                    },
+                                    isAccept: false,
+                                  ),
+                                ],
+                              )
+                            : Container(),
                       ],
                     ).decorate(padding: 12),
                   );
@@ -170,5 +187,13 @@ class _AdminVacationsRequestsViewState
       //   ],
       // ),
     );
+  }
+
+  Accept(int index) {
+    context.read<VacationsCubit>().vacations[index].status = "Accepted";
+  }
+
+  Reject(int index) {
+    context.read<VacationsCubit>().vacations[index].status = "Rejected";
   }
 }

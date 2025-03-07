@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:time_pulse/features/admin/employee_model.dart';
+import 'package:time_pulse/features/admin/models/employee_model.dart';
 
 class EmployeeService {
   var db = FirebaseFirestore.instance;

@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:time_pulse/core/routing/app_router.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
-import 'package:time_pulse/features/admin/cubit/admin_cubit.dart';
+import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/history/cubit/history_cubit.dart';
 import 'package:time_pulse/features/main/cubit/main_cubit.dart';
