@@ -20,7 +20,6 @@ class _AdminVacationsRequestsViewState
     extends State<AdminVacationsRequestsView> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     context.read<VacationsCubit>().vacations.clear();
     context.read<VacationsCubit>().getVacations();
@@ -65,7 +64,7 @@ class _AdminVacationsRequestsViewState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "#${context.read<VacationsCubit>().vacations[index].requestId}",
+                              context.read<VacationsCubit>().vacations[index].employeeName,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,

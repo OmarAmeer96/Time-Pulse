@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class VacationsRequestModel {
   final String employeeId;
-  final String? employeeName;
+  final String employeeName;
   final String startDate;
   final String endDate;
   final String reason;
@@ -12,7 +12,7 @@ class VacationsRequestModel {
 
   VacationsRequestModel({
     required this.employeeId,
-    this.employeeName,
+    required this.employeeName,
     required this.startDate,
     required this.endDate,
     required this.reason,

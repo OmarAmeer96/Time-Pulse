@@ -7,6 +7,9 @@ import 'package:time_pulse/features/admin/models/vacation_request_model.dart';
 class VacationsCubit extends Cubit<VacationsState> {
   VacationsCubit() : super(VacationsInitial());
   late List<VacationsRequestModel> vacations = [];
+  late List<VacationsRequestModel> pendingVacations = [];
+  late List<VacationsRequestModel> acceptedVacations = [];
+  late List<VacationsRequestModel> rejectedVacations = [];
   getVacations() async {
     emit(VacationsLoading());
     final db = FirebaseFirestore.instance;
@@ -18,15 +21,60 @@ class VacationsCubit extends Cubit<VacationsState> {
       (querySnapshot) {
         debugPrint("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
-          vacations.add(VacationsRequestModel(
-            employeeId: docSnapshot.data()['employeeId'],
-            requestId: docSnapshot.data()['requestId'],
-            startDate: docSnapshot.data()['startDate'],
-            endDate: docSnapshot.data()['endDate'],
-            reason: docSnapshot.data()['reason'],
-            status: docSnapshot.data()['status'],
-            createdAt: docSnapshot.data()['createdAt'],
-          ));
+          vacations.add(
+            VacationsRequestModel(
+              employeeId: docSnapshot.data()['employeeId'],
+              employeeName: docSnapshot.data()['employeeName'],
+              requestId: docSnapshot.data()['requestId'],
+              startDate: docSnapshot.data()['startDate'],
+              endDate: docSnapshot.data()['endDate'],
+              reason: docSnapshot.data()['reason'],
+              status: docSnapshot.data()['status'],
+              createdAt: docSnapshot.data()['createdAt'],
+            ),
+          );
+          if (docSnapshot.data()['status'] == "Pending") {
+            pendingVacations.add(
+              VacationsRequestModel(
+                employeeId: docSnapshot.data()['employeeId'],
+                employeeName: docSnapshot.data()['employeeName'],
+                requestId: docSnapshot.data()['requestId'],
+                startDate: docSnapshot.data()['startDate'],
+                endDate: docSnapshot.data()['endDate'],
+                reason: docSnapshot.data()['reason'],
+                status: docSnapshot.data()['status'],
+                createdAt: docSnapshot.data()['createdAt'],
+              ),
+            );
+          }
+          if (docSnapshot.data()['status'] == "Accepted") {
+            acceptedVacations.add(
+              VacationsRequestModel(
+                employeeId: docSnapshot.data()['employeeId'],
+                employeeName: docSnapshot.data()['employeeName'],
+                requestId: docSnapshot.data()['requestId'],
+                startDate: docSnapshot.data()['startDate'],
+                endDate: docSnapshot.data()['endDate'],
+                reason: docSnapshot.data()['reason'],
+                status: docSnapshot.data()['status'],
+                createdAt: docSnapshot.data()['createdAt'],
+              ),
+            );
+          }
+          if (docSnapshot.data()['status'] == "Rejected") {
+            rejectedVacations.add(
+              VacationsRequestModel(
+                employeeId: docSnapshot.data()['employeeId'],
+                employeeName: docSnapshot.data()['employeeName'],
+                requestId: docSnapshot.data()['requestId'],
+                startDate: docSnapshot.data()['startDate'],
+                endDate: docSnapshot.data()['endDate'],
+                reason: docSnapshot.data()['reason'],
+                status: docSnapshot.data()['status'],
+                createdAt: docSnapshot.data()['createdAt'],
+              ),
+            );
+          }
         }
 
         if (vacations.isEmpty) {
