@@ -5,6 +5,7 @@ import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/core/widgets/global_loading_dialog.dart';
 import 'package:time_pulse/data/constants/constants.dart';
+import 'package:time_pulse/features/profile/cubit/profile_cubit.dart';
 import 'package:time_pulse/features/user/cubit/user_cubit.dart';
 
 class UserView extends StatefulWidget {
@@ -19,6 +20,7 @@ class _UserViewState extends State<UserView> {
   void initState() {
     super.initState();
     context.read<UserCubit>().getEmployeeData();
+    context.read<ProfileCubit>().fetchUserData();
   }
 
   @override
