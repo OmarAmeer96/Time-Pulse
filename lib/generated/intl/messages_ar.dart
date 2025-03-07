@@ -37,7 +37,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "من فضلك اضغط هنا لتسجيل الخروج",
     ),
     "dark": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
+    "department": MessageLookupByLibrary.simpleMessage("القسم"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "employee_id": MessageLookupByLibrary.simpleMessage("معرّف الموظف"),
     "empty_history": MessageLookupByLibrary.simpleMessage("السجل فارغ"),
     "end_date": MessageLookupByLibrary.simpleMessage("تاريخ الإنتهاء"),
     "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
@@ -50,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forget_password": MessageLookupByLibrary.simpleMessage(
       "هل نسيت كلمة المرور",
     ),
+    "general": MessageLookupByLibrary.simpleMessage("عام"),
     "history": MessageLookupByLibrary.simpleMessage("السجل"),
     "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
     "home_page": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
@@ -59,9 +62,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "language": MessageLookupByLibrary.simpleMessage("اللغة"),
     "leaves": MessageLookupByLibrary.simpleMessage("الاجازات"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل"),
+    "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "no_name_provided": MessageLookupByLibrary.simpleMessage(
+      "لم يتم توفير اسم",
+    ),
     "no_vacation": MessageLookupByLibrary.simpleMessage(
       "لا يوجد اجازات حتى الان",
     ),
+    "not_specified": MessageLookupByLibrary.simpleMessage("غير محدد"),
     "out_of_company": MessageLookupByLibrary.simpleMessage(
       "أنت خارج نطاق الشركة",
     ),
@@ -70,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمة المرور يجب أن تكون على الأقل 6 كلمات",
     ),
     "pending": MessageLookupByLibrary.simpleMessage("قيد الإنتظار"),
+    "position": MessageLookupByLibrary.simpleMessage("الوظيفة"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "reason": MessageLookupByLibrary.simpleMessage("السبب"),
     "rejected": MessageLookupByLibrary.simpleMessage("مرفوض"),

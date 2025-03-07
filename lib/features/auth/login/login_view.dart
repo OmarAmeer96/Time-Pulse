@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/core/helpers/constants.dart';
+import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/custom_button.dart';
@@ -170,7 +172,14 @@ class _LoginViewState extends State<LoginView> {
       context
           .read<AuthCubit>()
           .login(emailController.text, passwordController.text, context);
-    }
+
+        isAdmin
+            ? SharedPrefHelper.setData("isAdmin", true)
+            : SharedPrefHelper.setData("isAdmin", false);
+        isUserLoggedIn = true;
+        SharedPrefHelper.setData("isUserLoggedIn", true);
+  
+  }
   }
 
   restPassword() {

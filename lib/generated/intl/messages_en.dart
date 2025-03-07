@@ -39,7 +39,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please click here to check out",
     ),
     "dark": MessageLookupByLibrary.simpleMessage("Dark Mode"),
+    "department": MessageLookupByLibrary.simpleMessage("Department"),
     "email": MessageLookupByLibrary.simpleMessage("Email Address"),
+    "employee_id": MessageLookupByLibrary.simpleMessage("Employee ID"),
     "empty_history": MessageLookupByLibrary.simpleMessage("Empty History"),
     "end_date": MessageLookupByLibrary.simpleMessage("End Date"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
@@ -52,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forget_password": MessageLookupByLibrary.simpleMessage(
       "Forget Password !",
     ),
+    "general": MessageLookupByLibrary.simpleMessage("General"),
     "history": MessageLookupByLibrary.simpleMessage("History"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "home_page": MessageLookupByLibrary.simpleMessage("HomePage"),
@@ -61,9 +64,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "language": MessageLookupByLibrary.simpleMessage("Language"),
     "leaves": MessageLookupByLibrary.simpleMessage("Leaves"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "no_name_provided": MessageLookupByLibrary.simpleMessage(
+      "No name provided",
+    ),
     "no_vacation": MessageLookupByLibrary.simpleMessage(
       "No vacations till now",
     ),
+    "not_specified": MessageLookupByLibrary.simpleMessage("Not Specified"),
     "out_of_company": MessageLookupByLibrary.simpleMessage(
       "You are out of company area",
     ),
@@ -72,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password must be at least 6 chars",
     ),
     "pending": MessageLookupByLibrary.simpleMessage("Pending"),
+    "position": MessageLookupByLibrary.simpleMessage("Position"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "reason": MessageLookupByLibrary.simpleMessage("Reason"),
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),

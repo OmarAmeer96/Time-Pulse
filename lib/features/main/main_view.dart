@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/features/history/history_view.dart';
 import 'package:time_pulse/features/main/cubit/main_cubit.dart';
-import 'package:time_pulse/features/profile/profile_screen.dart';
-import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/features/settings/settings_view.dart';
+import 'package:time_pulse/features/profile/profile_view.dart';
 import 'package:time_pulse/features/user/user_view.dart';
 import 'package:time_pulse/features/vacations_history/vacations_history_view.dart';
 import 'package:time_pulse/generated/l10n.dart';
@@ -22,7 +21,7 @@ class _MainViewState extends State<MainView> {
     HistoryView(),
     VacationsHistoryView(),
     SettingsView(),
-    ProfileView()
+    ProfileView(),
   ];
 
   @override

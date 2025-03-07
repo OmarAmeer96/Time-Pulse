@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/core/widgets/global_appbar.dart';
+import 'package:time_pulse/core/widgets/global_data_show.dart';
+import 'package:time_pulse/data/extensions/extensions.dart';
+import 'package:time_pulse/features/admin/cubit/employee_history_cubit/employee_history_cubit.dart';
+import 'package:time_pulse/features/admin/cubit/employee_history_cubit/employee_history_state.dart';
+import 'package:time_pulse/features/history/cubit/history_cubit.dart';
 
 class EmployeeHistoryView extends StatefulWidget {
   const EmployeeHistoryView({super.key});
@@ -9,51 +16,62 @@ class EmployeeHistoryView extends StatefulWidget {
 
 class _EmployeeHistoryViewState extends State<EmployeeHistoryView> {
   @override
+  void initState() {
+    super.initState();
+    context.read<EmployeeHistoryCubit>().employeeHistory.clear();
+    context.read<EmployeeHistoryCubit>().getHistory();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Row(
-            children: [
-              Icon(Icons.person),
-              Text('Employee Name'),
-              Spacer(),
-              Text('Employee ID'),
-            ],
-          ),
-          Column(
-            children: [
-              Row(
-                children: [
-                  Column(children: [
-                    Icon(Icons.calendar_month_rounded),
-                    Text('Date'),
-                  ]),
-                  Column(children: [
-                    Icon(Icons.login_rounded, color: Colors.green),
-                    Text('CheckIn'),
-                  ]),
-                  Column(children: [
-                    Icon(Icons.logout_rounded, color: Colors.red),
-                    Text('CheckOut'),
-                  ]),
-                ],
-              ),
-              ListView(
-                children: [
-                  Row(
+      appBar: GlobalAppbar(title: "Employee History"),
+      body: BlocBuilder<EmployeeHistoryCubit, EmployeeHistoryState>(
+        builder: (context, state) {
+          if (state is HistoryInitial) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (state is HistoryLoading) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is EmptyHistory) {
+            return Center(
+              child: Text("Empty History"),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: context.read<EmployeeHistoryCubit>().employeeHistory.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+                  child: Column(
                     children: [
-                      Text('date'),
-                      Text('checkin'),
-                      Text('checkout'),
-                    ]
-                  )
-                ],
-              ),
-            ],
-          )
-        ],
+                      GlobalDataShow(
+                        title: "Check-in time",
+                        data: context
+                            .read<EmployeeHistoryCubit>()
+                            .employeeHistory[index]
+                            .checkInTime,
+                      ),
+                      SizedBox(height: 8),
+                      GlobalDataShow(
+                        title: "Check-out time",
+                        data: context
+                            .read<EmployeeHistoryCubit>()
+                            .employeeHistory[index]
+                            .checkOutTime,
+                      ),
+                    ],
+                  ).decorate(padding: 8),
+                );
+              },
+            );
+          }
+        },
       ),
     );
   }

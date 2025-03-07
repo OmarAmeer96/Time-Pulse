@@ -380,11 +380,6 @@ class S {
     return Intl.message('Arabic', name: 'arabic', desc: '', args: []);
   }
 
-  /// `Profile`
-  String get profile {
-    return Intl.message('Profile', name: 'profile', desc: '', args: []);
-  }
-
   /// `Home`
   String get home {
     return Intl.message('Home', name: 'home', desc: '', args: []);
@@ -393,6 +388,70 @@ class S {
   /// `Leaves`
   String get leaves {
     return Intl.message('Leaves', name: 'leaves', desc: '', args: []);
+  }
+
+  // skipped getter for the 'forget password' key
+
+  // skipped getter for the 'enter your email' key
+
+  // skipped getter for the 'enter your password' key
+
+  // skipped getter for the 'valid email' key
+
+  // skipped getter for the 'password length' key
+
+  // skipped getter for the 'incorrect email or password' key
+
+  // skipped getter for the 'reset password' key
+
+  /// `Profile`
+  String get profile {
+    return Intl.message('Profile', name: 'profile', desc: '', args: []);
+  }
+
+  /// `No name provided`
+  String get no_name_provided {
+    return Intl.message(
+      'No name provided',
+      name: 'no_name_provided',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employee ID`
+  String get employee_id {
+    return Intl.message('Employee ID', name: 'employee_id', desc: '', args: []);
+  }
+
+  /// `Position`
+  String get position {
+    return Intl.message('Position', name: 'position', desc: '', args: []);
+  }
+
+  /// `Department`
+  String get department {
+    return Intl.message('Department', name: 'department', desc: '', args: []);
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Not Specified`
+  String get not_specified {
+    return Intl.message(
+      'Not Specified',
+      name: 'not_specified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get general {
+    return Intl.message('General', name: 'general', desc: '', args: []);
   }
 }
 

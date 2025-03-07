@@ -42,8 +42,21 @@
 "select_language":"Select Language",
 "english":"English",
 "arabic":"Arabic",
-"profile":"Profile",
 "home":"Home",
-"leaves": "Leaves"
-
+"leaves": "Leaves",
+"forget password":"Forget Password !",
+"enter your email":"Please, enter your email",
+"enter your password":"Please, enter your password",
+"valid email":"Email is not valid ,please enter a valid email",
+"password length":"Password must be at least 6 chars",
+"incorrect email or password":"The supplied auth credential is incorrect, malformed or has expired.",
+"reset password":"Password reset email sent!",
+"profile": "Profile",
+"no_name_provided": "No name provided",
+"employee_id": "Employee ID",
+"position": "Position",
+"department": "Department",
+"logout": "Logout",
+"not_specified": "Not Specified",
+"general": "General"
 }
