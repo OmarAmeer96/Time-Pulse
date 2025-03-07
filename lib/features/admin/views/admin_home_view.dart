@@ -35,7 +35,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
           IconButton(
             icon: Icon(Icons.view_timeline, color: Colors.white),
             onPressed: () {
-              Navigator.pushNamed(context, Routes.adminVacationsView);
+              Navigator.pushNamed(context, Routes.adminVrv);
             },
           ),
         ],

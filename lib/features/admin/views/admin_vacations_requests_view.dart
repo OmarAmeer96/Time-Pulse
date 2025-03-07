@@ -64,7 +64,10 @@ class _AdminVacationsRequestsViewState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              context.read<VacationsCubit>().vacations[index].employeeName,
+                              context
+                                  .read<VacationsCubit>()
+                                  .vacations[index]
+                                  .employeeName,
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
@@ -100,21 +103,22 @@ class _AdminVacationsRequestsViewState
                                     .vacations[index]
                                     .status,
                                 style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                    color: context
-                                                .read<VacationsCubit>()
-                                                .vacations[index]
-                                                .status ==
-                                            "Pending"
-                                        ? Constants.yellowColor
-                                        : context
-                                                    .read<VacationsCubit>()
-                                                    .vacations[index]
-                                                    .status ==
-                                                "Rejected"
-                                            ? Constants.redColor
-                                            : Constants.greenColor),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: context
+                                              .read<VacationsCubit>()
+                                              .vacations[index]
+                                              .status ==
+                                          "Pending"
+                                      ? Constants.yellowColor
+                                      : context
+                                                  .read<VacationsCubit>()
+                                                  .vacations[index]
+                                                  .status ==
+                                              "Rejected"
+                                          ? Constants.redColor
+                                          : Constants.greenColor,
+                                ),
                               ),
                             )
                           ],
@@ -173,18 +177,6 @@ class _AdminVacationsRequestsViewState
           },
         ),
       ),
-      // Column(
-      //   children: [
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //       children: [
-      //         TextButton(onPressed: (){}, child: Text('Pending')),
-      //         TextButton(onPressed: (){}, child: Text('Accepted')),
-      //         TextButton(onPressed: (){}, child: Text('Rejected')),
-      //       ]
-      //     )
-      //   ],
-      // ),
     );
   }
 

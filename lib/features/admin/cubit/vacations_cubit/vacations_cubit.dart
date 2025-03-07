@@ -46,8 +46,8 @@ class VacationsCubit extends Cubit<VacationsState> {
                 createdAt: docSnapshot.data()['createdAt'],
               ),
             );
-          }
-          if (docSnapshot.data()['status'] == "Accepted") {
+            emit(PendingVacations());
+          } else if (docSnapshot.data()['status'] == "Accepted") {
             acceptedVacations.add(
               VacationsRequestModel(
                 employeeId: docSnapshot.data()['employeeId'],
@@ -60,8 +60,8 @@ class VacationsCubit extends Cubit<VacationsState> {
                 createdAt: docSnapshot.data()['createdAt'],
               ),
             );
-          }
-          if (docSnapshot.data()['status'] == "Rejected") {
+            emit(AcceptedVacations());
+          } else if (docSnapshot.data()['status'] == "Rejected") {
             rejectedVacations.add(
               VacationsRequestModel(
                 employeeId: docSnapshot.data()['employeeId'],
@@ -74,6 +74,7 @@ class VacationsCubit extends Cubit<VacationsState> {
                 createdAt: docSnapshot.data()['createdAt'],
               ),
             );
+            emit(RejectedVacations());
           }
         }
 
