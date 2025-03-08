@@ -73,5 +73,6 @@
 "accept":"Accept",
 "reject":"Reject",
 "admin_must_use_admin_tab": "Admin must use admin tab",
-"user_must_use_user_tab": "Users cannot log in using the admin tab. Please use the user tab."
+"user_must_use_user_tab": "Users cannot log in using the admin tab. Please use the user tab.",
+"vacation_balance":"Vacation Balance"
 }

@@ -554,6 +554,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Vacation Balance`
+  String get vacation_balance {
+    return Intl.message(
+      'Vacation Balance',
+      name: 'vacation_balance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

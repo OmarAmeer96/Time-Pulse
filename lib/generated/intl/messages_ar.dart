@@ -128,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "user_must_use_user_tab": MessageLookupByLibrary.simpleMessage(
       "يجب على المستخدمين تسجيل الدخول باستخدام علامة التبويب الخاصة بالمستخدم. من فضلك استخدم علامة التبويب الخاصة بالمستخدم.",
     ),
+    "vacation_balance": MessageLookupByLibrary.simpleMessage("رصيد الاجازات"),
     "vacations": MessageLookupByLibrary.simpleMessage("الاجازات"),
     "valid_email": MessageLookupByLibrary.simpleMessage("الإيميل غير صحيح "),
     "valid_name": MessageLookupByLibrary.simpleMessage("من فضلك ادخل اسم صحيح"),

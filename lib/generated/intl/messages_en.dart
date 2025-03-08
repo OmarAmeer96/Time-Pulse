@@ -134,6 +134,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "user_must_use_user_tab": MessageLookupByLibrary.simpleMessage(
       "Users cannot log in using the admin tab. Please use the user tab.",
     ),
+    "vacation_balance": MessageLookupByLibrary.simpleMessage(
+      "Vacation Balance",
+    ),
     "vacations": MessageLookupByLibrary.simpleMessage("Vacations"),
     "valid_email": MessageLookupByLibrary.simpleMessage(
       "Email is not valid ,please enter a valid email",

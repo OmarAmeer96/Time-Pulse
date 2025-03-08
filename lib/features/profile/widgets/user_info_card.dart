@@ -9,7 +9,9 @@ Widget buildUserInfoCard(
   BuildContext context,
 ) {
   return Card(
-    color:context.read<ThemeCubit>().darkMode?Colors.grey.shade400:Colors.white ,
+    color: context.read<ThemeCubit>().darkMode
+        ? Colors.grey.shade400
+        : Colors.white,
     elevation: 4,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
@@ -31,6 +33,11 @@ Widget buildUserInfoCard(
           infoRowItem(
             '${S.of(context).department}: ',
             userData['department'] ?? S.of(context).general,
+          ),
+          const Divider(height: 30),
+          infoRowItem(
+            '${S.of(context).vacation_balance}: ',
+            userData['remaining_leaves'].toString(),
           ),
         ],
       ),
