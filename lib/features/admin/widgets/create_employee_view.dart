@@ -50,6 +50,7 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                   ),
                   CustomTextFormField(
                     controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
                     label: S.of(context).email,
                     validate: validateEmail,
                     prefixIcon: const Icon(Icons.email),

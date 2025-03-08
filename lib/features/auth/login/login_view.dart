@@ -110,7 +110,6 @@ class _LoginViewState extends State<LoginView> {
                   validate: validatePassword,
                   label: S.of(context).password,
                   prefixIcon: Icon(Icons.lock),
-                  keyboardType: TextInputType.number,
                   obsure: obscure,
                   suffixIcon: obscure
                       ? IconButton(
