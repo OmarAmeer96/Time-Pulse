@@ -131,6 +131,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "start_date": MessageLookupByLibrary.simpleMessage("Start Date"),
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),
     "user": MessageLookupByLibrary.simpleMessage("User"),
+    "user_must_use_user_tab": MessageLookupByLibrary.simpleMessage(
+      "Users cannot log in using the admin tab. Please use the user tab.",
+    ),
     "vacations": MessageLookupByLibrary.simpleMessage("Vacations"),
     "valid_email": MessageLookupByLibrary.simpleMessage(
       "Email is not valid ,please enter a valid email",

@@ -185,6 +185,18 @@ class _LoginViewState extends State<LoginView> {
         return;
       }
 
+      if (!adminEmails.contains(emailController.text.trim().toLowerCase()) &&
+          !isAdmin) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              S.of(context).admin_must_use_admin_tab,
+            ),
+          ),
+        );
+        return;
+      }
+
       context
           .read<AuthCubit>()
           .login(emailController.text, passwordController.text, context);

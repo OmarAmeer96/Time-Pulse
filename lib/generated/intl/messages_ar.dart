@@ -125,6 +125,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "start_date": MessageLookupByLibrary.simpleMessage("تاريخ البدء"),
     "submit": MessageLookupByLibrary.simpleMessage("ارسال"),
     "user": MessageLookupByLibrary.simpleMessage("المستخدم"),
+    "user_must_use_user_tab": MessageLookupByLibrary.simpleMessage(
+      "يجب على المستخدمين تسجيل الدخول باستخدام علامة التبويب الخاصة بالمستخدم. من فضلك استخدم علامة التبويب الخاصة بالمستخدم.",
+    ),
     "vacations": MessageLookupByLibrary.simpleMessage("الاجازات"),
     "valid_email": MessageLookupByLibrary.simpleMessage("الإيميل غير صحيح "),
     "valid_name": MessageLookupByLibrary.simpleMessage("من فضلك ادخل اسم صحيح"),

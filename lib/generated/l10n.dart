@@ -544,6 +544,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Users cannot log in using the admin tab. Please use the user tab.`
+  String get user_must_use_user_tab {
+    return Intl.message(
+      'Users cannot log in using the admin tab. Please use the user tab.',
+      name: 'user_must_use_user_tab',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

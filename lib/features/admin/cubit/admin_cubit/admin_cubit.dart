@@ -16,11 +16,12 @@ class AdminCubit extends Cubit<AdminState> {
   getEmployeeData() async {
     emit(AdminPageLoading());
     try {
-      await db.collection('employees').get().then((event) {
-        for (var doc in event.docs) {
-          employees.add(EmployeeModel.fromFireStore(doc));
-        }
-      });
+      employees.clear();
+      var snapshot = await db.collection('employees').get();
+      for (var doc in snapshot.docs) {
+        employees.add(EmployeeModel.fromFireStore(doc));
+      }
+      filteredEmployees = List.from(employees);
       emit(AdminPageLoaded());
     } catch (e) {
       emit(AdminPageError());
