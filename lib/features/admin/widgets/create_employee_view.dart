@@ -17,6 +17,8 @@ class CreateEmployee extends StatefulWidget {
 }
 
 class _CreateEmployeeState extends State<CreateEmployee> {
+  final _formKey = GlobalKey<FormState>();
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -28,62 +30,69 @@ class _CreateEmployeeState extends State<CreateEmployee> {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
-            child: Column(
-              children: [
-                SizedBox(height: 10),
-                Text(
-                  S.of(context).add_employee,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: MyTheme.primaryColor,
+            child: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  const SizedBox(height: 10),
+                  Text(
+                    S.of(context).add_employee,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: MyTheme.primaryColor,
+                    ),
                   ),
-                ),
-                CustomTextFormField(
-                  controller: nameController,
-                  label: S.of(context).name,
-                  validate: validateName,
-                  prefixIcon: Icon(Icons.person),
-                ),
-                CustomTextFormField(
-                  controller: emailController,
-                  label: S.of(context).email,
-                  validate: validateEmail,
-                  prefixIcon: Icon(Icons.email),
-                ),
-                CustomTextFormField(
-                  controller: passwordController,
-                  label: S.of(context).password,
-                  validate: validatePassword,
-                  prefixIcon: Icon(Icons.lock),
-                ),
-                CustomButton(
-                  onPressed: () async {
-                    try {
-                      context.read<AdminCubit>().addEmployee(
-                            nameController,
-                            emailController,
-                            passwordController,
-                          );                      
-                      Navigator.pop(context);
-                      Fluttertoast.showToast(
-                        msg: S.of(context).account_created,
-                      );
-                    } catch (e) {
-                      Fluttertoast.showToast(msg: 'Error: ${e.toString()}');
-                    }
-                  },
-                )
-              ],
+                  CustomTextFormField(
+                    controller: nameController,
+                    label: S.of(context).name,
+                    validate: validateName,
+                    prefixIcon: const Icon(Icons.person),
+                  ),
+                  CustomTextFormField(
+                    controller: emailController,
+                    label: S.of(context).email,
+                    validate: validateEmail,
+                    prefixIcon: const Icon(Icons.email),
+                  ),
+                  CustomTextFormField(
+                    controller: passwordController,
+                    label: S.of(context).password,
+                    validate: validatePassword,
+                    prefixIcon: const Icon(Icons.lock),
+                  ),
+                  CustomButton(
+                    onPressed: () async {
+                      if (_formKey.currentState!.validate()) {
+                        try {
+                          await context.read<AdminCubit>().addEmployee(
+                                nameController,
+                                emailController,
+                                passwordController,
+                              );
+                          Navigator.pop(context);
+                          Fluttertoast.showToast(
+                            msg: S.of(context).account_created,
+                          );
+                        } catch (e) {
+                          Fluttertoast.showToast(
+                            msg: 'Error: ${e.toString()}',
+                          );
+                        }
+                      }
+                    },
+                  )
+                ],
+              ),
             ),
           ),
-        ).decorate(padding: 4,context: context);
+        ).decorate(padding: 4, context: context);
       },
     );
   }
 
   String? validateName(String? value) {
-    if (value!.isEmpty) {
+    if (value == null || value.isEmpty) {
       return S.of(context).enter_employee_name;
     }
     bool nameValid = RegExp(r"^[a-zA-Z]+").hasMatch(value);
@@ -94,22 +103,22 @@ class _CreateEmployeeState extends State<CreateEmployee> {
   }
 
   String? validateEmail(String? value) {
-    if (value!.isEmpty) {
+    if (value == null || value.isEmpty) {
       return S.of(context).enter_your_email;
     }
     bool emailValid = RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value);
     if (!emailValid) {
-      return  S.of(context).valid_email;
+      return S.of(context).valid_email;
     }
     return null;
   }
 
   String? validatePassword(String? value) {
-    if (value?.isEmpty ?? true) {
+    if (value == null || value.isEmpty) {
       return S.of(context).enter_your_password;
-    } else if (value!.length < 6) {
+    } else if (value.length < 6) {
       return S.of(context).password_length;
     }
     return null;
