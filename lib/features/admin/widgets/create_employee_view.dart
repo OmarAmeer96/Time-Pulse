@@ -61,26 +61,31 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                     validate: validatePassword,
                     prefixIcon: const Icon(Icons.lock),
                   ),
-                  CustomButton(
-                    onPressed: () async {
-                      if (_formKey.currentState!.validate()) {
-                        try {
-                          await context.read<AdminCubit>().addEmployee(
-                                nameController,
-                                emailController,
-                                passwordController,
+                  SafeArea(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: CustomButton(
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {
+                            try {
+                              await context.read<AdminCubit>().addEmployee(
+                                    nameController,
+                                    emailController,
+                                    passwordController,
+                                  );
+                              Navigator.pop(context);
+                              Fluttertoast.showToast(
+                                msg: S.of(context).account_created,
                               );
-                          Navigator.pop(context);
-                          Fluttertoast.showToast(
-                            msg: S.of(context).account_created,
-                          );
-                        } catch (e) {
-                          Fluttertoast.showToast(
-                            msg: 'Error: ${e.toString()}',
-                          );
-                        }
-                      }
-                    },
+                            } catch (e) {
+                              Fluttertoast.showToast(
+                                msg: 'Error: ${e.toString()}',
+                              );
+                            }
+                          }
+                        },
+                      ),
+                    ),
                   )
                 ],
               ),
