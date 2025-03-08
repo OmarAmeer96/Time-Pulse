@@ -19,7 +19,13 @@ class _AdminVrvState extends State<AdminVrv> {
   void initState() {
     super.initState();
     context.read<VacationsCubit>().vacations.clear();
+    context.read<VacationsCubit>().pendingVacations.clear();
+    context.read<VacationsCubit>().acceptedVacations.clear();
+    context.read<VacationsCubit>().rejectedVacations.clear();
     context.read<VacationsCubit>().getVacations();
+    context.read<VacationsCubit>().getPendingVacations();
+    context.read<VacationsCubit>().getAcceptedVacations();
+    context.read<VacationsCubit>().getRejectedVacations();
   }
 
   @override
@@ -33,50 +39,88 @@ class _AdminVrvState extends State<AdminVrv> {
           context.read<VacationsCubit>().acceptedVacations.clear();
           context.read<VacationsCubit>().rejectedVacations.clear();
           context.read<VacationsCubit>().getVacations();
+          context.read<VacationsCubit>().getPendingVacations();
+          context.read<VacationsCubit>().getAcceptedVacations();
+          context.read<VacationsCubit>().getRejectedVacations();
         },
         child: BlocBuilder<VacationsCubit, VacationsState>(
           builder: (context, state) {
-            return Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                        onPressed: () {
-                          pageStatus = 'Pending';
-                        },
-                        child: Text(S.of(context).pending)),
-                    TextButton(
-                        onPressed: () {
-                          pageStatus = 'Accepted';
-                        },
-                        child: Text(S.of(context).accepted)),
-                    TextButton(
-                        onPressed: () {
-                          pageStatus = 'Rejected';
-                        },
-                        child: Text(S.of(context).rejected)),
-                  ],
-                ),
-                BlocBuilder<VacationsCubit, VacationsState>(
-                  builder: (context, state) {
-                    if (state is VacationsInitial) {
-                      return Center(child: CircularProgressIndicator());
-                    }
-                    if (state is VacationsLoading) {
-                      return Center(child: CircularProgressIndicator());
-                    } else if (state is EmptyVacations) {
-                      return Center(child: Text(S.of(context).no_vacation));
-                    } else {
-                      if (pageStatus == 'Pending') {
-                        return Expanded(
+            if (state is VacationsInitial) {
+              print('init');
+              return Center(child: CircularProgressIndicator());
+            }
+            if (state is VacationsLoading) {
+              print('loading');
+              return Center(child: CircularProgressIndicator());
+            } else if (state is EmptyVacations) {
+              print('empty');
+              return Center(child: Text("No vacations till now"));
+            } else {
+              return Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                          onPressed: () {
+                            pageStatus = 'Pending';
+                            print('Pending');
+                            context
+                                .read<VacationsCubit>()
+                                .pendingVacations
+                                .clear();
+                            context
+                                .read<VacationsCubit>()
+                                .getPendingVacations();
+                            print(context
+                                .read<VacationsCubit>()
+                                .pendingVacations);
+                          },
+                          child: Text('Pending')),
+                      TextButton(
+                          onPressed: () {
+                            pageStatus = 'Accepted';
+                            print('Accepted');
+                            context
+                                .read<VacationsCubit>()
+                                .acceptedVacations
+                                .clear();
+                            context
+                                .read<VacationsCubit>()
+                                .getAcceptedVacations();
+                            print(context
+                                .read<VacationsCubit>()
+                                .acceptedVacations);
+                          },
+                          child: Text('Accepted')),
+                      TextButton(
+                          onPressed: () {
+                            pageStatus = 'Rejected';
+                            print('Rejected');
+                            context
+                                .read<VacationsCubit>()
+                                .rejectedVacations
+                                .clear();
+                            context
+                                .read<VacationsCubit>()
+                                .getRejectedVacations();
+                            print(context
+                                .read<VacationsCubit>()
+                                .rejectedVacations);
+                          },
+                          child: Text('Rejected')),
+                    ],
+                  ),
+                  pageStatus == 'Pending'
+                      ? SizedBox(
+                          height: MediaQuery.sizeOf(context).height * 0.7,
                           child: ListView.builder(
                             itemCount: context
                                 .read<VacationsCubit>()
                                 .pendingVacations
                                 .length,
                             itemBuilder: (context, index) {
-                              CustomVacationRequestCard(
+                              return CustomVacationRequestCard(
                                 employeeName: context
                                     .read<VacationsCubit>()
                                     .pendingVacations[index]
@@ -99,86 +143,79 @@ class _AdminVrvState extends State<AdminVrv> {
                                     .reason,
                                 onPressed: () {},
                               );
-                              return null;
                             },
                           ),
-                        );
-                      } else if (pageStatus == 'Accepted') {
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount: context
-                                .read<VacationsCubit>()
-                                .pendingVacations
-                                .length,
-                            itemBuilder: (context, index) {
-                              CustomVacationRequestCard(
-                                employeeName: context
+                        )
+                      : pageStatus == 'Accepted'
+                          ? Expanded(
+                              child: ListView.builder(
+                                itemCount: context
                                     .read<VacationsCubit>()
-                                    .acceptedVacations[index]
-                                    .employeeName,
-                                status: context
+                                    .acceptedVacations
+                                    .length,
+                                itemBuilder: (context, index) {
+                                  return CustomVacationRequestCard(
+                                    employeeName: context
+                                        .read<VacationsCubit>()
+                                        .acceptedVacations[index]
+                                        .employeeName,
+                                    status: context
+                                        .read<VacationsCubit>()
+                                        .acceptedVacations[index]
+                                        .status,
+                                    startDate: context
+                                        .read<VacationsCubit>()
+                                        .acceptedVacations[index]
+                                        .startDate,
+                                    endDate: context
+                                        .read<VacationsCubit>()
+                                        .acceptedVacations[index]
+                                        .endDate,
+                                    reason: context
+                                        .read<VacationsCubit>()
+                                        .acceptedVacations[index]
+                                        .reason,
+                                    onPressed: () {},
+                                  );
+                                },
+                              ),
+                            )
+                          : Expanded(
+                              child: ListView.builder(
+                                itemCount: context
                                     .read<VacationsCubit>()
-                                    .acceptedVacations[index]
-                                    .status,
-                                startDate: context
-                                    .read<VacationsCubit>()
-                                    .acceptedVacations[index]
-                                    .startDate,
-                                endDate: context
-                                    .read<VacationsCubit>()
-                                    .acceptedVacations[index]
-                                    .endDate,
-                                reason: context
-                                    .read<VacationsCubit>()
-                                    .acceptedVacations[index]
-                                    .reason,
-                                onPressed: () {},
-                              );
-                              return null;
-                            },
-                          ),
-                        );
-                      } else {
-                        return Expanded(
-                          child: ListView.builder(
-                            itemCount: context
-                                .read<VacationsCubit>()
-                                .pendingVacations
-                                .length,
-                            itemBuilder: (context, index) {
-                              CustomVacationRequestCard(
-                                employeeName: context
-                                    .read<VacationsCubit>()
-                                    .rejectedVacations[index]
-                                    .employeeName,
-                                status: context
-                                    .read<VacationsCubit>()
-                                    .rejectedVacations[index]
-                                    .status,
-                                startDate: context
-                                    .read<VacationsCubit>()
-                                    .rejectedVacations[index]
-                                    .startDate,
-                                endDate: context
-                                    .read<VacationsCubit>()
-                                    .rejectedVacations[index]
-                                    .endDate,
-                                reason: context
-                                    .read<VacationsCubit>()
-                                    .rejectedVacations[index]
-                                    .reason,
-                                onPressed: () {},
-                              );
-                              return null;
-                            },
-                          ),
-                        );
-                      }
-                    }
-                  },
-                )
-              ],
-            );
+                                    .rejectedVacations
+                                    .length,
+                                itemBuilder: (context, index) {
+                                  return CustomVacationRequestCard(
+                                    employeeName: context
+                                        .read<VacationsCubit>()
+                                        .rejectedVacations[index]
+                                        .employeeName,
+                                    status: context
+                                        .read<VacationsCubit>()
+                                        .rejectedVacations[index]
+                                        .status,
+                                    startDate: context
+                                        .read<VacationsCubit>()
+                                        .rejectedVacations[index]
+                                        .startDate,
+                                    endDate: context
+                                        .read<VacationsCubit>()
+                                        .rejectedVacations[index]
+                                        .endDate,
+                                    reason: context
+                                        .read<VacationsCubit>()
+                                        .rejectedVacations[index]
+                                        .reason,
+                                    onPressed: () {},
+                                  );
+                                },
+                              ),
+                            )
+                ],
+              );
+            }
           },
         ),
       ),
