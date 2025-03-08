@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/data/extensions/extensions.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 
 class CustomListTile extends StatelessWidget {
   const CustomListTile(
@@ -21,6 +23,7 @@ class CustomListTile extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(color: MyTheme.primaryColor),
           borderRadius: BorderRadius.circular(10),
+          color: context.read<ThemeCubit>().darkMode?Colors.grey.shade400:Colors.white
         ),
         height: 70,
         child: ListTile(

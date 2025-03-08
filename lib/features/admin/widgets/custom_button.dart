@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time_pulse/core/theme.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({super.key, this.onPressed});
@@ -18,7 +19,7 @@ class CustomButton extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            'Create',
+            S.of(context).create,
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,

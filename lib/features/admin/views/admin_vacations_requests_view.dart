@@ -7,6 +7,7 @@ import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_state.dart';
 import 'package:time_pulse/features/admin/widgets/custom_vacation_button.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class AdminVacationsRequestsView extends StatefulWidget {
   const AdminVacationsRequestsView({super.key});
@@ -28,7 +29,7 @@ class _AdminVacationsRequestsViewState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GlobalAppbar(title: "Vacations Requests"),
+      appBar: GlobalAppbar(title: S.of(context).request_vacation),
       body: RefreshIndicator(
         onRefresh: () async {
           context.read<VacationsCubit>().vacations.clear();
@@ -47,7 +48,7 @@ class _AdminVacationsRequestsViewState
               );
             } else if (state is EmptyVacations) {
               return Center(
-                child: Text("No vacations till now"),
+                child: Text(S.of(context).no_vacation),
               );
             } else {
               return ListView.builder(
@@ -125,21 +126,21 @@ class _AdminVacationsRequestsViewState
                         ),
                         SizedBox(height: 10),
                         GlobalDataShow(
-                            title: "Start Date",
+                            title: S.of(context).start_date,
                             data: context
                                 .read<VacationsCubit>()
                                 .vacations[index]
                                 .startDate),
                         SizedBox(height: 8),
                         GlobalDataShow(
-                            title: "End Date",
+                            title: S.of(context).end_date,
                             data: context
                                 .read<VacationsCubit>()
                                 .vacations[index]
                                 .endDate),
                         SizedBox(height: 8),
                         GlobalDataShow(
-                            title: "Reason",
+                            title: S.of(context).search,
                             data: context
                                 .read<VacationsCubit>()
                                 .vacations[index]

@@ -22,6 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "accept": MessageLookupByLibrary.simpleMessage("قبول"),
+    "accepted": MessageLookupByLibrary.simpleMessage("مقبول"),
+    "account_created": MessageLookupByLibrary.simpleMessage(
+      "تم انشاء الحساب بنجاح",
+    ),
+    "add_employee": MessageLookupByLibrary.simpleMessage("اضافة موظف"),
     "admin": MessageLookupByLibrary.simpleMessage("المشرف"),
     "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
     "check_in": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
@@ -36,19 +42,26 @@ class MessageLookup extends MessageLookupByLibrary {
     "click_to_check_out": MessageLookupByLibrary.simpleMessage(
       "من فضلك اضغط هنا لتسجيل الخروج",
     ),
+    "create": MessageLookupByLibrary.simpleMessage("انشاء"),
     "dark": MessageLookupByLibrary.simpleMessage("الوضع الليلي"),
     "department": MessageLookupByLibrary.simpleMessage("القسم"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "employee_data": MessageLookupByLibrary.simpleMessage("بيانات الموظفين"),
+    "employee_history": MessageLookupByLibrary.simpleMessage("سجل الموظف"),
     "employee_id": MessageLookupByLibrary.simpleMessage("معرّف الموظف"),
     "empty_history": MessageLookupByLibrary.simpleMessage("السجل فارغ"),
     "end_date": MessageLookupByLibrary.simpleMessage("تاريخ الإنتهاء"),
     "english": MessageLookupByLibrary.simpleMessage("الإنجليزية"),
+    "enter_employee_name": MessageLookupByLibrary.simpleMessage(
+      "من فضلك أدخل اسم  الموظف",
+    ),
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "من فضلك أدخل البريد الإلكتروني",
     ),
     "enter_your_password": MessageLookupByLibrary.simpleMessage(
       " من فصلك ,أدخل كلمة المرور",
     ),
+    "error": MessageLookupByLibrary.simpleMessage("خطأ"),
     "forget_password": MessageLookupByLibrary.simpleMessage(
       "هل نسيت كلمة المرور",
     ),
@@ -63,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "leaves": MessageLookupByLibrary.simpleMessage("الاجازات"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "no_name_provided": MessageLookupByLibrary.simpleMessage(
       "لم يتم توفير اسم",
     ),
@@ -81,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "position": MessageLookupByLibrary.simpleMessage("الوظيفة"),
     "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
     "reason": MessageLookupByLibrary.simpleMessage("السبب"),
+    "reject": MessageLookupByLibrary.simpleMessage("رفض"),
     "rejected": MessageLookupByLibrary.simpleMessage("مرفوض"),
     "remaining_balance": MessageLookupByLibrary.simpleMessage(
       "اسف ,رصيد الاجازات غير كافي",
@@ -92,6 +107,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "تم إرسال اعادة تعيين الرقم السري إلى البريد الإلكتروني",
     ),
+    "search": MessageLookupByLibrary.simpleMessage("بحث"),
     "select_a_end_date": MessageLookupByLibrary.simpleMessage(
       "من فضلك أدخل تاريخ الانتهاء",
     ),
@@ -108,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "user": MessageLookupByLibrary.simpleMessage("المستخدم"),
     "vacations": MessageLookupByLibrary.simpleMessage("الاجازات"),
     "valid_email": MessageLookupByLibrary.simpleMessage("الإيميل غير صحيح "),
+    "valid_name": MessageLookupByLibrary.simpleMessage("من فضلك ادخل اسم صحيح"),
     "welcome": MessageLookupByLibrary.simpleMessage("مرحبا بعودتك"),
   };
 }

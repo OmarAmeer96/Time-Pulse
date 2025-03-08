@@ -48,7 +48,7 @@ class CustomTextFormField extends StatelessWidget {
                   ? BoxConstraints(maxWidth: 60, minHeight: 140)
                   : null,
               labelText: label,
-              labelStyle: TextStyle(color:theme.darkMode?Colors.white:Colors.black , fontSize: 20 ),
+              labelStyle: TextStyle(color:theme.darkMode?Colors.black54:Colors.black , fontSize: 20 ),
               prefixIcon: prefixIcon,
               prefixIconColor: MyTheme.primaryColor,
               suffixIcon: suffixIcon,

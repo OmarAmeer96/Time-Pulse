@@ -7,6 +7,7 @@ import 'package:time_pulse/features/auth/login/login_view.dart';
 import 'package:time_pulse/features/main/main_view.dart';
 import 'package:time_pulse/features/admin/views/admin_home_view.dart';
 import 'package:time_pulse/features/profile/profile_view.dart';
+import 'package:time_pulse/features/settings/settings_view.dart';
 import 'package:time_pulse/features/splash/splash_view.dart';
 import 'package:time_pulse/features/user/user_view.dart';
 import 'package:time_pulse/features/vacation_request/vacation_request_view.dart';
@@ -43,6 +44,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const EmployeeHistoryView());
       case Routes.adminVrv:
         return MaterialPageRoute(builder: (_) => const AdminVrv());
+      case Routes.settingsView:
+        return MaterialPageRoute(builder: (_) =>  SettingsView());
 
       default:
         return null;

@@ -22,6 +22,12 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "accept": MessageLookupByLibrary.simpleMessage("Accept"),
+    "accepted": MessageLookupByLibrary.simpleMessage("Accepted"),
+    "account_created": MessageLookupByLibrary.simpleMessage(
+      "Account Created Successfully",
+    ),
+    "add_employee": MessageLookupByLibrary.simpleMessage("Add Employee"),
     "admin": MessageLookupByLibrary.simpleMessage("Admin"),
     "arabic": MessageLookupByLibrary.simpleMessage("Arabic"),
     "check_in": MessageLookupByLibrary.simpleMessage("Check-in time"),
@@ -38,19 +44,28 @@ class MessageLookup extends MessageLookupByLibrary {
     "click_to_check_out": MessageLookupByLibrary.simpleMessage(
       "Please click here to check out",
     ),
+    "create": MessageLookupByLibrary.simpleMessage("Create"),
     "dark": MessageLookupByLibrary.simpleMessage("Dark Mode"),
     "department": MessageLookupByLibrary.simpleMessage("Department"),
     "email": MessageLookupByLibrary.simpleMessage("Email Address"),
+    "employee_data": MessageLookupByLibrary.simpleMessage("Employees Data"),
+    "employee_history": MessageLookupByLibrary.simpleMessage(
+      "Employee History",
+    ),
     "employee_id": MessageLookupByLibrary.simpleMessage("Employee ID"),
     "empty_history": MessageLookupByLibrary.simpleMessage("Empty History"),
     "end_date": MessageLookupByLibrary.simpleMessage("End Date"),
     "english": MessageLookupByLibrary.simpleMessage("English"),
+    "enter_employee_name": MessageLookupByLibrary.simpleMessage(
+      "Please enter employee name",
+    ),
     "enter_your_email": MessageLookupByLibrary.simpleMessage(
       "Please, enter your email",
     ),
     "enter_your_password": MessageLookupByLibrary.simpleMessage(
       "Please, enter your password",
     ),
+    "error": MessageLookupByLibrary.simpleMessage("Error"),
     "forget_password": MessageLookupByLibrary.simpleMessage(
       "Forget Password !",
     ),
@@ -65,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "leaves": MessageLookupByLibrary.simpleMessage("Leaves"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "name": MessageLookupByLibrary.simpleMessage("Name"),
     "no_name_provided": MessageLookupByLibrary.simpleMessage(
       "No name provided",
     ),
@@ -83,6 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "position": MessageLookupByLibrary.simpleMessage("Position"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "reason": MessageLookupByLibrary.simpleMessage("Reason"),
+    "reject": MessageLookupByLibrary.simpleMessage("Reject"),
     "rejected": MessageLookupByLibrary.simpleMessage("Rejected"),
     "remaining_balance": MessageLookupByLibrary.simpleMessage(
       "Sorry, Your remaining balance is not enough",
@@ -96,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "reset_password": MessageLookupByLibrary.simpleMessage(
       "Password reset email sent!",
     ),
+    "search": MessageLookupByLibrary.simpleMessage("Search"),
     "select_a_end_date": MessageLookupByLibrary.simpleMessage(
       "Please select an end date",
     ),
@@ -113,6 +131,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "vacations": MessageLookupByLibrary.simpleMessage("Vacations"),
     "valid_email": MessageLookupByLibrary.simpleMessage(
       "Email is not valid ,please enter a valid email",
+    ),
+    "valid_name": MessageLookupByLibrary.simpleMessage(
+      "Please enter valid employee name",
     ),
     "welcome": MessageLookupByLibrary.simpleMessage("Welcome Back"),
   };

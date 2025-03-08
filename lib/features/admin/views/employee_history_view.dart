@@ -6,6 +6,7 @@ import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/admin/cubit/employee_history_cubit/employee_history_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/employee_history_cubit/employee_history_state.dart';
 import 'package:time_pulse/features/history/cubit/history_cubit.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class EmployeeHistoryView extends StatefulWidget {
   const EmployeeHistoryView({super.key});
@@ -25,7 +26,7 @@ class _EmployeeHistoryViewState extends State<EmployeeHistoryView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GlobalAppbar(title: "Employee History"),
+      appBar: GlobalAppbar(title: S.of(context).employee_history),
       body: BlocBuilder<EmployeeHistoryCubit, EmployeeHistoryState>(
         builder: (context, state) {
           if (state is HistoryInitial) {
@@ -39,7 +40,7 @@ class _EmployeeHistoryViewState extends State<EmployeeHistoryView> {
             );
           } else if (state is EmptyHistory) {
             return Center(
-              child: Text("Empty History"),
+              child: Text(S.of(context).empty_history),
             );
           } else {
             return ListView.builder(
@@ -51,7 +52,7 @@ class _EmployeeHistoryViewState extends State<EmployeeHistoryView> {
                   child: Column(
                     children: [
                       GlobalDataShow(
-                        title: "Check-in time",
+                        title: S.of(context).check_in,
                         data: context
                             .read<EmployeeHistoryCubit>()
                             .employeeHistory[index]
@@ -59,7 +60,7 @@ class _EmployeeHistoryViewState extends State<EmployeeHistoryView> {
                       ),
                       SizedBox(height: 8),
                       GlobalDataShow(
-                        title: "Check-out time",
+                        title: S.of(context).check_out,
                         data: context
                             .read<EmployeeHistoryCubit>()
                             .employeeHistory[index]
