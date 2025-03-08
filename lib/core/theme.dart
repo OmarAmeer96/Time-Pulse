@@ -7,6 +7,8 @@ class MyTheme {
   static Color greyColor =Color(0xff575656);
 
   static ThemeData lightMode = ThemeData(
+      colorScheme: ColorScheme.light(primary: primaryColor),
+      buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
     canvasColor: Colors.white,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
@@ -38,6 +40,8 @@ class MyTheme {
       ));
 
   static ThemeData darkMode = ThemeData(
+      colorScheme: ColorScheme.dark(primary: primaryColor),
+      buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
     scaffoldBackgroundColor: blackColor,
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       foregroundColor: blackColor,
