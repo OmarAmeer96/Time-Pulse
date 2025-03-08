@@ -175,37 +175,27 @@ class _LoginViewState extends State<LoginView> {
 
   login() async {
     if (formKey.currentState!.validate()) {
-      if (adminEmails.contains(emailController.text.trim().toLowerCase()) &&
-          !isAdmin) {
+      String email = emailController.text.trim().toLowerCase();
+
+      if (adminEmails.contains(email) && !isAdmin) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(S.of(context).admin_must_use_admin_tab),
-          ),
+          SnackBar(content: Text(S.of(context).admin_must_use_admin_tab)),
         );
         return;
       }
 
-      if (!adminEmails.contains(emailController.text.trim().toLowerCase()) &&
-          !isAdmin) {
+      if (!adminEmails.contains(email) && isAdmin) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              S.of(context).admin_must_use_admin_tab,
-            ),
-          ),
+          SnackBar(content: Text(S.of(context).user_must_use_user_tab)),
         );
         return;
       }
 
-      context
-          .read<AuthCubit>()
-          .login(emailController.text, passwordController.text, context);
+      context.read<AuthCubit>().login(email, passwordController.text, context);
 
-      isAdmin
-          ? SharedPrefHelper.setData("isAdmin", true)
-          : SharedPrefHelper.setData("isAdmin", false);
+      await SharedPrefHelper.setData("isAdmin", isAdmin);
+      await SharedPrefHelper.setData("isUserLoggedIn", true);
       isUserLoggedIn = true;
-      SharedPrefHelper.setData("isUserLoggedIn", true);
     }
   }
 
