@@ -38,7 +38,38 @@ class _AdminVrvState extends State<AdminVrv> {
     setState(() {
       acceptLoading.add(vacation.requestId);
     });
+
     try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('employees')
+          .where('ID', isEqualTo: vacation.employeeId)
+          .get();
+
+      if (querySnapshot.docs.isEmpty) {
+        throw Exception("Employee not found");
+      }
+
+      DocumentSnapshot employeeDoc = querySnapshot.docs.first;
+      Map<String, dynamic> employeeData =
+          employeeDoc.data() as Map<String, dynamic>;
+
+      DateTime startDate = DateTime.parse(vacation.startDate);
+      DateTime endDate = DateTime.parse(vacation.endDate);
+      int leaveDays = endDate.difference(startDate).inDays + 1;
+
+      int remainingLeaves =
+          (employeeData['remaining_leaves'] ?? 21) - leaveDays;
+      if (remainingLeaves < 0) {
+        throw Exception("Not enough leave balance");
+      }
+
+      await FirebaseFirestore.instance
+          .collection('employees')
+          .doc(employeeDoc.id)
+          .update({
+        'remaining_leaves': remainingLeaves,
+      });
+
       await FirebaseFirestore.instance
           .collection("vacationRequests")
           .doc(vacation.requestId)
@@ -48,6 +79,7 @@ class _AdminVrvState extends State<AdminVrv> {
         vacation.status = "Accepted";
         acceptLoading.remove(vacation.requestId);
       });
+
       final cubit = context.read<VacationsCubit>();
       cubit.getVacations();
       cubit.getAcceptedVacations();
