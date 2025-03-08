@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 
 typedef Validator = String? Function(String?)?;
@@ -31,7 +30,7 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var theme= context.read<ThemeCubit>();
+    var theme = context.read<ThemeCubit>();
     return Padding(
       padding: EdgeInsets.all(15),
       child: TextFormField(
@@ -48,25 +47,32 @@ class CustomTextFormField extends StatelessWidget {
                   ? BoxConstraints(maxWidth: 60, minHeight: 140)
                   : null,
               labelText: label,
-              labelStyle: TextStyle(color:theme.darkMode?Colors.black54:Colors.black , fontSize: 20 ),
+              labelStyle: TextStyle(
+                  color: theme.darkMode ? Colors.black54 : Colors.black,
+                  fontSize: 20),
               prefixIcon: prefixIcon,
-              prefixIconColor: MyTheme.primaryColor,
+              prefixIconColor: Theme.of(context).colorScheme.primary,
               suffixIcon: suffixIcon,
-              suffixIconColor: theme.darkMode?Colors.white:Colors.black,
+              suffixIconColor: theme.darkMode ? Colors.white : Colors.black,
               enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide:
-                      BorderSide(width: 1.5, color: MyTheme.primaryColor)),
+                  borderSide: BorderSide(
+                      width: 1.5,
+                      color: Theme.of(context).colorScheme.primary)),
               errorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(width: 2, color: MyTheme.redColor)),
+                  borderSide: BorderSide(
+                      width: 2, color: Theme.of(context).colorScheme.primary)),
               focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide:
-                      BorderSide(width: 1.5, color: MyTheme.primaryColor)),
+                  borderSide: BorderSide(
+                      width: 1.5,
+                      color: Theme.of(context).colorScheme.primary)),
               focusedErrorBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
-                  borderSide: BorderSide(width: 2, color: MyTheme.redColor)))),
+                  borderSide: BorderSide(
+                      width: 2,
+                      color: Theme.of(context).colorScheme.primary)))),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
 import 'package:time_pulse/core/routing/routes.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/create_employee_view.dart';
@@ -32,7 +31,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
     var theme = context.read<ThemeCubit>().darkMode;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: MyTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         iconTheme: IconThemeData(color: theme ? Colors.grey : Colors.white),
         actions: [
           IconButton(
@@ -43,11 +42,10 @@ class _AdminHomeViewState extends State<AdminHomeView> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.logout,
-                color: theme ? Colors.grey : Colors.white),
+            icon: Icon(Icons.logout, color: theme ? Colors.grey : Colors.white),
             onPressed: () {
               context.read<AdminCubit>().logout();
-              Navigator.pushReplacementNamed(context,Routes.loginView);
+              Navigator.pushReplacementNamed(context, Routes.loginView);
             },
           ),
         ],
@@ -133,7 +131,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         child: Icon(
           Icons.person_add_rounded,
           size: 30,
-          color: MyTheme.primaryColor,
+          color: Theme.of(context).colorScheme.primary,
         ),
       ),
     );

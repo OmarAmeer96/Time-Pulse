@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 Widget buildProfileHeader(
@@ -14,7 +13,7 @@ Widget buildProfileHeader(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
-            color: MyTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primary,
             width: 3,
           ),
         ),

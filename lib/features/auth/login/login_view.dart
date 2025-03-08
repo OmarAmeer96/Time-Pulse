@@ -57,7 +57,8 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/logo_icon.png',width:MediaQuery.of(context).size.width*0.6),
+              Image.asset('assets/images/logo_icon.png',
+                  width: MediaQuery.of(context).size.width * 0.6),
               Container(
                 padding: EdgeInsets.all(7),
                 margin: EdgeInsets.symmetric(horizontal: 20),
@@ -74,7 +75,7 @@ class _LoginViewState extends State<LoginView> {
                       containerColor: userColor,
                       onTap: () {
                         isAdmin = false;
-                        userColor = MyTheme.primaryColor;
+                        userColor = Theme.of(context).colorScheme.primary;
                         adminColor = Colors.transparent;
                         setState(() {});
                       },
@@ -87,7 +88,7 @@ class _LoginViewState extends State<LoginView> {
                       containerColor: adminColor,
                       onTap: () {
                         isAdmin = true;
-                        adminColor = MyTheme.primaryColor;
+                        adminColor = Theme.of(context).colorScheme.primary;
                         userColor = Colors.transparent;
 
                         setState(() {});

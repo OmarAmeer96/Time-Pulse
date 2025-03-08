@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time_pulse/core/theme.dart';
 
 class GlobalDialog {
   static showLoadingDialog(context) {
@@ -9,9 +8,7 @@ class GlobalDialog {
         return AlertDialog(
           content: Row(
             children: [
-              CircularProgressIndicator(
-                color: MyTheme.primaryColor,
-              ),
+              CircularProgressIndicator(),
               SizedBox(width: 15),
               Text("Loading")
             ],

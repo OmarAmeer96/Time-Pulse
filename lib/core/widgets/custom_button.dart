@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time_pulse/core/theme.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -18,7 +17,7 @@ class CustomButton extends StatelessWidget {
       padding: const EdgeInsets.all(15),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: MyTheme.primaryColor,
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
         onPressed: onPressed,
         child: Row(

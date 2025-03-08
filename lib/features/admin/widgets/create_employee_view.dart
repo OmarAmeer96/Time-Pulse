@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/custom_text_form_field.dart';
 import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
@@ -40,7 +39,7 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
-                      color: MyTheme.primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                   ),
                   CustomTextFormField(
