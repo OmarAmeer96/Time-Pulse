@@ -8,6 +8,8 @@ import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/create_employee_view.dart';
 import 'package:time_pulse/features/admin/widgets/custom_list_tile.dart';
 import 'package:time_pulse/features/admin/widgets/custom_text_field.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class AdminHomeView extends StatefulWidget {
   const AdminHomeView({super.key});
@@ -28,23 +30,32 @@ class _AdminHomeViewState extends State<AdminHomeView> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.read<ThemeCubit>().darkMode;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyTheme.primaryColor,
+         iconTheme: IconThemeData(color: theme?Colors.grey:Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.view_timeline, color: Colors.white),
+            icon: Icon(Icons.view_timeline, color: theme?Colors.grey:Colors.white),
             onPressed: () {
               Navigator.pushNamed(context, Routes.adminVrv);
             },
           ),
         ],
+        leading: IconButton(
+          icon: Icon(Icons.settings ,color: theme?Colors.grey:Colors.white,),
+          onPressed: () {
+            Navigator.pushNamed(context, Routes.settingsView);
+          },
+        ),
         title: Text(
-          'Employees Data',
+          S.of(context).employee_data,
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),
+
       body: RefreshIndicator(
         onRefresh: () async {
           context.read<AdminCubit>().employees.clear();
@@ -68,7 +79,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: CustomTextField(
-                      hintText: 'Search',
+                      hintText: S.of(context).search,
                       controller: searchController,
                       icon: Icons.search,
                       onSubmitted: () {},
@@ -77,7 +88,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                      height: MediaQuery.sizeOf(context).height * 0.73,
+                      height: MediaQuery.sizeOf(context).height * 0.8,
                       width: MediaQuery.sizeOf(context).width,
                       child: ListView.builder(
                         itemCount: context.read<AdminCubit>().employees.length,
@@ -108,14 +119,14 @@ class _AdminHomeViewState extends State<AdminHomeView> {
               );
             } else {
               return Center(
-                child: Text('Error'),
+                child: Text(S.of(context).error),
               );
             }
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        backgroundColor: theme?Colors.grey:Colors.white,
         onPressed: () {
           showModalBottomSheet(
             context: context,

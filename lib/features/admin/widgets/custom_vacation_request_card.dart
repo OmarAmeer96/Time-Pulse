@@ -3,6 +3,7 @@ import 'package:time_pulse/core/widgets/global_data_show.dart';
 import 'package:time_pulse/data/constants/constants.dart';
 import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/admin/widgets/custom_vacation_button.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class CustomVacationRequestCard extends StatelessWidget {
   const CustomVacationRequestCard({
@@ -71,12 +72,12 @@ class CustomVacationRequestCard extends StatelessWidget {
           ),
           SizedBox(height: 10),
           GlobalDataShow(
-            title: "Start Date",
+            title: S.of(context).start_date,
             data: startDate,
           ),
           SizedBox(height: 8),
           GlobalDataShow(
-            title: "End Date",
+            title: S.of(context).end_date,
             data: endDate,
           ),
           SizedBox(height: 8),

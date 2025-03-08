@@ -390,20 +390,6 @@ class S {
     return Intl.message('Leaves', name: 'leaves', desc: '', args: []);
   }
 
-  // skipped getter for the 'forget password' key
-
-  // skipped getter for the 'enter your email' key
-
-  // skipped getter for the 'enter your password' key
-
-  // skipped getter for the 'valid email' key
-
-  // skipped getter for the 'password length' key
-
-  // skipped getter for the 'incorrect email or password' key
-
-  // skipped getter for the 'reset password' key
-
   /// `Profile`
   String get profile {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
@@ -452,6 +438,101 @@ class S {
   /// `General`
   String get general {
     return Intl.message('General', name: 'general', desc: '', args: []);
+  }
+
+  /// `Employees Data`
+  String get employee_data {
+    return Intl.message(
+      'Employees Data',
+      name: 'employee_data',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search`
+  String get search {
+    return Intl.message('Search', name: 'search', desc: '', args: []);
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message('Error', name: 'error', desc: '', args: []);
+  }
+
+  /// `Accepted`
+  String get accepted {
+    return Intl.message('Accepted', name: 'accepted', desc: '', args: []);
+  }
+
+  /// `Employee History`
+  String get employee_history {
+    return Intl.message(
+      'Employee History',
+      name: 'employee_history',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Employee`
+  String get add_employee {
+    return Intl.message(
+      'Add Employee',
+      name: 'add_employee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message('Name', name: 'name', desc: '', args: []);
+  }
+
+  /// `Account Created Successfully`
+  String get account_created {
+    return Intl.message(
+      'Account Created Successfully',
+      name: 'account_created',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter employee name`
+  String get enter_employee_name {
+    return Intl.message(
+      'Please enter employee name',
+      name: 'enter_employee_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid employee name`
+  String get valid_name {
+    return Intl.message(
+      'Please enter valid employee name',
+      name: 'valid_name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get create {
+    return Intl.message('Create', name: 'create', desc: '', args: []);
+  }
+
+  /// `Accept`
+  String get accept {
+    return Intl.message('Accept', name: 'accept', desc: '', args: []);
+  }
+
+  /// `Reject`
+  String get reject {
+    return Intl.message('Reject', name: 'reject', desc: '', args: []);
   }
 }
 

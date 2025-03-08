@@ -4,6 +4,7 @@ import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_state.dart';
 import 'package:time_pulse/features/admin/widgets/custom_vacation_request_card.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class AdminVrv extends StatefulWidget {
   const AdminVrv({super.key});
@@ -24,7 +25,7 @@ class _AdminVrvState extends State<AdminVrv> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: GlobalAppbar(title: 'Vacations Requests'),
+      appBar: GlobalAppbar(title: S.of(context).request_vacation),
       body: RefreshIndicator(
         onRefresh: () async {
           context.read<VacationsCubit>().vacations.clear();
@@ -44,17 +45,17 @@ class _AdminVrvState extends State<AdminVrv> {
                         onPressed: () {
                           pageStatus = 'Pending';
                         },
-                        child: Text('Pending')),
+                        child: Text(S.of(context).pending)),
                     TextButton(
                         onPressed: () {
                           pageStatus = 'Accepted';
                         },
-                        child: Text('Accepted')),
+                        child: Text(S.of(context).accepted)),
                     TextButton(
                         onPressed: () {
                           pageStatus = 'Rejected';
                         },
-                        child: Text('Rejected')),
+                        child: Text(S.of(context).rejected)),
                   ],
                 ),
                 BlocBuilder<VacationsCubit, VacationsState>(
@@ -65,7 +66,7 @@ class _AdminVrvState extends State<AdminVrv> {
                     if (state is VacationsLoading) {
                       return Center(child: CircularProgressIndicator());
                     } else if (state is EmptyVacations) {
-                      return Center(child: Text("No vacations till now"));
+                      return Center(child: Text(S.of(context).no_vacation));
                     } else {
                       if (pageStatus == 'Pending') {
                         return Expanded(
