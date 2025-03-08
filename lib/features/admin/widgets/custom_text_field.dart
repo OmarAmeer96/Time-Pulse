@@ -7,13 +7,15 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.icon,
+    this.onChanged,
     this.onSubmitted,
   });
 
   final String hintText;
   final TextEditingController controller;
   final IconData? icon;
-  final VoidCallback? onSubmitted;
+  final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onSubmitted;
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,12 @@ class CustomTextField extends StatelessWidget {
       child: TextField(
         controller: controller,
         cursorColor: MyTheme.primaryColor,
+        onChanged: onChanged,
+        onSubmitted: onSubmitted,
         decoration: InputDecoration(
           suffixIcon: IconButton(
             icon: Icon(icon, color: MyTheme.primaryColor),
-            onPressed: onSubmitted,
+            onPressed: () => onSubmitted?.call(controller.text),
           ),
           hintText: hintText,
           hintStyle: TextStyle(color: MyTheme.primaryColor),

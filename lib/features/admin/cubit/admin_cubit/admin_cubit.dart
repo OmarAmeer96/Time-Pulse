@@ -8,6 +8,8 @@ import 'package:time_pulse/features/admin/models/employee_model.dart';
 class AdminCubit extends Cubit<AdminState> {
   AdminCubit() : super(AdminPageInitial());
   List<EmployeeModel> employees = [];
+  List<EmployeeModel> filteredEmployees = [];
+
   var db = FirebaseFirestore.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -23,6 +25,17 @@ class AdminCubit extends Cubit<AdminState> {
     } catch (e) {
       emit(AdminPageError());
     }
+  }
+
+  void filterEmployees(String query) {
+    if (query.isEmpty) {
+      filteredEmployees = List.from(employees);
+    } else {
+      filteredEmployees = employees.where((employee) {
+        return employee.name.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
+    emit(AdminPageLoaded());
   }
 
   addEmployee(

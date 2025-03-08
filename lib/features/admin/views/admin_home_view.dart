@@ -24,7 +24,6 @@ class _AdminHomeViewState extends State<AdminHomeView> {
   @override
   void initState() {
     super.initState();
-    context.read<AdminCubit>().employees.clear();
     context.read<AdminCubit>().getEmployeeData();
   }
 
@@ -60,82 +59,68 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         centerTitle: true,
       ),
       body: RefreshIndicator(
-        onRefresh: () async {
-          context.read<AdminCubit>().employees.clear();
-          context.read<AdminCubit>().getEmployeeData();
-        },
+        onRefresh: () async => context.read<AdminCubit>().getEmployeeData(),
         child: BlocBuilder<AdminCubit, AdminState>(
           builder: (context, state) {
-            if (state is AdminPageInitial) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
+            final cubit = context.read<AdminCubit>();
+            
             if (state is AdminPageLoading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (state is AdminPageLoaded || state is EmployeeAdded) {
-              return Column(
-                children: [
-                  SizedBox(height: 10),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: CustomTextField(
-                      hintText: S.of(context).search,
-                      controller: searchController,
-                      icon: Icons.search,
-                      onSubmitted: () {},
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ListView.builder(
-                        itemCount: context.read<AdminCubit>().employees.length,
-                        itemBuilder: (context, index) {
-                          return CustomListTile(
-                            onTap: () {
-                              SharedPrefHelper.setData(
-                                "employeeHistoryId",
-                                context.read<AdminCubit>().employees[index].id,
-                              );
-                              Navigator.pushNamed(
-                                context,
-                                Routes.employeeHistoryView,
-                              );
-                            },
-                            employeeName: context
-                                .read<AdminCubit>()
-                                .employees[index]
-                                .name,
-                            employeeId:
-                                context.read<AdminCubit>().employees[index].id,
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            } else {
-              return Center(
-                child: Text(S.of(context).error),
-              );
+              return const Center(child: CircularProgressIndicator());
             }
+            
+            if (state is AdminPageError) {
+              return Center(child: Text(S.of(context).error));
+            }
+
+            return Column(
+              children: [
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: CustomTextField(
+                    hintText: S.of(context).search,
+                    controller: searchController,
+                    icon: Icons.search,
+                    onChanged: (query) => cubit.filterEmployees(query),
+                    onSubmitted: (query) => cubit.filterEmployees(query),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView.builder(
+                      itemCount: cubit.filteredEmployees.length,
+                      itemBuilder: (context, index) {
+                        final employee = cubit.filteredEmployees[index];
+                        return CustomListTile(
+                          onTap: () {
+                            SharedPrefHelper.setData(
+                              "employeeHistoryId",
+                              employee.id,
+                            );
+                            Navigator.pushNamed(
+                              context,
+                              Routes.employeeHistoryView,
+                            );
+                          },
+                          employeeName: employee.name,
+                          employeeId: employee.id,
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            );
           },
         ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: theme ? Colors.grey : Colors.white,
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) {
-              return CreateEmployee();
-            },
-          );
-        },
+        onPressed: () => showModalBottomSheet(
+          context: context,
+          builder: (context) => const CreateEmployee(),
+        ),
         child: Icon(
           Icons.person_add_rounded,
           size: 30,
