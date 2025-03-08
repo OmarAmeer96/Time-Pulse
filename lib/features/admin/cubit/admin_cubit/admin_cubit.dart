@@ -65,4 +65,7 @@ class AdminCubit extends Cubit<AdminState> {
       emit(AdminPageError());
     }
   }
+  logout()async{
+    await auth.signOut();
+  }
 }

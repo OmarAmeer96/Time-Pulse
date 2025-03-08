@@ -42,6 +42,14 @@ class _AdminHomeViewState extends State<AdminHomeView> {
               Navigator.pushNamed(context, Routes.adminVrv);
             },
           ),
+          IconButton(
+            icon: Icon(Icons.logout,
+                color: theme ? Colors.grey : Colors.white),
+            onPressed: () {
+              context.read<AdminCubit>().logout();
+              Navigator.pushReplacementNamed(context,Routes.loginView);
+            },
+          ),
         ],
         leading: IconButton(
           icon: Icon(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/helpers/constants.dart';
 import 'package:time_pulse/core/helpers/shared_pref_helper.dart';
+import 'package:time_pulse/core/helpers/spacing.dart';
 import 'package:time_pulse/core/routing/routes.dart';
 import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/custom_button.dart';
@@ -56,6 +57,7 @@ class _LoginViewState extends State<LoginView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/images/logo_icon.png',width:MediaQuery.of(context).size.width*0.6),
               Container(
                 padding: EdgeInsets.all(7),
                 margin: EdgeInsets.symmetric(horizontal: 20),
@@ -94,6 +96,7 @@ class _LoginViewState extends State<LoginView> {
                   ],
                 ),
               ),
+              verticalSpace(20),
               CustomTextFormField(
                 controller: emailController,
                 validate: validateEmail,
