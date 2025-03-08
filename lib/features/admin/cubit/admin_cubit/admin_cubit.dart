@@ -57,15 +57,19 @@ class AdminCubit extends Cubit<AdminState> {
           email: emailController.text,
           id: user.uid,
         );
-        db.collection("employees").add(employee.toFireStore());
-        employees.add(employee);
-        emit(EmployeeAdded());
+        db.collection("employees").add(employee.toFireStore()).then((value) {
+          employees.add(employee);
+          emit(EmployeeAdded());
+        }).then((value) {
+          getEmployeeData();
+        });
       }
     } catch (e) {
       emit(AdminPageError());
     }
   }
-  logout()async{
+
+  logout() async {
     await auth.signOut();
   }
 }

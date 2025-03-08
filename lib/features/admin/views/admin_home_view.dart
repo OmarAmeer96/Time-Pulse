@@ -125,8 +125,13 @@ class _AdminHomeViewState extends State<AdminHomeView> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: theme ? Colors.grey : Colors.white,
         onPressed: () => showModalBottomSheet(
+          isScrollControlled: true,
           context: context,
-          builder: (context) => const CreateEmployee(),
+          builder: (context) => Padding(
+            padding: EdgeInsets.only(
+                bottom: MediaQuery.of(context).viewInsets.bottom),
+            child: const CreateEmployee(),
+          ),
         ),
         child: Icon(
           Icons.person_add_rounded,
