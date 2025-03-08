@@ -63,11 +63,11 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         child: BlocBuilder<AdminCubit, AdminState>(
           builder: (context, state) {
             final cubit = context.read<AdminCubit>();
-            
+
             if (state is AdminPageLoading) {
               return const Center(child: CircularProgressIndicator());
             }
-            
+
             if (state is AdminPageError) {
               return Center(child: Text(S.of(context).error));
             }
@@ -104,7 +104,8 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                             );
                           },
                           employeeName: employee.name,
-                          employeeId: employee.id,
+                          employeeRemainingLeaves:
+                              employee.remaining_leaves.toString(),
                         );
                       },
                     ),

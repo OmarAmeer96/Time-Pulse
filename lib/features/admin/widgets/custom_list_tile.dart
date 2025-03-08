@@ -8,11 +8,11 @@ class CustomListTile extends StatelessWidget {
   const CustomListTile(
       {super.key,
       required this.employeeName,
-      required this.employeeId,
+      required this.employeeRemainingLeaves,
       required this.onTap});
 
   final String employeeName;
-  final String employeeId;
+  final String employeeRemainingLeaves;
   final VoidCallback? onTap;
 
   @override
@@ -21,26 +21,31 @@ class CustomListTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: MyTheme.primaryColor),
-          borderRadius: BorderRadius.circular(10),
-          color: context.read<ThemeCubit>().darkMode?Colors.grey.shade400:Colors.white
-        ),
+            border: Border.all(color: MyTheme.primaryColor),
+            borderRadius: BorderRadius.circular(10),
+            color: context.read<ThemeCubit>().darkMode
+                ? Colors.grey.shade400
+                : Colors.white),
         height: 70,
         child: ListTile(
           leading: Icon(Icons.person, color: MyTheme.primaryColor, size: 30),
           title: Text(employeeName,
-              style: TextStyle(color: MyTheme.primaryColor, fontSize: 20)),
-          subtitle: Text(employeeId,
-              style: TextStyle(color: MyTheme.primaryColor, fontSize: 10)),
+              style: TextStyle(
+                  color: MyTheme.primaryColor,
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500)),
+          subtitle: Text(employeeRemainingLeaves,
+              style: TextStyle(color: Colors.black, fontSize: 10)),
           trailing: IconButton(
             onPressed: onTap,
             icon: Icon(
               Icons.arrow_forward_ios_rounded,
-              color: MyTheme.primaryColor,
+              color: Colors.black,
+              size: 15,
             ),
           ),
         ),
-      ).decorate(padding: 4,context: context) ,
+      ).decorate(padding: 4, context: context),
     );
   }
 }
