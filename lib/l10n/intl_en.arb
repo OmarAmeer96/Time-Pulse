@@ -71,6 +71,6 @@
 "valid_name":"Please enter valid employee name",
 "create":"Create",
 "accept":"Accept",
-"reject":"Reject"
-
+"reject":"Reject",
+"admin_must_use_admin_tab": "Admin must use admin tab"
 }

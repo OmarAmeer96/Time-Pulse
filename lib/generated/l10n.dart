@@ -534,6 +534,16 @@ class S {
   String get reject {
     return Intl.message('Reject', name: 'reject', desc: '', args: []);
   }
+
+  /// `Admin must use admin tab`
+  String get admin_must_use_admin_tab {
+    return Intl.message(
+      'Admin must use admin tab',
+      name: 'admin_must_use_admin_tab',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -29,6 +29,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "add_employee": MessageLookupByLibrary.simpleMessage("اضافة موظف"),
     "admin": MessageLookupByLibrary.simpleMessage("المشرف"),
+    "admin_must_use_admin_tab": MessageLookupByLibrary.simpleMessage(
+      "يجب على المشرف استخدام علامة التبويب الخاصة بالمشرف",
+    ),
     "arabic": MessageLookupByLibrary.simpleMessage("العربية"),
     "check_in": MessageLookupByLibrary.simpleMessage("تسجيل دخول"),
     "check_out": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),

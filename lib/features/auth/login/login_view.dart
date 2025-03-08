@@ -39,7 +39,7 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    var theme= context.read<ThemeCubit>();
+    var theme = context.read<ThemeCubit>();
     return BlocListener<AuthCubit, AuthState>(
       listener: (context, state) {
         if (state is AuthLoading) {
@@ -61,7 +61,9 @@ class _LoginViewState extends State<LoginView> {
                 margin: EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
-                    color: theme.darkMode?MyTheme.greyColor:Colors.grey.shade300),
+                    color: theme.darkMode
+                        ? MyTheme.greyColor
+                        : Colors.grey.shade300),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -167,19 +169,32 @@ class _LoginViewState extends State<LoginView> {
     return null;
   }
 
+  final List<String> adminEmails = [
+    'hr@gmail.com',
+  ];
+
   login() async {
     if (formKey.currentState!.validate()) {
+      if (adminEmails.contains(emailController.text.trim().toLowerCase()) &&
+          !isAdmin) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(S.of(context).admin_must_use_admin_tab),
+          ),
+        );
+        return;
+      }
+
       context
           .read<AuthCubit>()
           .login(emailController.text, passwordController.text, context);
 
-        isAdmin
-            ? SharedPrefHelper.setData("isAdmin", true)
-            : SharedPrefHelper.setData("isAdmin", false);
-        isUserLoggedIn = true;
-        SharedPrefHelper.setData("isUserLoggedIn", true);
-  
-  }
+      isAdmin
+          ? SharedPrefHelper.setData("isAdmin", true)
+          : SharedPrefHelper.setData("isAdmin", false);
+      isUserLoggedIn = true;
+      SharedPrefHelper.setData("isUserLoggedIn", true);
+    }
   }
 
   restPassword() {
