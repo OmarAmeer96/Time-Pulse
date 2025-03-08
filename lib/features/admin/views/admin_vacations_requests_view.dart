@@ -17,8 +17,7 @@ class AdminVacationsRequestsView extends StatefulWidget {
       _AdminVacationsRequestsViewState();
 }
 
-class _AdminVacationsRequestsViewState
-    extends State<AdminVacationsRequestsView> {
+class _AdminVacationsRequestsViewState extends State<AdminVacationsRequestsView> {
   @override
   void initState() {
     super.initState();
@@ -26,34 +25,51 @@ class _AdminVacationsRequestsViewState
     context.read<VacationsCubit>().getVacations();
   }
 
+  void accept(int index) {
+    setState(() {
+      context.read<VacationsCubit>().vacations[index].status = "Accepted";
+    });
+  }
+
+  void reject(int index) {
+    setState(() {
+      context.read<VacationsCubit>().vacations[index].status = "Rejected";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final vacationsCubit = context.watch<VacationsCubit>();
     return Scaffold(
       appBar: GlobalAppbar(title: S.of(context).request_vacation),
       body: RefreshIndicator(
         onRefresh: () async {
-          context.read<VacationsCubit>().vacations.clear();
-          context.read<VacationsCubit>().getVacations();
+          vacationsCubit.vacations.clear();
+          await vacationsCubit.getVacations();
         },
         child: BlocBuilder<VacationsCubit, VacationsState>(
           builder: (context, state) {
-            if (state is VacationsInitial) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if (state is VacationsLoading) {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
+            if (state is VacationsInitial || state is VacationsLoading) {
+              return const Center(child: CircularProgressIndicator());
             } else if (state is EmptyVacations) {
-              return Center(
-                child: Text(S.of(context).no_vacation),
-              );
+              return Center(child: Text(S.of(context).no_vacation));
             } else {
               return ListView.builder(
-                itemCount: context.read<VacationsCubit>().vacations.length,
+                itemCount: vacationsCubit.vacations.length,
                 itemBuilder: (context, index) {
+                  final vacation = vacationsCubit.vacations[index];
+                  Color statusColor;
+                  Color statusBg;
+                  if (vacation.status == "Pending") {
+                    statusColor = Constants.yellowColor;
+                    statusBg = Constants.yellowColor.withValues(alpha: 0.1);
+                  } else if (vacation.status == "Rejected") {
+                    statusColor = Constants.redColor;
+                    statusBg = Constants.redColor.withValues(alpha: 0.1);
+                  } else {
+                    statusColor = Constants.greenColor;
+                    statusBg = Constants.greenColor.withValues(alpha: 0.1);
+                  }
                   return Padding(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10.0,
@@ -65,112 +81,64 @@ class _AdminVacationsRequestsViewState
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              context
-                                  .read<VacationsCubit>()
-                                  .vacations[index]
-                                  .employeeName,
-                              style: TextStyle(
+                              vacation.employeeName,
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                 vertical: 6,
                                 horizontal: 12,
                               ),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
-                                color: context
-                                            .read<VacationsCubit>()
-                                            .vacations[index]
-                                            .status ==
-                                        "Pending"
-                                    ? Constants.yellowColor
-                                        .withValues(alpha: 0.1)
-                                    : context
-                                                .read<VacationsCubit>()
-                                                .vacations[index]
-                                                .status ==
-                                            "Rejected"
-                                        ? Constants.redColor
-                                            .withValues(alpha: 0.1)
-                                        : Constants.greenColor
-                                            .withValues(alpha: 0.1),
+                                color: statusBg,
                               ),
                               child: Text(
-                                context
-                                    .read<VacationsCubit>()
-                                    .vacations[index]
-                                    .status,
+                                vacation.status,
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w600,
-                                  color: context
-                                              .read<VacationsCubit>()
-                                              .vacations[index]
-                                              .status ==
-                                          "Pending"
-                                      ? Constants.yellowColor
-                                      : context
-                                                  .read<VacationsCubit>()
-                                                  .vacations[index]
-                                                  .status ==
-                                              "Rejected"
-                                          ? Constants.redColor
-                                          : Constants.greenColor,
+                                  color: statusColor,
                                 ),
                               ),
                             )
                           ],
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         GlobalDataShow(
-                            title: S.of(context).start_date,
-                            data: context
-                                .read<VacationsCubit>()
-                                .vacations[index]
-                                .startDate),
-                        SizedBox(height: 8),
+                          title: S.of(context).start_date,
+                          data: vacation.startDate,
+                        ),
+                        const SizedBox(height: 8),
                         GlobalDataShow(
-                            title: S.of(context).end_date,
-                            data: context
-                                .read<VacationsCubit>()
-                                .vacations[index]
-                                .endDate),
-                        SizedBox(height: 8),
+                          title: S.of(context).end_date,
+                          data: vacation.endDate,
+                        ),
+                        const SizedBox(height: 8),
                         GlobalDataShow(
-                            title: S.of(context).search,
-                            data: context
-                                .read<VacationsCubit>()
-                                .vacations[index]
-                                .reason),
-                        SizedBox(height: 8),
-                        context
-                                    .read<VacationsCubit>()
-                                    .vacations[index]
-                                    .status ==
-                                "Pending"
-                            ? Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                spacing: 25,
-                                children: [
-                                  CustomVacationButton(
-                                    onPressed: () {
-                                      Accept(index);
-                                    },
-                                  ),
-                                  CustomVacationButton(
-                                    onPressed: () {
-                                      Reject(index);
-                                    },
-                                    isAccept: false,
-                                  ),
-                                ],
-                              )
-                            : Container(),
+                          title: S.of(context).search,
+                          data: vacation.reason,
+                        ),
+                        const SizedBox(height: 8),
+                        if (vacation.status == "Pending")
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CustomVacationButton(
+                                onPressed: () => accept(index),
+                              ),
+                              const SizedBox(width: 25),
+                              CustomVacationButton(
+                                onPressed: () => reject(index),
+                                isAccept: false,
+                              ),
+                            ],
+                          )
                       ],
-                    ).decorate(padding: 12,context: context),
+                    ).decorate(padding: 12, context: context),
                   );
                 },
               );
@@ -179,13 +147,5 @@ class _AdminVacationsRequestsViewState
         ),
       ),
     );
-  }
-
-  Accept(int index) {
-    context.read<VacationsCubit>().vacations[index].status = "Accepted";
-  }
-
-  Reject(int index) {
-    context.read<VacationsCubit>().vacations[index].status = "Rejected";
   }
 }

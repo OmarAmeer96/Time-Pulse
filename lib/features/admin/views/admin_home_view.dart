@@ -34,17 +34,21 @@ class _AdminHomeViewState extends State<AdminHomeView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyTheme.primaryColor,
-         iconTheme: IconThemeData(color: theme?Colors.grey:Colors.white),
+        iconTheme: IconThemeData(color: theme ? Colors.grey : Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.view_timeline, color: theme?Colors.grey:Colors.white),
+            icon: Icon(Icons.view_timeline,
+                color: theme ? Colors.grey : Colors.white),
             onPressed: () {
               Navigator.pushNamed(context, Routes.adminVrv);
             },
           ),
         ],
         leading: IconButton(
-          icon: Icon(Icons.settings ,color: theme?Colors.grey:Colors.white,),
+          icon: Icon(
+            Icons.settings,
+            color: theme ? Colors.grey : Colors.white,
+          ),
           onPressed: () {
             Navigator.pushNamed(context, Routes.settingsView);
           },
@@ -55,7 +59,6 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         ),
         centerTitle: true,
       ),
-
       body: RefreshIndicator(
         onRefresh: () async {
           context.read<AdminCubit>().employees.clear();
@@ -85,11 +88,9 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       onSubmitted: () {},
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      height: MediaQuery.sizeOf(context).height * 0.8,
-                      width: MediaQuery.sizeOf(context).width,
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: ListView.builder(
                         itemCount: context.read<AdminCubit>().employees.length,
                         itemBuilder: (context, index) {
@@ -126,7 +127,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: theme?Colors.grey:Colors.white,
+        backgroundColor: theme ? Colors.grey : Colors.white,
         onPressed: () {
           showModalBottomSheet(
             context: context,

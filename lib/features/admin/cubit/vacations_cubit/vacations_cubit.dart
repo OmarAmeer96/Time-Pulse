@@ -6,46 +6,64 @@ import 'package:time_pulse/features/admin/models/vacation_request_model.dart';
 
 class VacationsCubit extends Cubit<VacationsState> {
   VacationsCubit() : super(VacationsInitial());
-  late List<VacationsRequestModel> vacations = [];
-  late List<VacationsRequestModel> pendingVacations = [];
-  late List<VacationsRequestModel> acceptedVacations = [];
-  late List<VacationsRequestModel> rejectedVacations = [];
+
+  List<VacationsRequestModel> vacations = [];
+  List<VacationsRequestModel> pendingVacations = [];
+  List<VacationsRequestModel> acceptedVacations = [];
+  List<VacationsRequestModel> rejectedVacations = [];
+
   getVacations() async {
     emit(VacationsLoading());
     final db = FirebaseFirestore.instance;
-    db
-        .collection("vacationRequests")
-        .orderBy('createdAt', descending: true)
-        .get()
-        .then(
-      (querySnapshot) {
-        debugPrint("Successfully completed");
-        for (var docSnapshot in querySnapshot.docs) {
-          vacations.add(
-            VacationsRequestModel(
-              employeeId: docSnapshot.data()['employeeId'],
-              employeeName: docSnapshot.data()['employeeName'],
-              requestId: docSnapshot.data()['requestId'],
-              startDate: docSnapshot.data()['startDate'],
-              endDate: docSnapshot.data()['endDate'],
-              reason: docSnapshot.data()['reason'],
-              status: docSnapshot.data()['status'],
-              createdAt: docSnapshot.data()['createdAt'],
-            ),
-          );
-        }
+    try {
+      QuerySnapshot querySnapshot = await db
+          .collection("vacationRequests")
+          .orderBy('createdAt', descending: true)
+          .get();
 
-        if (vacations.isEmpty) {
-          emit(EmptyVacations());
-        } else {
-          emit(VacationsLoaded());
-        }
-      },
-      onError: (e) => debugPrint("Error completing: $e"),
-    );
+      vacations.clear();
+      for (var docSnapshot in querySnapshot.docs) {
+        vacations.add(
+          VacationsRequestModel(
+            employeeId:
+                (docSnapshot.data() as Map<String, dynamic>)['employeeId'] ??
+                    '',
+            employeeName:
+                (docSnapshot.data() as Map<String, dynamic>)['employeeName'] ??
+                    '',
+            requestId:
+                (docSnapshot.data() as Map<String, dynamic>)['requestId'] ?? '',
+            startDate:
+                (docSnapshot.data() as Map<String, dynamic>)['startDate'] ?? '',
+            endDate:
+                (docSnapshot.data() as Map<String, dynamic>)['endDate'] ?? '',
+            reason:
+                (docSnapshot.data() as Map<String, dynamic>)['reason'] ?? '',
+            status:
+                (docSnapshot.data() as Map<String, dynamic>)['status'] ?? '',
+            createdAt:
+                (docSnapshot.data() as Map<String, dynamic>)['createdAt'] ?? '',
+          ),
+        );
+      }
+
+      getPendingVacations();
+      getAcceptedVacations();
+      getRejectedVacations();
+
+      if (vacations.isEmpty) {
+        emit(EmptyVacations());
+      } else {
+        emit(VacationsLoaded());
+      }
+    } catch (e) {
+      debugPrint("Error fetching vacations: $e");
+      emit(VacationsError(e.toString()));
+    }
   }
 
   getPendingVacations() {
+    pendingVacations.clear();
     for (var vacation in vacations) {
       if (vacation.status == "Pending") {
         pendingVacations.add(vacation);
@@ -54,6 +72,7 @@ class VacationsCubit extends Cubit<VacationsState> {
   }
 
   getAcceptedVacations() {
+    acceptedVacations.clear();
     for (var vacation in vacations) {
       if (vacation.status == "Accepted") {
         acceptedVacations.add(vacation);
@@ -62,12 +81,11 @@ class VacationsCubit extends Cubit<VacationsState> {
   }
 
   getRejectedVacations() {
+    rejectedVacations.clear();
     for (var vacation in vacations) {
       if (vacation.status == "Rejected") {
         rejectedVacations.add(vacation);
       }
     }
   }
-
-  
 }

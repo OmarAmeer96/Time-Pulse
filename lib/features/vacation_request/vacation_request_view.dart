@@ -52,7 +52,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                           .selectStartDate(context);
                     },
                     label: S.of(context).start_date,
-                    prefixIcon: Icon(Icons.calendar_month)),
+                    prefixIcon: const Icon(Icons.calendar_month)),
                 CustomTextFormField(
                     readOnly: true,
                     controller:
@@ -70,7 +70,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                           .selectEndDate(context);
                     },
                     label: S.of(context).end_date,
-                    prefixIcon: Icon(Icons.calendar_month)),
+                    prefixIcon: const Icon(Icons.calendar_month)),
                 CustomTextFormField(
                     maxLines: 5,
                     controller:
@@ -90,7 +90,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                         child: Icon(Icons.note_alt_sharp),
                       ),
                     )),
-                Spacer(),
+                const Spacer(),
                 SafeArea(
                   child:
                       BlocListener<VacationRequestCubit, VacationRequestState>(
@@ -107,7 +107,7 @@ class _VacationRequestViewState extends State<VacationRequestView> {
                       }
                     },
                     child: CustomButton(
-                        icon: SizedBox(),
+                        icon: const SizedBox(),
                         text: S.of(context).submit,
                         onPressed: () async {
                           if (context

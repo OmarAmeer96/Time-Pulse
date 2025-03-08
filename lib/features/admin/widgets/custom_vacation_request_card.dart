@@ -7,21 +7,27 @@ import 'package:time_pulse/generated/l10n.dart';
 
 class CustomVacationRequestCard extends StatelessWidget {
   const CustomVacationRequestCard({
-    super.key,
+    Key? key,
     required this.employeeName,
     required this.status,
     required this.startDate,
     required this.endDate,
     required this.reason,
-    required this.onPressed,
-  });
+    this.onAccept,
+    this.onReject,
+    this.acceptLoading = false,
+    this.rejectLoading = false,
+  }) : super(key: key);
 
   final String employeeName;
   final String status;
   final String startDate;
   final String endDate;
   final String reason;
-  final GestureTapCallback? onPressed;
+  final GestureTapCallback? onAccept;
+  final GestureTapCallback? onReject;
+  final bool acceptLoading;
+  final bool rejectLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +43,13 @@ class CustomVacationRequestCard extends StatelessWidget {
             children: [
               Text(
                 employeeName,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 15,
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   vertical: 6,
                   horizontal: 12,
                 ),
@@ -70,38 +76,40 @@ class CustomVacationRequestCard extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           GlobalDataShow(
             title: S.of(context).start_date,
             data: startDate,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           GlobalDataShow(
             title: S.of(context).end_date,
             data: endDate,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           GlobalDataShow(
             title: "Reason",
             data: reason,
           ),
-          SizedBox(height: 8),
-          status == "Pending"
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    CustomVacationButton(
-                      onPressed: onPressed,
-                    ),
-                    CustomVacationButton(
-                      onPressed: onPressed,
-                      isAccept: false,
-                    ),
-                  ],
-                )
-              : Container()
+          const SizedBox(height: 8),
+          if (status == "Pending")
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                CustomVacationButton(
+                  onPressed: onAccept,
+                  isAccept: true,
+                  isLoading: acceptLoading,
+                ),
+                CustomVacationButton(
+                  onPressed: onReject,
+                  isAccept: false,
+                  isLoading: rejectLoading,
+                ),
+              ],
+            )
         ],
-      ).decorate(padding: 12,context: context),
+      ).decorate(padding: 12, context: context),
     );
   }
 }
