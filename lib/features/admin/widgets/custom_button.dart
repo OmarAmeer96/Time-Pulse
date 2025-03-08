@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 class CustomButton extends StatelessWidget {
@@ -14,7 +13,7 @@ class CustomButton extends StatelessWidget {
         height: 50,
         width: MediaQuery.sizeOf(context).width,
         decoration: BoxDecoration(
-          color: MyTheme.primaryColor,
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(

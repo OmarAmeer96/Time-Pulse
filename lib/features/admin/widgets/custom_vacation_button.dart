@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 class CustomVacationButton extends StatelessWidget {
@@ -22,7 +21,9 @@ class CustomVacationButton extends StatelessWidget {
         height: 40,
         width: 100,
         decoration: BoxDecoration(
-          color: isAccept ? MyTheme.primaryColor : MyTheme.redColor,
+          color: isAccept
+              ? Theme.of(context).colorScheme.primary
+              : Theme.of(context).colorScheme.error,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(

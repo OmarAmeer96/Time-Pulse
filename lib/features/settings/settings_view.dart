@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/helpers/spacing.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/features/settings/cubit/language_cubit.dart';
 import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 class SettingsView extends StatelessWidget {
-   SettingsView({super.key});
+  SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-     var theme=context.read<ThemeCubit>();
+    var theme = context.read<ThemeCubit>();
     return Scaffold(
       appBar: GlobalAppbar(title: S.of(context).settings),
       body: Container(
@@ -21,14 +20,13 @@ class SettingsView extends StatelessWidget {
           children: [
             _buildListTile(
               context,
-              title:S.of(context).dark,
-              icon: theme.darkMode?Icons.dark_mode:Icons.light_mode,
+              title: S.of(context).dark,
+              icon: theme.darkMode ? Icons.dark_mode : Icons.light_mode,
               trailing: Switch(
-                activeColor: MyTheme.primaryColor,
-                value:theme.darkMode,
+                activeColor: Theme.of(context).colorScheme.primary,
+                value: theme.darkMode,
                 onChanged: (value) {
-                theme.toggleTheme();
-
+                  theme.toggleTheme();
                 },
               ),
             ),
@@ -41,7 +39,6 @@ class SettingsView extends StatelessWidget {
                 _showLanguageDialog(context);
               },
             ),
-
           ],
         ),
       ),
@@ -49,21 +46,23 @@ class SettingsView extends StatelessWidget {
   }
 
   Widget _buildListTile(
-      BuildContext context, {
-        required String title,
-        required IconData icon,
-        String? subtitle,
-        Widget? trailing,
-        VoidCallback? onTap,
-      }) {
+    BuildContext context, {
+    required String title,
+    required IconData icon,
+    String? subtitle,
+    Widget? trailing,
+    VoidCallback? onTap,
+  }) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: context.read<ThemeCubit>().darkMode?Colors.grey.shade500:Colors.white,
+        color: context.read<ThemeCubit>().darkMode
+            ? Colors.grey.shade500
+            : Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: MyTheme.primaryColor,
+            color: Theme.of(context).colorScheme.primary,
             blurRadius: 6,
             offset: Offset(0, 4),
           ),
@@ -71,7 +70,7 @@ class SettingsView extends StatelessWidget {
       ),
       child: ListTile(
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: Icon(icon, color: MyTheme.primaryColor),
+        leading: Icon(icon, color: Theme.of(context).colorScheme.primary),
         title: Text(
           title,
           style: TextStyle(
@@ -82,9 +81,9 @@ class SettingsView extends StatelessWidget {
         ),
         subtitle: subtitle != null
             ? Text(
-          subtitle,
-          style: TextStyle(color: Colors.grey.shade500),
-        )
+                subtitle,
+                style: TextStyle(color: Colors.grey.shade500),
+              )
             : null,
         trailing: trailing,
         onTap: onTap,
@@ -108,10 +107,13 @@ class SettingsView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               RadioListTile(
-                activeColor: MyTheme.primaryColor,
+                activeColor: Theme.of(context).colorScheme.primary,
                 title: Text(
                   S.of(context).english,
-                  style: TextStyle(color: context.read<ThemeCubit>().darkMode?Colors.white:Colors.black),
+                  style: TextStyle(
+                      color: context.read<ThemeCubit>().darkMode
+                          ? Colors.white
+                          : Colors.black),
                 ),
                 value: "en",
                 groupValue: Localizations.localeOf(context).languageCode,
@@ -121,10 +123,13 @@ class SettingsView extends StatelessWidget {
                 },
               ),
               RadioListTile(
-                activeColor: MyTheme.primaryColor,
+                activeColor: Theme.of(context).colorScheme.primary,
                 title: Text(
                   S.of(context).arabic,
-                  style: TextStyle(color: context.read<ThemeCubit>().darkMode?Colors.white:Colors.black),
+                  style: TextStyle(
+                      color: context.read<ThemeCubit>().darkMode
+                          ? Colors.white
+                          : Colors.black),
                 ),
                 value: "ar",
                 groupValue: Localizations.localeOf(context).languageCode,
@@ -139,5 +144,4 @@ class SettingsView extends StatelessWidget {
       },
     );
   }
-
 }

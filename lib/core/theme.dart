@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 class MyTheme {
   static Color primaryColor = Color.fromARGB(255, 14, 145, 145);
   static Color redColor = Color(0xffF54140);
-  static Color blackColor =Color(0xff3D3C3C);
-  static Color greyColor =Color(0xff575656);
+  static Color blackColor = Color(0xff3D3C3C);
+  static Color greyColor = Color(0xff575656);
 
   static ThemeData lightMode = ThemeData(
-      colorScheme: ColorScheme.light(primary: primaryColor),
+      colorScheme: ColorScheme.light(primary: primaryColor, error: redColor),
       buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
-    canvasColor: Colors.white,
+      canvasColor: Colors.white,
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         foregroundColor: Colors.white,
         backgroundColor: Color(0xff0E9190),
@@ -42,14 +42,14 @@ class MyTheme {
   static ThemeData darkMode = ThemeData(
       colorScheme: ColorScheme.dark(primary: primaryColor),
       buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
-    scaffoldBackgroundColor: blackColor,
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      foregroundColor: blackColor,
-      backgroundColor: Color(0xff0E9190),
-    ),
+      scaffoldBackgroundColor: blackColor,
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        foregroundColor: blackColor,
+        backgroundColor: Color(0xff0E9190),
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: greyColor,
-        elevation :10,
+        elevation: 10,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Color(0xff0E9190),
         selectedLabelStyle: TextStyle(
@@ -70,6 +70,5 @@ class MyTheme {
         ),
         showUnselectedLabels: true,
         showSelectedLabels: true,
-      )
-  );
+      ));
 }

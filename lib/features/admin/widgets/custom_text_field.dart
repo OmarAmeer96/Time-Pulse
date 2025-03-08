@@ -23,16 +23,16 @@ class CustomTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: TextField(
         controller: controller,
-        cursorColor: MyTheme.primaryColor,
+        cursorColor: Theme.of(context).colorScheme.primary,
         onChanged: onChanged,
         onSubmitted: onSubmitted,
         decoration: InputDecoration(
           suffixIcon: IconButton(
-            icon: Icon(icon, color: MyTheme.primaryColor),
+            icon: Icon(icon, color: Theme.of(context).colorScheme.primary),
             onPressed: () => onSubmitted?.call(controller.text),
           ),
           hintText: hintText,
-          hintStyle: TextStyle(color: MyTheme.primaryColor),
+          hintStyle: TextStyle(color: Theme.of(context).colorScheme.primary),
           border: buildBorder(),
           enabledBorder: buildBorder(),
           focusedBorder: buildBorder(),

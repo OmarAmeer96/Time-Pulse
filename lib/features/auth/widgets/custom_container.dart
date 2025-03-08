@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 
 class CustomContainer extends StatelessWidget {
@@ -28,10 +27,15 @@ class CustomContainer extends StatelessWidget {
           child: Text(
             text,
             style: TextStyle(
-                color: (containerColor == MyTheme.primaryColor)
+                color: (containerColor == Theme.of(context).colorScheme.primary)
                     ? Colors.white
-                    : context.read<ThemeCubit>().darkMode?Colors.white70:Colors.black,
-                fontSize: (containerColor == MyTheme.primaryColor)?19:17),
+                    : context.read<ThemeCubit>().darkMode
+                        ? Colors.white70
+                        : Colors.black,
+                fontSize:
+                    (containerColor == Theme.of(context).colorScheme.primary)
+                        ? 19
+                        : 17),
           ),
         ),
       ),

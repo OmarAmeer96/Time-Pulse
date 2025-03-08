@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 Widget buildLogoutButton(
@@ -17,7 +16,7 @@ Widget buildLogoutButton(
         ),
       ),
       style: ElevatedButton.styleFrom(
-        backgroundColor: MyTheme.primaryColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         padding: const EdgeInsets.symmetric(vertical: 16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
