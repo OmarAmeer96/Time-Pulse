@@ -1,6 +1,6 @@
 # Time Pulse App
 
-A mobile application for employyes to track their time and attendance. The app allows users to check in/ out, view their attendance history, Request vacation, and view their available days off vacations balance.
+A mobile application for employees to track their time and attendance. The app allows users to check in/ out, view their attendance history, Request vacations, and view their available days off vacations balance.
 
 ## ✨ Features
 
@@ -9,7 +9,7 @@ A mobile application for employyes to track their time and attendance. The app a
 - **Secure Authentication** 🔒
   - Firebase-powered user registration & login.
 - **Attendance History** 📆
-  - Users can view their check in/out operations history.
+  - Users can view their check-in/out operations history.
 - **Vacations Requests System**
   - Request vacations with a start and end date.
   - Write the vacation reason.
@@ -18,10 +18,10 @@ A mobile application for employyes to track their time and attendance. The app a
   - View vacation days balance.
 - **Dark/Light Theme** 🌓
 - **Multi-language Support** 🌐 - (English/Arabic)
-- **Admin DashBoard Management Sysytem** 📱
+- **Admin Dashboard Management System** 📱
   - View all users and their attendance history.
-  - View all vacations requests.
-  - Accept /Reject vacations requests.
+  - View all vacation requests.
+  - Accept /Reject vacation requests.
   - Add new users.
 
 ## 🔥 Firebase Integration
@@ -37,7 +37,7 @@ A mobile application for employyes to track their time and attendance. The app a
 ### Cloud Firestore
 
 - **Real-time Sync** 🔄
-  Instant updates for vacations requests between users and admin.
+  Instant updates for vacation requests between users and admin.
 - **Optimistic UI Updates** ⚡
   Immediate visual feedback for user actions
 
@@ -45,7 +45,7 @@ A mobile application for employyes to track their time and attendance. The app a
 
 |               Employee Screen Record                         |                      Admin Screen Record                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------- |
-| [![Employee Screen Record](https://drive.google.com/file/d/1yb8MJNnSlcsVJIFRsGKnvvL9cE2jDTze/view?usp=drive_link)] |   [![Admin Screen Record](https://drive.google.com/file/d/19eVvaFDCLbTFhtpP5jB-DdNPi1xQeTJy/view?usp=drive_link)]   |
+| [![Employee Screen Record](https://github.com/user-attachments/assets/47408e00-a166-4663-8ad6-90dde1a7456f)] |   [![Admin Screen Record](https://github.com/user-attachments/assets/ea2e7ae2-eda6-4d21-8cef-5f1b36465f33)]   |
 
 ## 🛠 Key Components
 
