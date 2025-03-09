@@ -10,7 +10,7 @@ Widget buildUserInfoCard(
 ) {
   return Card(
     color: context.read<ThemeCubit>().darkMode
-        ? Colors.grey.shade400
+        ? Colors.grey.shade800
         : Colors.white,
     elevation: 4,
     shape: RoundedRectangleBorder(
@@ -20,25 +20,23 @@ Widget buildUserInfoCard(
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          infoRowItem(
-            '${S.of(context).employee_id}: ',
-            userData['ID'] ?? 'N/A',
-          ),
+          infoRowItem('${S.of(context).employee_id}: ', userData['ID'] ?? 'N/A',
+              context.read<ThemeCubit>().darkMode),
           const Divider(height: 30),
           infoRowItem(
-            '${S.of(context).position}: ',
-            userData['position'] ?? S.of(context).not_specified,
-          ),
+              '${S.of(context).position}: ',
+              userData['position'] ?? S.of(context).not_specified,
+              context.read<ThemeCubit>().darkMode),
           const Divider(height: 30),
           infoRowItem(
-            '${S.of(context).department}: ',
-            userData['department'] ?? S.of(context).general,
-          ),
+              '${S.of(context).department}: ',
+              userData['department'] ?? S.of(context).general,
+              context.read<ThemeCubit>().darkMode),
           const Divider(height: 30),
           infoRowItem(
-            '${S.of(context).vacation_balance}: ',
-            userData['remaining_leaves'].toString(),
-          ),
+              '${S.of(context).vacation_balance}: ',
+              userData['remaining_leaves'].toString(),
+              context.read<ThemeCubit>().darkMode),
         ],
       ),
     ),

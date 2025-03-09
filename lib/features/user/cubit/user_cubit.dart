@@ -49,8 +49,8 @@ class UserCubit extends Cubit<UserState> {
   checkInAndOut() async {
     emit(UserLocationLoading(employeeName: employeeName));
     await determinePosition();
-    double companyLatitude = employeeLatitude;
-    double companyLongitude = employeeLongitude;
+    double companyLatitude = 30.0425;
+    double companyLongitude = 31.2313;
     double distance = Geolocator.distanceBetween(
         employeeLatitude, employeeLongitude, companyLatitude, companyLongitude);
     emit(UserLocationLoaded(employeeName: employeeName));

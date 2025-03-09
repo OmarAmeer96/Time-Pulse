@@ -56,13 +56,12 @@ class SettingsView extends StatelessWidget {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
-        color: context.read<ThemeCubit>().darkMode
-            ? Colors.grey.shade500
-            : Colors.white,
+        color:
+            context.read<ThemeCubit>().darkMode ? Colors.black26 : Colors.white,
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.primary,
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 6,
             offset: Offset(0, 4),
           ),

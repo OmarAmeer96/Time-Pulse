@@ -14,7 +14,7 @@ class GlobalDataShow extends StatelessWidget {
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Colors.grey.withValues(alpha: theme.darkMode ? 0.5 : 0.1)),
+          color: Colors.grey.withValues(alpha: 0.1)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -30,7 +30,7 @@ class GlobalDataShow extends StatelessWidget {
             data,
             style: TextStyle(
                 fontSize: 12,
-                color: theme.darkMode ? Colors.black54 : Colors.black),
+                color: theme.darkMode ? Colors.white : Colors.black),
           )
         ],
       ),

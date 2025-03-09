@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/core/widgets/global_appbar.dart';
+import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_state.dart';
 import 'package:time_pulse/features/admin/models/vacation_request_model.dart';
@@ -74,6 +75,7 @@ class _AdminVrvState extends State<AdminVrv> {
           .collection("vacationRequests")
           .doc(vacation.requestId)
           .update({"status": "Accepted"});
+      await context.read<AdminCubit>().getEmployeeData();
 
       setState(() {
         vacation.status = "Accepted";

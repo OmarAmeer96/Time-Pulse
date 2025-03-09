@@ -31,28 +31,30 @@ class _AdminHomeViewState extends State<AdminHomeView> {
     var theme = context.read<ThemeCubit>().darkMode;
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        iconTheme: IconThemeData(color: theme ? Colors.grey : Colors.white),
+        // iconTheme: IconThemeData(color: theme ? Colors.grey : Colors.white),
         actions: [
           IconButton(
-            icon: Icon(Icons.view_timeline,
-                color: theme ? Colors.grey : Colors.white),
+            icon: Icon(
+              Icons.view_timeline,
+            ),
             onPressed: () {
               Navigator.pushNamed(context, Routes.adminVrv);
             },
           ),
           IconButton(
-            icon: Icon(Icons.logout, color: theme ? Colors.grey : Colors.white),
-            onPressed: () {
+            icon: Icon(
+              Icons.logout,
+            ),
+            onPressed: () async {
               context.read<AdminCubit>().logout();
               Navigator.pushReplacementNamed(context, Routes.loginView);
+              await SharedPrefHelper.setData("isUserLoggedIn", false);
             },
           ),
         ],
         leading: IconButton(
           icon: Icon(
             Icons.settings,
-            color: theme ? Colors.grey : Colors.white,
           ),
           onPressed: () {
             Navigator.pushNamed(context, Routes.settingsView);
@@ -123,7 +125,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: theme ? Colors.grey : Colors.white,
+        // backgroundColor: theme ? Colors.grey : Colors.white,
         onPressed: () => showModalBottomSheet(
           isScrollControlled: true,
           context: context,
@@ -136,7 +138,7 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         child: Icon(
           Icons.person_add_rounded,
           size: 30,
-          color: Theme.of(context).colorScheme.primary,
+          // color: Theme.of(context).colorScheme.primary,
         ),
       ),
     );

@@ -22,9 +22,7 @@ class CustomListTile extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: Theme.of(context).colorScheme.primary),
             borderRadius: BorderRadius.circular(10),
-            color: context.read<ThemeCubit>().darkMode
-                ? Colors.grey.shade400
-                : Colors.white),
+            color: Colors.grey.withValues(alpha: 0.1)),
         height: 70,
         child: ListTile(
           leading: Icon(Icons.person,
@@ -35,12 +33,18 @@ class CustomListTile extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.w500)),
           subtitle: Text(employeeRemainingLeaves,
-              style: TextStyle(color: Colors.black, fontSize: 10)),
+              style: TextStyle(
+                  color: context.read<ThemeCubit>().darkMode
+                      ? Colors.white
+                      : Colors.black,
+                  fontSize: 10)),
           trailing: IconButton(
             onPressed: onTap,
             icon: Icon(
               Icons.arrow_forward_ios_rounded,
-              color: Colors.black,
+              color: context.read<ThemeCubit>().darkMode
+                  ? Colors.white
+                  : Colors.black,
               size: 15,
             ),
           ),
