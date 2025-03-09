@@ -91,9 +91,9 @@ class _CreateEmployeeState extends State<CreateEmployee> {
               ),
             ),
           ),
-        ).decorate(padding: 4, context: context);
+        );
       },
-    );
+    ).decorate(padding: 4, context: context);
   }
 
   String? validateName(String? value) {

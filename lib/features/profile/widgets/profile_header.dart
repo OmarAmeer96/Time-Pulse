@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 Widget buildProfileHeader(
   Map<String, dynamic> userData,
   BuildContext context,
 ) {
+  var theme = context.read<ThemeCubit>();
   return Column(
     children: [
       Container(
@@ -35,10 +38,10 @@ Widget buildProfileHeader(
       const SizedBox(height: 20),
       Text(
         userData['name'] ?? S.of(context).profile,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.bold,
-          color: Colors.black87,
+          color: theme.darkMode ? Colors.white : Colors.black87,
         ),
       ),
       const SizedBox(height: 8),

@@ -53,10 +53,10 @@ class AdminCubit extends Cubit<AdminState> {
       final User? user = userCredential.user;
       if (user != null) {
         EmployeeModel employee = EmployeeModel(
-          name: nameController.text,
-          email: emailController.text,
-          id: user.uid,
-        );
+            name: nameController.text,
+            email: emailController.text,
+            id: user.uid,
+            remaining_leaves: 21);
         db.collection("employees").add(employee.toFireStore()).then((value) {
           employees.add(employee);
           emit(EmployeeAdded());

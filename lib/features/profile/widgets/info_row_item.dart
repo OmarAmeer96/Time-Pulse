@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget infoRowItem(String title, String value) {
+Widget infoRowItem(String title, String value, bool theme) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -8,7 +8,7 @@ Widget infoRowItem(String title, String value) {
         title,
         style: TextStyle(
           fontSize: 16,
-          color: Colors.grey.shade700,
+          color: theme ? Colors.grey.shade400 : Colors.grey.shade700,
         ),
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
@@ -16,10 +16,10 @@ Widget infoRowItem(String title, String value) {
       Expanded(
         child: Text(
           value,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w500,
-            color: Colors.black87,
+            color: theme ? Colors.white : Colors.black87,
           ),
           overflow: TextOverflow.ellipsis,
         ),

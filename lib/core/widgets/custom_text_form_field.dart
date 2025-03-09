@@ -48,7 +48,7 @@ class CustomTextFormField extends StatelessWidget {
                   : null,
               labelText: label,
               labelStyle: TextStyle(
-                  color: theme.darkMode ? Colors.black54 : Colors.black,
+                  color: theme.darkMode ? Colors.white : Colors.black,
                   fontSize: 20),
               prefixIcon: prefixIcon,
               prefixIconColor: Theme.of(context).colorScheme.primary,

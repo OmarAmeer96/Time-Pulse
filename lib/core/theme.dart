@@ -3,10 +3,14 @@ import 'package:flutter/material.dart';
 class MyTheme {
   static Color primaryColor = Color.fromARGB(255, 14, 145, 145);
   static Color redColor = Color(0xffF54140);
-  static Color blackColor = Color(0xff3D3C3C);
+  static Color blackColor = Color.fromARGB(255, 56, 53, 53);
   static Color greyColor = Color(0xff575656);
 
   static ThemeData lightMode = ThemeData(
+      appBarTheme: AppBarTheme(
+        foregroundColor: Colors.white,
+        backgroundColor: primaryColor,
+      ),
       colorScheme: ColorScheme.light(primary: primaryColor, error: redColor),
       buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
       canvasColor: Colors.white,
@@ -40,6 +44,11 @@ class MyTheme {
       ));
 
   static ThemeData darkMode = ThemeData(
+      appBarTheme: AppBarTheme(
+        foregroundColor: Colors.white,
+        backgroundColor: primaryColor,
+      ),
+      datePickerTheme: DatePickerThemeData(backgroundColor: blackColor),
       colorScheme: ColorScheme.dark(primary: primaryColor),
       buttonTheme: ButtonThemeData(textTheme: ButtonTextTheme.primary),
       scaffoldBackgroundColor: blackColor,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class GlobalAppbar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  List<Widget>? actions;
+  final List<Widget>? actions;
   GlobalAppbar({required this.title, super.key, this.actions = null});
 
   @override
