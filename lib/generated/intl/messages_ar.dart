@@ -65,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
       " من فصلك ,أدخل كلمة المرور",
     ),
     "error": MessageLookupByLibrary.simpleMessage("خطأ"),
+    "female": MessageLookupByLibrary.simpleMessage("أنثى"),
     "forget_password": MessageLookupByLibrary.simpleMessage(
       "هل نسيت كلمة المرور",
     ),
@@ -79,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "leaves": MessageLookupByLibrary.simpleMessage("الاجازات"),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "male": MessageLookupByLibrary.simpleMessage("ذكر"),
     "name": MessageLookupByLibrary.simpleMessage("الاسم"),
     "no_name_provided": MessageLookupByLibrary.simpleMessage(
       "لم يتم توفير اسم",

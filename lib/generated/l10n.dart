@@ -564,6 +564,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Male`
+  String get male {
+    return Intl.message('Male', name: 'male', desc: '', args: []);
+  }
+
+  /// `Female`
+  String get female {
+    return Intl.message('Female', name: 'female', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

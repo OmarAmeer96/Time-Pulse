@@ -62,7 +62,7 @@ class CustomVacationRequestCard extends StatelessWidget {
                           : Constants.greenColor.withValues(alpha: 0.1),
                 ),
                 child: Text(
-                  status,
+                  status =="Pending"?S.of(context).pending:(status =="Rejected")?S.of(context).rejected:S.of(context).accepted,
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
@@ -88,7 +88,7 @@ class CustomVacationRequestCard extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           GlobalDataShow(
-            title: "Reason",
+            title: S.of(context).reason,
             data: reason,
           ),
           const SizedBox(height: 8),

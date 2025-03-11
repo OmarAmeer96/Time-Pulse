@@ -145,7 +145,7 @@ class _AdminVrvState extends State<AdminVrv> {
             if (state is VacationsInitial || state is VacationsLoading) {
               return const Center(child: CircularProgressIndicator());
             } else if (state is EmptyVacations) {
-              return const Center(child: Text("No vacations till now"));
+              return  Center(child: Text(S.of(context).no_vacation));
             } else {
               return Column(
                 children: [
@@ -163,7 +163,7 @@ class _AdminVrvState extends State<AdminVrv> {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           CustomContainer(
-                            text: "Pending",
+                            text: S.of(context).pending,
                             containerColor: pageStatus == "Pending"
                                 ? Theme.of(context).colorScheme.primary
                                 : Colors.transparent,
@@ -178,7 +178,7 @@ class _AdminVrvState extends State<AdminVrv> {
                             width: 4,
                           ),
                           CustomContainer(
-                            text: "Accepted",
+                            text: S.of(context).accepted,
                             containerColor: pageStatus == "Accepted"
                                 ? Theme.of(context).colorScheme.primary
                                 : Colors.transparent,
@@ -194,7 +194,7 @@ class _AdminVrvState extends State<AdminVrv> {
                             width: 4,
                           ),
                           CustomContainer(
-                            text: "Rejected",
+                            text: S.of(context).rejected,
                             containerColor: pageStatus == "Rejected"
                                 ? Theme.of(context).colorScheme.primary
                                 : Colors.transparent,

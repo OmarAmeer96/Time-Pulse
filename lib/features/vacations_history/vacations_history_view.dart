@@ -66,6 +66,10 @@ class _VacationsHistoryViewState extends State<VacationsHistoryView> {
                     .vacationsHistory
                     .length,
                 itemBuilder: (context, index) {
+                  String status = context
+                      .read<VacationsHistoryCubit>()
+                      .vacationsHistory[index]
+                      .status ;
                   return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 10.0, vertical: 6),
@@ -86,43 +90,23 @@ class _VacationsHistoryViewState extends State<VacationsHistoryView> {
                                     vertical: 6, horizontal: 12),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8),
-                                  color: context
-                                              .read<VacationsHistoryCubit>()
-                                              .vacationsHistory[index]
-                                              .status ==
-                                      S.of(context).pending
+                                  color: status == "Pending"
                                       ? Constants.yellowColor
                                           .withValues(alpha: 0.1)
-                                      : context
-                                                  .read<VacationsHistoryCubit>()
-                                                  .vacationsHistory[index]
-                                                  .status ==
-                                      S.of(context).rejected
+                                      : status == "Rejected"
                                           ? Constants.redColor
                                               .withValues(alpha: 0.1)
                                           : Constants.greenColor
                                               .withValues(alpha: 0.1),
                                 ),
                                 child: Text(
-                                  context
-                                      .read<VacationsHistoryCubit>()
-                                      .vacationsHistory[index]
-                                      .status,
+                                 status=="Pending"?S.of(context).pending:status=="Rejected"?S.of(context).rejected:S.of(context).accepted,
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,
-                                      color: context
-                                                  .read<VacationsHistoryCubit>()
-                                                  .vacationsHistory[index]
-                                                  .status ==
-                                          S.of(context).pending
+                                      color: status == "Pending"
                                           ? Constants.yellowColor
-                                          : context
-                                                      .read<
-                                                          VacationsHistoryCubit>()
-                                                      .vacationsHistory[index]
-                                                      .status ==
-                                          S.of(context).rejected
+                                          : status =="Rejected"
                                               ? Constants.redColor
                                               : Constants.greenColor),
                                 ),
