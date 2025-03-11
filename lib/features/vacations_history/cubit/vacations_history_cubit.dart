@@ -21,7 +21,6 @@ class VacationsHistoryCubit extends Cubit<VacationsHistoryState> {
       (querySnapshot) {
         debugPrint("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
-          // print('${docSnapshot.id} => ${docSnapshot.data()}');
           vacationsHistory.add(VacationsHistoryModel(
             employeeId: docSnapshot.data()['employeeId'],
             requestId: docSnapshot.data()['requestId'],

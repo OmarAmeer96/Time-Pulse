@@ -17,7 +17,8 @@ class AdminVacationsRequestsView extends StatefulWidget {
       _AdminVacationsRequestsViewState();
 }
 
-class _AdminVacationsRequestsViewState extends State<AdminVacationsRequestsView> {
+class _AdminVacationsRequestsViewState
+    extends State<AdminVacationsRequestsView> {
   @override
   void initState() {
     super.initState();

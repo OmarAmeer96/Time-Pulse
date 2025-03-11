@@ -30,9 +30,6 @@ class CustomListTile extends StatelessWidget {
           leading: CircleAvatar(
             backgroundImage: NetworkImage(imageUrl),
           ),
-
-          //  Icon(Icons.person,
-          //     color: Theme.of(context).colorScheme.primary, size: 30),
           title: Text(employeeName,
               style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,

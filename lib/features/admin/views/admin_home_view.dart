@@ -29,7 +29,6 @@ class _AdminHomeViewState extends State<AdminHomeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // iconTheme: IconThemeData(color: theme ? Colors.grey : Colors.white),
         actions: [
           IconButton(
             icon: Icon(
@@ -126,7 +125,6 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        // backgroundColor: theme ? Colors.grey : Colors.white,
         onPressed: () => showModalBottomSheet(
           isScrollControlled: true,
           context: context,
@@ -139,7 +137,6 @@ class _AdminHomeViewState extends State<AdminHomeView> {
         child: Icon(
           Icons.person_add_rounded,
           size: 30,
-          // color: Theme.of(context).colorScheme.primary,
         ),
       ),
     );
