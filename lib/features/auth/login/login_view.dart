@@ -9,7 +9,7 @@ import 'package:time_pulse/core/widgets/custom_button.dart';
 import 'package:time_pulse/core/widgets/custom_text_form_field.dart';
 import 'package:time_pulse/core/widgets/global_loading_dialog.dart';
 import 'package:time_pulse/features/auth/cubit/auth_cubit.dart';
-import 'package:time_pulse/features/auth/widgets/custom_container.dart';
+import 'package:time_pulse/core/widgets/custom_container.dart';
 import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 
 import '../../../generated/l10n.dart';

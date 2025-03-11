@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:time_pulse/core/theme.dart';
 import 'package:time_pulse/core/widgets/global_appbar.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_state.dart';
-import 'package:time_pulse/features/admin/models/vacation_request_model.dart';
+import 'package:time_pulse/data/models/vacation_request_model.dart';
 import 'package:time_pulse/features/admin/widgets/custom_vacation_request_card.dart';
+import 'package:time_pulse/core/widgets/custom_container.dart';
+import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 class AdminVrv extends StatefulWidget {
@@ -122,6 +125,7 @@ class _AdminVrvState extends State<AdminVrv> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.read<ThemeCubit>();
     final cubit = context.watch<VacationsCubit>();
     return Scaffold(
       appBar: GlobalAppbar(title: S.of(context).request_vacation),
@@ -145,41 +149,102 @@ class _AdminVrvState extends State<AdminVrv> {
             } else {
               return Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            pageStatus = 'Pending';
-                          });
-                          cubit.pendingVacations.clear();
-                          cubit.getPendingVacations();
-                        },
-                        child: const Text('Pending'),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    child: Container(
+                      padding: EdgeInsets.all(7),
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          color: theme.darkMode
+                              ? MyTheme.greyColor
+                              : Colors.grey.shade300),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          CustomContainer(
+                            text: "Pending",
+                            containerColor: pageStatus == "Pending"
+                                ? Theme.of(context).colorScheme.primary
+                                : Colors.transparent,
+                            onTap: () {
+                              pageStatus = "Pending";
+                              setState(() {});
+                              cubit.pendingVacations.clear();
+                              cubit.getPendingVacations();
+                            },
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          CustomContainer(
+                            text: "Accepted",
+                            containerColor: pageStatus == "Accepted"
+                                ? Theme.of(context).colorScheme.primary
+                                : Colors.transparent,
+                            onTap: () {
+                              pageStatus = "Accepted";
+
+                              setState(() {});
+                              cubit.acceptedVacations.clear();
+                              cubit.getAcceptedVacations();
+                            },
+                          ),
+                          SizedBox(
+                            width: 4,
+                          ),
+                          CustomContainer(
+                            text: "Rejected",
+                            containerColor: pageStatus == "Rejected"
+                                ? Theme.of(context).colorScheme.primary
+                                : Colors.transparent,
+                            onTap: () {
+                              pageStatus = "Rejected";
+
+                              setState(() {});
+                              cubit.rejectedVacations.clear();
+                              cubit.getRejectedVacations();
+                            },
+                          )
+                        ],
                       ),
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            pageStatus = 'Accepted';
-                          });
-                          cubit.acceptedVacations.clear();
-                          cubit.getAcceptedVacations();
-                        },
-                        child: const Text('Accepted'),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          setState(() {
-                            pageStatus = 'Rejected';
-                          });
-                          cubit.rejectedVacations.clear();
-                          cubit.getRejectedVacations();
-                        },
-                        child: const Text('Rejected'),
-                      ),
-                    ],
+                    ),
                   ),
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  //   children: [
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           pageStatus = 'Pending';
+                  //         });
+                  //         cubit.pendingVacations.clear();
+                  //         cubit.getPendingVacations();
+                  //       },
+                  //       child: const Text('Pending'),
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           pageStatus = 'Accepted';
+                  //         });
+                  //         cubit.acceptedVacations.clear();
+                  //         cubit.getAcceptedVacations();
+                  //       },
+                  //       child: const Text('Accepted'),
+                  //     ),
+                  //     TextButton(
+                  //       onPressed: () {
+                  //         setState(() {
+                  //           pageStatus = 'Rejected';
+                  //         });
+                  //         cubit.rejectedVacations.clear();
+                  //         cubit.getRejectedVacations();
+                  //       },
+                  //       child: const Text('Rejected'),
+                  //     ),
+                  //   ],
+                  // ),
                   Expanded(
                     child: pageStatus == 'Pending'
                         ? ListView.builder(

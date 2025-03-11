@@ -32,10 +32,7 @@ class CustomContainer extends StatelessWidget {
                     : context.read<ThemeCubit>().darkMode
                         ? Colors.white70
                         : Colors.black,
-                fontSize:
-                    (containerColor == Theme.of(context).colorScheme.primary)
-                        ? 19
-                        : 17),
+                fontSize: 17),
           ),
         ),
       ),

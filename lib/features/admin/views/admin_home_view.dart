@@ -7,7 +7,6 @@ import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/create_employee_view.dart';
 import 'package:time_pulse/features/admin/widgets/custom_list_tile.dart';
 import 'package:time_pulse/features/admin/widgets/custom_text_field.dart';
-import 'package:time_pulse/features/settings/cubit/theme_cubit/theme_cubit.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 class AdminHomeView extends StatefulWidget {
@@ -28,7 +27,6 @@ class _AdminHomeViewState extends State<AdminHomeView> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = context.read<ThemeCubit>().darkMode;
     return Scaffold(
       appBar: AppBar(
         // iconTheme: IconThemeData(color: theme ? Colors.grey : Colors.white),
@@ -100,21 +98,24 @@ class _AdminHomeViewState extends State<AdminHomeView> {
                       itemCount: cubit.filteredEmployees.length,
                       itemBuilder: (context, index) {
                         final employee = cubit.filteredEmployees[index];
-                        return CustomListTile(
-                          onTap: () {
-                            SharedPrefHelper.setData(
-                              "employeeHistoryId",
-                              employee.id,
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              Routes.employeeHistoryView,
-                            );
-                          },
-                          employeeName: employee.name,
-                          employeeRemainingLeaves:
-                              employee.remaining_leaves.toString(),
-                        );
+                        return (employee.role != "admin")
+                            ? CustomListTile(
+                                imageUrl: employee.imageUrl,
+                                onTap: () {
+                                  SharedPrefHelper.setData(
+                                    "employeeHistoryId",
+                                    employee.id,
+                                  );
+                                  Navigator.pushNamed(
+                                    context,
+                                    Routes.employeeHistoryView,
+                                  );
+                                },
+                                employeeName: employee.name,
+                                employeeRemainingLeaves:
+                                    employee.remaining_leaves.toString(),
+                              )
+                            : SizedBox();
                       },
                     ),
                   ),

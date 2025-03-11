@@ -6,6 +6,7 @@ import 'package:time_pulse/data/extensions/extensions.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
 import 'package:time_pulse/features/admin/widgets/custom_button.dart';
+import 'package:time_pulse/features/admin/widgets/gender_drop_down.dart';
 import 'package:time_pulse/generated/l10n.dart';
 
 class CreateEmployee extends StatefulWidget {
@@ -60,6 +61,22 @@ class _CreateEmployeeState extends State<CreateEmployee> {
                     label: S.of(context).password,
                     validate: validatePassword,
                     prefixIcon: const Icon(Icons.lock),
+                  ),
+                  BlocBuilder<AdminCubit, AdminState>(
+                    builder: (context, state) {
+                      return Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(
+                                    width: 1.5,
+                                    color:
+                                        Theme.of(context).colorScheme.primary)),
+                            child: GenderDropDown()),
+                      );
+                    },
                   ),
                   SafeArea(
                     child: Padding(

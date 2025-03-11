@@ -8,11 +8,13 @@ class CustomListTile extends StatelessWidget {
       {super.key,
       required this.employeeName,
       required this.employeeRemainingLeaves,
-      required this.onTap});
+      required this.onTap,
+      required this.imageUrl});
 
   final String employeeName;
   final String employeeRemainingLeaves;
   final VoidCallback? onTap;
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +27,12 @@ class CustomListTile extends StatelessWidget {
             color: Colors.grey.withValues(alpha: 0.1)),
         height: 70,
         child: ListTile(
-          leading: Icon(Icons.person,
-              color: Theme.of(context).colorScheme.primary, size: 30),
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(imageUrl),
+          ),
+
+          //  Icon(Icons.person,
+          //     color: Theme.of(context).colorScheme.primary, size: 30),
           title: Text(employeeName,
               style: TextStyle(
                   color: Theme.of(context).colorScheme.primary,
