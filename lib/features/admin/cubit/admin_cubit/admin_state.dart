@@ -9,3 +9,5 @@ class AdminPageLoaded extends AdminState {}
 class AdminPageError extends AdminState {}
 
 class EmployeeAdded extends AdminState {}
+
+class EmployeeGenderSelected extends AdminState {}

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/features/admin/cubit/vacations_cubit/vacations_state.dart';
-import 'package:time_pulse/features/admin/models/vacation_request_model.dart';
+import 'package:time_pulse/data/models/vacation_request_model.dart';
 
 class VacationsCubit extends Cubit<VacationsState> {
   VacationsCubit() : super(VacationsInitial());

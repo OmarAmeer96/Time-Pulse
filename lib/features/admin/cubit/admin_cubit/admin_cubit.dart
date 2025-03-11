@@ -3,12 +3,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_state.dart';
-import 'package:time_pulse/features/admin/models/employee_model.dart';
+import 'package:time_pulse/data/models/employee_model.dart';
 
 class AdminCubit extends Cubit<AdminState> {
   AdminCubit() : super(AdminPageInitial());
   List<EmployeeModel> employees = [];
   List<EmployeeModel> filteredEmployees = [];
+  String employeeGender = "Male";
 
   var db = FirebaseFirestore.instance;
   final FirebaseAuth auth = FirebaseAuth.instance;
@@ -56,7 +57,12 @@ class AdminCubit extends Cubit<AdminState> {
             name: nameController.text,
             email: emailController.text,
             id: user.uid,
-            remaining_leaves: 21);
+            remaining_leaves: 21,
+            role: "user",
+            isCheckedIn: false,
+            imageUrl: employeeGender == "Male"
+                ? "https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg="
+                : "https://media.istockphoto.com/id/1074273082/vector/person-gray-photo-placeholder-woman.jpg?s=612x612&w=0&k=20&c=XhXXk0uHEK0aZA9AgzGhbYPqmWz3Qk2reH9nZ6BO2sM=");
         db.collection("employees").add(employee.toFireStore()).then((value) {
           employees.add(employee);
           emit(EmployeeAdded());
@@ -67,6 +73,11 @@ class AdminCubit extends Cubit<AdminState> {
     } catch (e) {
       emit(AdminPageError());
     }
+  }
+
+  selectEmployeeGender(String type) {
+    employeeGender = type;
+    emit(EmployeeGenderSelected());
   }
 
   logout() async {
