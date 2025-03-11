@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Please, enter your password",
     ),
     "error": MessageLookupByLibrary.simpleMessage("Error"),
+    "female": MessageLookupByLibrary.simpleMessage("Female"),
     "forget_password": MessageLookupByLibrary.simpleMessage(
       "Forget Password !",
     ),
@@ -83,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "leaves": MessageLookupByLibrary.simpleMessage("Leaves"),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "male": MessageLookupByLibrary.simpleMessage("Male"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "no_name_provided": MessageLookupByLibrary.simpleMessage(
       "No name provided",

@@ -15,7 +15,7 @@ class VacationRequestCubit extends Cubit<VacationRequestState> {
   GlobalKey<FormState> vacationRequestFormKey = GlobalKey();
   late int remainingLeaves;
   VacationRequestCubit() : super(VacationRequestInitial());
-
+  DateFormat formatDate = DateFormat('yyyy-MM-dd',"en");
   addVacationRequestToFirebase() async {
     emit(VacationRequestLoading());
     final db = FirebaseFirestore.instance;
@@ -58,13 +58,13 @@ class VacationRequestCubit extends Cubit<VacationRequestState> {
         } else {
           selectedStartDate = pickedDate;
           String formattedDateTime =
-              DateFormat('yyyy-MM-dd').format(pickedDate);
+             formatDate.format(pickedDate);
 
           startDateController.text = formattedDateTime;
         }
       } else {
         selectedStartDate = pickedDate;
-        String formattedDateTime = DateFormat('yyyy-MM-dd').format(pickedDate);
+        String formattedDateTime = formatDate.format(pickedDate);
 
         startDateController.text = formattedDateTime;
       }
@@ -86,13 +86,13 @@ class VacationRequestCubit extends Cubit<VacationRequestState> {
         } else {
           selectedEndDate = pickedDate;
           String formattedDateTime =
-              DateFormat('yyyy-MM-dd').format(pickedDate);
+              formatDate.format(pickedDate);
 
           endDateController.text = formattedDateTime;
         }
       } else {
         selectedEndDate = pickedDate;
-        String formattedDateTime = DateFormat('yyyy-MM-dd').format(pickedDate);
+        String formattedDateTime = formatDate.format(pickedDate);
 
         endDateController.text = formattedDateTime;
       }

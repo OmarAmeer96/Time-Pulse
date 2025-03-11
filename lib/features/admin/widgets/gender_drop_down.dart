@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:time_pulse/features/admin/cubit/admin_cubit/admin_cubit.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class GenderDropDown extends StatelessWidget {
   const GenderDropDown({super.key});
@@ -23,7 +24,7 @@ class GenderDropDown extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              Text("Male"),
+              Text(S.of(context).male),
             ],
           ),
         ),
@@ -38,7 +39,7 @@ class GenderDropDown extends StatelessWidget {
               SizedBox(
                 width: 5,
               ),
-              Text("Female"),
+              Text(S.of(context).female),
             ],
           ),
         )

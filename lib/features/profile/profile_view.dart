@@ -9,6 +9,7 @@ import 'package:time_pulse/features/profile/cubit/profile_cubit.dart';
 import 'package:time_pulse/features/profile/widgets/logout_button.dart';
 import 'package:time_pulse/features/profile/widgets/profile_header.dart';
 import 'package:time_pulse/features/profile/widgets/user_info_card.dart';
+import 'package:time_pulse/generated/l10n.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class ProfileView extends StatelessWidget {
         FirebaseFirestore.instance,
       )..fetchUserData(),
       child: Scaffold(
-        appBar: GlobalAppbar(title: "Profile"),
+        appBar: GlobalAppbar(title: S.of(context).profile),
         body: BlocBuilder<ProfileCubit, ProfileState>(
           builder: (context, state) {
             if (state is ProfileLoading) {
