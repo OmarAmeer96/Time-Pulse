@@ -32,51 +32,52 @@ class TimePulse extends StatelessWidget {
       designSize: const Size(428, 926),
       minTextAdapt: true,
       child: MultiBlocProvider(
-        providers: [
-          BlocProvider(create: (context)=>AuthCubit()),
-          BlocProvider(create: (context) => ThemeCubit()..detectTheme()),
-          BlocProvider(create: (_) => LanguageCubit()),
-           BlocProvider(create: (context) => UserCubit()),
-          BlocProvider(create: (context) => HistoryCubit()),
-          BlocProvider(create: (context) => VacationRequestCubit()),
-          BlocProvider(create: (context) => VacationsHistoryCubit()),
-          BlocProvider(create: (context) => MainCubit()),
-          BlocProvider(create: (context) => AdminCubit()),
-          BlocProvider(create: (context) => VacationsCubit()),
-          BlocProvider(create: (context) => EmployeeHistoryCubit()),
-          BlocProvider(
-            create: (context) => ProfileCubit(
-              FirebaseAuth.instance,
-              FirebaseFirestore.instance,
-            )..fetchUserData(),)
-        ],
-        child: BlocBuilder<LanguageCubit, Locale>(
-          builder: (context, locale) {
-            return BlocBuilder<ThemeCubit, ThemeState>(
-              builder: (context, state) {
-                return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Time Pulse',
-                  onGenerateRoute: appRouter.generateRoute,
-                  localizationsDelegates: const [
-                    S.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                  ],
-                  supportedLocales: S.delegate.supportedLocales,
-                  locale: locale,
-                  initialRoute: Routes.splashView,
-                  theme: MyTheme.lightMode,
-                  darkTheme: MyTheme.darkMode,
-                  themeMode: (state is DarkModeState) ? ThemeMode.dark : ThemeMode.light,
-                );
-              },
-            );
-          },
-         
-          )
-      ),
+          providers: [
+            BlocProvider(create: (context) => AuthCubit()),
+            BlocProvider(create: (context) => ThemeCubit()..detectTheme()),
+            BlocProvider(create: (_) => LanguageCubit()),
+            BlocProvider(create: (context) => UserCubit()),
+            BlocProvider(create: (context) => HistoryCubit()),
+            BlocProvider(create: (context) => VacationRequestCubit()),
+            BlocProvider(create: (context) => VacationsHistoryCubit()),
+            BlocProvider(create: (context) => MainCubit()),
+            BlocProvider(create: (context) => AdminCubit()),
+            BlocProvider(create: (context) => VacationsCubit()),
+            BlocProvider(create: (context) => EmployeeHistoryCubit()),
+            BlocProvider(
+              create: (context) => ProfileCubit(
+                FirebaseAuth.instance,
+                FirebaseFirestore.instance,
+              )..fetchUserData(),
+            )
+          ],
+          child: BlocBuilder<LanguageCubit, Locale>(
+            builder: (context, locale) {
+              return BlocBuilder<ThemeCubit, ThemeState>(
+                builder: (context, state) {
+                  return MaterialApp(
+                    debugShowCheckedModeBanner: false,
+                    title: 'Time Pulse',
+                    onGenerateRoute: appRouter.generateRoute,
+                    localizationsDelegates: const [
+                      S.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate,
+                      GlobalCupertinoLocalizations.delegate,
+                    ],
+                    supportedLocales: S.delegate.supportedLocales,
+                    locale: locale,
+                    initialRoute: Routes.splashView,
+                    theme: MyTheme.lightMode,
+                    darkTheme: MyTheme.darkMode,
+                    themeMode: (state is DarkModeState)
+                        ? ThemeMode.dark
+                        : ThemeMode.light,
+                  );
+                },
+              );
+            },
+          )),
     );
   }
 }

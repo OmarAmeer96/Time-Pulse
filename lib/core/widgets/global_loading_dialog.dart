@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class GlobalDialog {
   static showLoadingDialog(context) {
     showDialog(
+      barrierDismissible: false,
       context: context,
       builder: (context) {
         return AlertDialog(
