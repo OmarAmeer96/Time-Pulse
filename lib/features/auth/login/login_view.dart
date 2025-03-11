@@ -45,6 +45,8 @@ class _LoginViewState extends State<LoginView> {
       listener: (context, state) {
         if (state is AuthLoading) {
           GlobalDialog.showLoadingDialog(context);
+        } else if (state is AuthUnauthenticated) {
+          Navigator.pop(context);
         } else if (state is AuthAuthenticated) {
           Navigator.pop(context);
           Navigator.pushReplacementNamed(

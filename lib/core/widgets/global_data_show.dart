@@ -25,7 +25,6 @@ class GlobalDataShow extends StatelessWidget {
                 fontSize: 15,
                 color: Theme.of(context).colorScheme.primary),
           ),
-          // SizedBox(width: 3),
           Text(
             data,
             style: TextStyle(

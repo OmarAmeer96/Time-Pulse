@@ -22,7 +22,6 @@ class HistoryCubit extends Cubit<HistoryState> {
       (querySnapshot) {
         debugPrint("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
-          // print('${docSnapshot.id} => ${docSnapshot.data()}');
           userHistory.add(UserHistoryModel(
               checkInTime: docSnapshot.data()['checkIn'],
               checkOutTime: docSnapshot.data()['checkOut'],

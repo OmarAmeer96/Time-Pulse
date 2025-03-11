@@ -58,7 +58,6 @@ class UserCubit extends Cubit<UserState> {
     if (distance <= 100 && isCheckedIn == false) {
       await addCheckInAndOutTimeToFirebase();
       isCheckedIn = true;
-      // await SharedPrefHelper.setData("isCheckedIn", true);
       await updateUserCase(true);
       inCompanyArea = true;
 
@@ -67,7 +66,6 @@ class UserCubit extends Cubit<UserState> {
     } else if (distance <= 100 && isCheckedIn) {
       await addCheckInAndOutTimeToFirebase();
       isCheckedIn = false;
-      // await SharedPrefHelper.setData("isCheckedIn", false);
       await updateUserCase(false);
       inCompanyArea = true;
 
@@ -96,7 +94,6 @@ class UserCubit extends Cubit<UserState> {
 
   addCheckInAndOutTimeToFirebase() async {
     final db = FirebaseFirestore.instance;
-    // isCheckedIn = await SharedPrefHelper.getBool("isCheckedIn");
     String id = await SharedPrefHelper.getString("employeeId");
     if (isCheckedIn) {
       db.collection("employees").where("ID", isEqualTo: id).get().then(
@@ -138,7 +135,6 @@ class UserCubit extends Cubit<UserState> {
             onError: (e) => debugPrint("Error updating document: $e"),
           );
         });
-        // SharedPrefHelper.setData("docId", docId);
         debugPrint("Added Data with ID: ${documentSnapshot.id}");
       });
     }
@@ -146,8 +142,6 @@ class UserCubit extends Cubit<UserState> {
 
   getEmployeeData() async {
     String id = await SharedPrefHelper.getString("employeeId");
-    // isCheckedIn = await SharedPrefHelper.getBool("isCheckedIn");
-    // docId = await SharedPrefHelper.getString("docId");
     final db = FirebaseFirestore.instance;
     db.collection("employees").where("ID", isEqualTo: id).get().then(
       (querySnapshot) async {

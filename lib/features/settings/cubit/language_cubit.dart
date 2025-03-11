@@ -15,7 +15,7 @@ class LanguageCubit extends Cubit<Locale> {
               'en';
       emit(Locale(currentLocale));
     } catch (e) {
-      emit(const Locale('en')); // Default fallback locale
+      emit(const Locale('en'));
     }
   }
 
@@ -25,7 +25,7 @@ class LanguageCubit extends Cubit<Locale> {
       await SharedPrefHelper.setData(SharedPrefKeys.currentLocale, newLocale);
       emit(Locale(newLocale));
     } catch (e) {
-      // Handle potential errors
+      debugPrint(e.toString());
     }
   }
 }

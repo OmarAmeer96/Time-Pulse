@@ -22,7 +22,6 @@ class EmployeeHistoryCubit extends Cubit<EmployeeHistoryState> {
       (querySnapshot) {
         debugPrint("Successfully completed");
         for (var docSnapshot in querySnapshot.docs) {
-          // print('${docSnapshot.id} => ${docSnapshot.data()}');
           employeeHistory.add(
             UserHistoryModel(
               checkInTime: docSnapshot.data()['checkIn'],

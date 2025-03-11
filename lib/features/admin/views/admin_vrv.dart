@@ -210,41 +210,6 @@ class _AdminVrvState extends State<AdminVrv> {
                       ),
                     ),
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //   children: [
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           pageStatus = 'Pending';
-                  //         });
-                  //         cubit.pendingVacations.clear();
-                  //         cubit.getPendingVacations();
-                  //       },
-                  //       child: const Text('Pending'),
-                  //     ),
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           pageStatus = 'Accepted';
-                  //         });
-                  //         cubit.acceptedVacations.clear();
-                  //         cubit.getAcceptedVacations();
-                  //       },
-                  //       child: const Text('Accepted'),
-                  //     ),
-                  //     TextButton(
-                  //       onPressed: () {
-                  //         setState(() {
-                  //           pageStatus = 'Rejected';
-                  //         });
-                  //         cubit.rejectedVacations.clear();
-                  //         cubit.getRejectedVacations();
-                  //       },
-                  //       child: const Text('Rejected'),
-                  //     ),
-                  //   ],
-                  // ),
                   Expanded(
                     child: pageStatus == 'Pending'
                         ? ListView.builder(

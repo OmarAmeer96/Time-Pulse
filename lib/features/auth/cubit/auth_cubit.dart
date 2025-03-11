@@ -10,39 +10,35 @@ class AuthCubit extends Cubit<AuthState> {
   final _auth = FirebaseAuth.instance;
   AuthCubit() : super(AuthLoading());
 
-  login(String email , String password , BuildContext context) async{
+  login(String email, String password, BuildContext context) async {
     try {
       emit(AuthLoading());
       await _auth
-          .signInWithEmailAndPassword(
-          email: email, password: password)
+          .signInWithEmailAndPassword(email: email, password: password)
           .then((value) {
         SharedPrefHelper.setData("employeeId", value.user!.uid);
         SharedPrefHelper.setData("employeeEmail", value.user!.email);
         emit(AuthAuthenticated());
       });
-
     } on FirebaseAuthException catch (e) {
+      emit(AuthUnauthenticated());
       if (e.code == 'invalid-credential') {
         Fluttertoast.showToast(
-            msg: "The supplied auth credential is incorrect, malformed or has expired."
-        );
+            msg:
+                "The supplied auth credential is incorrect, malformed or has expired.");
         debugPrint(
             'The supplied auth credential is incorrect, malformed or has expired.');
-
       } else {
         debugPrint(e.toString());
-        Fluttertoast.showToast(
-            msg: e.toString());
+        Fluttertoast.showToast(msg: e.toString());
       }
     }
   }
-  resetPassword(String email , BuildContext context)async{
+
+  resetPassword(String email, BuildContext context) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
-      Fluttertoast.showToast(
-          msg: "'Password reset email sent!'");
-
+      Fluttertoast.showToast(msg: "'Password reset email sent!'");
     } on FirebaseAuthException catch (e) {
       String errorMessage;
       if (e.code == 'user-not-found') {
@@ -50,8 +46,7 @@ class AuthCubit extends Cubit<AuthState> {
       } else {
         errorMessage = e.message ?? 'An error occurred.';
       }
-      Fluttertoast.showToast(
-          msg: errorMessage);
+      Fluttertoast.showToast(msg: errorMessage);
     }
   }
-  }
+}
