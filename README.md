@@ -45,7 +45,8 @@ A mobile application for employees to track their time and attendance. The app a
 
 |               Employee Screen Record                         |                      Admin Screen Record                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------- |
-| [Employee Screen Record](https://github.com/user-attachments/assets/b7529733-66b4-4436-9150-d8aaf2a07f0f) |   [Admin Screen Record](https://github.com/user-attachments/assets/fafd668e-4606-4cb5-9f64-374880a6b221)   |
+| <video width="320" height="240" controls autoplay><source src="https://github.com/OmarAmeer96/Time-Pulse/blob/main/assets/screen_records/user.mp4" type="video/mp4">Your browser does not support the video tag.</video> |   <video width="320" height="240" controls autoplay><source src="https://github.com/OmarAmeer96/Time-Pulse/blob/main/assets/screen_records/admin.mp4" type="video/mp4">Your browser does not support the video tag.</video>   |
+
 
 ## 🛠 Key Components
 
