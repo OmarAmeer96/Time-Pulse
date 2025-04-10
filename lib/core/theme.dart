@@ -7,6 +7,7 @@ class MyTheme {
   static Color greyColor = Color(0xff575656);
 
   static ThemeData lightMode = ThemeData(
+      fontFamily: 'Poppins',
       appBarTheme: AppBarTheme(
         foregroundColor: Colors.white,
         backgroundColor: primaryColor,
@@ -44,6 +45,7 @@ class MyTheme {
       ));
 
   static ThemeData darkMode = ThemeData(
+      fontFamily: 'Poppins',
       appBarTheme: AppBarTheme(
         foregroundColor: Colors.white,
         backgroundColor: primaryColor,
