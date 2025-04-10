@@ -45,7 +45,7 @@ A mobile application for employees to track their time and attendance. The app a
 
 |               Employee Screen Record                         |                      Admin Screen Record                      |
 | ------------------------------------------------------------ | ------------------------------------------------------------- |
-| (https://github.com/user-attachments/assets/47408e00-a166-4663-8ad6-90dde1a7456f) |   (https://github.com/user-attachments/assets/ea2e7ae2-eda6-4d21-8cef-5f1b36465f33)   |
+| [Employee Screen Record](https://github.com/user-attachments/assets/b7529733-66b4-4436-9150-d8aaf2a07f0f) |   [Admin Screen Record](https://github.com/user-attachments/assets/fafd668e-4606-4cb5-9f64-374880a6b221)   |
 
 ## 🛠 Key Components
 
